@@ -7,7 +7,7 @@
 ### 从源码安装
 
 ```bash
-git clone https://github.com/Mrkalilunx/Chradare2C
+git clone https://github.com/Mrkalilunx/Chradare2
 cd Chradare2
 bash sys/install.sh
 ```
