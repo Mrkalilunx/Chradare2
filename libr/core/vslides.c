@@ -232,13 +232,13 @@ R_API void r_core_visual_slides(RCore *core, const char *file) {
 			}
 			break;
 		case '?':
-			eprintf ("Keys:\n");
-			eprintf (" np   = next/prev slide\n");
-			eprintf (" hjkl = scroll current slide left/down/up/right\n");
-			eprintf (" q    = quit the slides\n");
-			eprintf (" e    = open vim to edit the current slide\n");
-			eprintf (" 12   = show 1 or two pages\n");
-			eprintf (" :    = enter command\n");
+			eprintf ("按键说明:\n");
+			eprintf (" np   = 下一张/上一张幻灯片\n");
+			eprintf (" hjkl = 向左/下/上/右滚动当前幻灯片\n");
+			eprintf (" q    = 退出幻灯片模式\n");
+			eprintf (" e    = 打开vim编辑当前幻灯片\n");
+			eprintf (" 12   = 显示1页或2页\n");
+			eprintf (" :    = 输入命令\n");
 			r_cons_any_key (core->cons, NULL);
 			break;
 		case 'e':

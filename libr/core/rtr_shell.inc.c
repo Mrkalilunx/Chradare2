@@ -55,17 +55,17 @@ TODO:
 			switch (ch) {
 			case '?':
 				r_cons_clear00 (core->cons);
-				r_cons_printf (core->cons, "Remote Visual keys:\n"
-				" hjkl : move\n"
-				" HJKL : move faster\n"
-				" +-*/ : change block size\n"
-				" pP   : rotate print modes\n"
-				" T    : enter TextLog chat console\n"
-				" @    : enter auto-refresh mode\n"
-				" i    : insert hexpair\n"
-				" q    : quit this mode and go back to the shell\n"
-				" sS   : step / step over\n"
-				" .    : seek entry or pc\n");
+				r_cons_printf(core->cons, "远程视觉键:\n"
+							 " hjkl : 移动\n"
+							 " HJKL : 更快移动\n"
+							 " +-*/ : 改变块大小\n"
+							 " pP : 旋转打印模式\n"
+							 " T : 进入 TextLog 聊天控制台\n"
+							 " @ : 进入自动刷新模式\n"
+							 " i : 插入十六进制对\n"
+							 " q : 退出此模式并返回到 shell\n"
+							 " sS : 单步 / 单步跳过\n"
+							 " . : 寻找入口或 pc\n");
 				r_cons_flush (core->cons);
 				r_cons_any_key (core->cons, NULL);
 				break;

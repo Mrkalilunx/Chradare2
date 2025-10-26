@@ -1611,7 +1611,7 @@ static void mmc_show_help(RCore *core, MMCState *state, int width, int height) {
 
 	r_cons_clear00 (core->cons);
 
-	title_text = "radare2 Miknight Commander";
+	title_text = "radare2 Miknight 文件管理器";
 	title_len = strlen (title_text);
 	padding_left = (width - title_len) / 2;
 	if (padding_left < 0) {
@@ -1642,35 +1642,35 @@ static void mmc_show_help(RCore *core, MMCState *state, int width, int height) {
 	r_cons_canvas_bgfill (canvas, pane_x, pane_y, pane_w, pane_h, state->colors.bg);
 	r_cons_canvas_box (canvas, pane_x, pane_y, pane_w, pane_h, core->cons->context->pal.graph_box);
 
-	char *help_title = r_str_newf ("%s Miknight Commander - Help ", state->colors.dir);
+	char *help_title = r_str_newf ("%s Miknight 文件管理器 - 帮助 ", state->colors.dir);
 	r_cons_canvas_write_at (canvas, help_title, pane_x + 2, pane_y);
 	free (help_title);
 
 	const char *help_lines[] = {
 		"",
-		"  NAVIGATION:",
-		"    Arrows     Navigate files",
-		"    Tab        Switch between panels",
-		"    Enter      Enter directory / Open file",
+		"  导航控制:",
+		"    方向键     浏览文件",
+		"    Tab        切换面板",
+		"    Enter      进入目录 / 打开文件",
 		"",
-		"  FILE OPERATIONS:",
-		"    v          View file (hex/text viewer)",
-		"    c          Copy file to other panel",
-		"    d          Delete file/directory",
-		"    m          Make new directory",
+		"  文件操作:",
+		"    v          查看文件（十六进制/文本查看器）",
+		"    c          复制文件到另一面板",
+		"    d          删除文件/目录",
+		"    m          创建新目录",
 		"",
-		"  PANEL OPERATIONS:",
-		"    r          Refresh both panels",
-		"    o          Change sort order (fs/name/size)",
-		"    z/Z        Decrease/Increase left panel width",
+		"  面板操作:",
+		"    r          刷新两个面板",
+		"    o          更改排序方式（文件系统/名称/大小）",
+		"    z/Z        减小/增大左侧面板宽度",
 		"",
-		"  OTHER:",
-		"    i          Show file/filesystem info",
-		"    I          Toggle interactive preview mode",
-		"    s          Seek to file address and quit to r2",
-		"    R          Toggle theme (MC / r2 colors)",
-		"    h          Show this help",
-		"    q          Quit Miknight Commander",
+		"  其他操作:",
+		"    i          显示文件/文件系统信息",
+		"    I          切换交互式预览模式",
+		"    s          跳转到文件地址并退出到r2",
+		"    R          切换主题（MC / r2 颜色）",
+		"    h          显示此帮助",
+		"    q          退出 Miknight 文件管理器",
 	};
 
 	int y = pane_y + 2;
@@ -1684,7 +1684,7 @@ static void mmc_show_help(RCore *core, MMCState *state, int width, int height) {
 	r_cons_canvas_free (canvas);
 
 	r_cons_printf (core->cons, "%s%s", state->colors.sel_bg, state->colors.fg_black);
-	r_cons_printf (core->cons, " q:Close");
+	r_cons_printf (core->cons, " q:关闭");
 	for (i = 9; i < width; i++) {
 		r_cons_printf (core->cons, " ");
 	}

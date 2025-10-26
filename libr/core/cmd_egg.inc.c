@@ -3,20 +3,20 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_g = {
-	"Usage:", "g[wcilper] [arg]", "Go compile shellcodes using asm.arch/bits/os",
-	"g", " ", "compile the shellcode",
-	"g", " foo.r", "compile r_egg source file",
-	"gc", " cmd=/bin/ls", "set config option for shellcodes and encoders",
-	"gc", "", "list all config options",
-	"ge", " [encoder] [key]", "specify an encoder and a key",
-	"git", " [...]", "your favourite version control",
-	"gi", " [type]", "define the shellcode type",
-	"gL", "[?]", "list plugins (shellcodes, encoders)",
-	"gp", " padding", "define padding for command",
-	"gr", "", "reset r_egg",
-	"gs", " name args", "compile syscall name(args)",
-	"gS", "", "show the current configuration",
-	"gw", "", "compile and write",
+	"用法:", "g[wcilper] [arg]", "使用 asm.arch/bits/os 编译 shellcodes",
+	"g", " ", "编译 shellcode",
+	"g", " foo.r", "编译 r_egg 源文件",
+	"gc", " cmd=/bin/ls", "为 shellcodes 和编码器设置配置选项",
+	"gc", "", "列出所有配置选项",
+	"ge", " [encoder] [key]", "指定编码器和密钥",
+	"git", " [...]", "你最喜欢的版本控制",
+	"gi", " [type]", "定义 shellcode 类型",
+	"gL", "[?]", "列出插件 (shellcodes, encoders)",
+	"gp", " padding", "为命令定义填充",
+	"gr", "", "重置 r_egg",
+	"gs", " name args", "编译系统调用名称(args)",
+	"gS", "", "显示当前配置",
+	"gw", "", "编译并写入",
 	NULL
 };
 

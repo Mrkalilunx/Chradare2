@@ -216,12 +216,12 @@ static int cmpnbbs(const void *_a, const void *_b) {
 #endif
 
 static RCoreHelpMessage help_msg_pdc = {
-	"Usage: pdc[oj]", "", "experimental, unreliable and hacky pseudo-decompiler",
-	"pdc", "", "pseudo decompile function in current offset",
-	"pdca", "", "side by side comparing assembly and pseudo",
-	"pdcc", "", "pseudo-decompile with C helpers around",
-	"pdco", "", "show associated offset next to pseudecompiled output",
-	"pdcj", "", "in json format for codemeta annotations (used by frontends like iaito)",
+	"用法: pdc[oj]", "", "实验性、不可靠且临时凑合的反编译器",
+	"pdc", "", "对当前偏移地址处的函数进行伪反编译",
+	"pdca", "", "并排显示汇编代码与伪代码对比",
+	"pdcc", "", "在伪反编译输出周围添加C语言辅助信息",
+	"pdco", "", "在伪反编译输出旁显示对应的偏移地址",
+	"pdcj", "", "以json格式输出，用于代码元数据注释（被iaito等前端使用）",
 	NULL
 };
 

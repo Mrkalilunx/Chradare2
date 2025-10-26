@@ -3,18 +3,18 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_hash = {
-	"Usage:", "#!<interpreter>", "[<args>] [<file] [<<eof]",
-	"#", "", "comment - do nothing",
-	"#!", "", "list all available interpreters",
-	"#!!", "", "reset rlang session context (see js!)",
-	"#!?", "", "show this help message",
-	"#!?j", "", "list all available interpreters in JSON",
-	"#!?q", "", "list all available lang plugin names (See Ll?)",
-	"#!<lang>?", "", "show help for <lang> (v, python, mujs, ..)",
-	"#!<lang>", " [file]", "interpret the given file with lang plugin",
-	"#!<lang>", " -e [expr|base64:..]", "run the given expression with lang plugin",
-	"#!<lang>", "", "enter interactive prompt for given language plugin",
-	"#!pipe", " node -e 'console.log(123)''", "run program with arguments inside an r2pipe environment",
+	"用法:", "#!<解释器>", "[<参数>] [<文件] [<<eof]",
+	"#", "", "注释 - 不执行任何操作",
+	"#!", "", "列出所有可用的解释器",
+	"#!!", "", "重置 rlang 会话上下文 (见 js!)",
+	"#!?", "", "显示此帮助信息",
+	"#!?j", "", "以 JSON 格式列出所有可用的解释器",
+	"#!?q", "", "列出所有可用的语言插件名称 (见 Ll?)",
+	"#!<lang>?", "", "显示 <lang> 的帮助 (v, python, mujs, ..)",
+	"#!<lang>", " [文件]", "使用语言插件解释给定文件",
+	"#!<lang>", " -e [表达式|base64:..]", "使用语言插件运行给定表达式",
+	"#!<lang>", "", "进入给定语言插件的交互提示符",
+	"#!pipe", " node -e 'console.log(123)''", "在 r2pipe 环境中运行带参数的程序",
 	NULL
 };
 

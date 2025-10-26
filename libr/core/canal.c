@@ -4726,7 +4726,7 @@ R_API int r_core_anal_search_xrefs(RCore *core, ut64 from, ut64 to, PJ *pj, int 
 			if (!memcmp (buf, block, bsz)) {
 				if (!uninit) {
 					if (bsz != left) {
-						R_LOG_WARN ("skipping 0 uninitialized %d bytes at 0x%08"PFMT64x, bsz, at);
+						R_LOG_WARN("在 0x%08" PFMT64x " 处跳过 %d 个未初始化的字节", at, bsz);
 					}
 				}
 				uninit = true;

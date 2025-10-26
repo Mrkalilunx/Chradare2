@@ -1,363 +1,362 @@
-No disassemble!!!
-Deltify your life with radare2
-In soviet russia, radare2 debugs you!
-What do you want to debug today?
-I love the smell of bugs in the morning.
-I'm in your source securing your bits.
-radare2 contributes to the One Byte Per Child foundation.
+不准拆解！！！
+用 radare2 给生活增“差”
+在苏维埃俄罗斯，radare2 调试你！
+今天想调点什么？
+我喜欢清晨里 Bug 的味道。
+我已潜入你的源码，守护你的比特。
+radare2 向“每个孩子一字节”基金会捐款。
 3nl4r9e y0\/r r4d4r3
-I did it for the pwnz.
-If you send the program you are debugging to 15 friends in 143 minutes and then step three times on the same opcode you will get the name of the person who loves you.
-Heisenbug: A bug that disappears or alters its behavior when one attempts to probe or isolate it.
-radare2 is for lulzhats
-Microloft Visual Radare.NET 2008. Now OOXML Powered!
-A C program is like a fast dance on a newly waxed dance floor by people carrying razors - Waldi Ravens
-radare2 is like windows 7 but even better.
-We are surrounded by the enemy. - Excellent, we can attack in any direction!
-radare2-built farm beats the facebook one.
-Thank you for using radare2. Have a nice night!
-Your r2 was built 20h ago. TOO OLD!
-Use radare2! Lemons included!
+我是为了 pwnz 才干的。
+如果你把正在调试的程序在 143 分钟内发给 15 个朋友，然后在同一条指令上连走三步，就能知道是谁在爱你。
+海森堡 Bug：一旦试图探测或隔离，它就消失或变脸。
+radare2 属于 lulzhats
+Microloft Visual Radare.NET 2008，现已支持 OOXML！
+C 程序就像一群拿剃刀的人在新打蜡的舞池里跳快舞——Waldi Ravens
+radare2 像 Windows 7，但更好。
+我们被敌人包围了。——太好了，可以向任意方向进攻！
+radare2 建的农场比 Facebook 强。
+感谢使用 radare2，祝你晚安！
+你的 r2 是 20 小时前编译的，太旧了！
+用 radare2！附赠柠檬！
 rax2 -s 20e296b20ae296b220e296b20a
-Connection lost with the license server, your r2 session will terminate in 30 minutes.
-This is amazing ...
-I love gradients.
-Wait a moment ...
-Don't do this.
-No such file or directory.
-Default scripting languages are NodeJS and Python.
--bash: r2: command not found
-Press any key to continue ...
+与许可证服务器失去连接，你的 r2 会话将在 30 分钟后终止。
+这真神奇……
+我爱渐变。
+稍等……
+别这么干。
+没有那个文件或目录。
+默认脚本语言是 NodeJS 和 Python。
+-bash: r2: 未找到命令
+按任意键继续……
 ilo ni li pona li pali e lipu. o musi!
-radare2 for FideOS, now with extra potato
-Your project name should contain an uppercase letter, 8 vowels, some numbers, and the first 5 characters of your private bitcoin key.
-This computer has gone to sleep.
-Have you ever ordered a pizza using radare2?
-I thought we were friends. :_
-Welcome back, lazy human!
-Yo dawg!
+FideOS 版 radare2，额外附赠土豆
+项目名称必须包含一个大写字母、8 个元音、若干数字，以及你比特币私钥的前 5 位。
+这台电脑已进入睡眠。
+你用 radare2 点过披萨吗？
+我以为我们是朋友。：_
+欢迎回来，懒人类！
+哟，兄弟！
 ---8<--------------------8<------------------8<-----------------8<------
-I accidentally the kernel with radare2.
-I endians swap.
-This page intentionally left blank.
-Here be dragons.
-Trust no one, nor a zero. Both lie.
+我不小心用 radare2 把内核给“全拆”了。
+我交换了端序。
+本页故意留白。
+此处有龙。
+谁也别信，零也别信，两者都会撒谎。
 EIP = 0x41414141
-/dev/brain: No such file or directory.
-Virtual machines are great, but you lose the ability to kick the hardware.
-Charlie! We are here.
-The door is everything ...
-The door controls time and space.
-The door can see into your soul.
-I am Pentium of Borg. Division is futile. You will be approximated.
-Don't look at the code. Don't look.
-Dissasemble? No dissasemble, no dissassemble!!!!!
-Warning, your trial license is about to expire.
-Please register your copy of r2 today! Only £29.90!
-Welcome to IDA 10.0.
-It's not you, it's me.
-This software comes with no brain included. Please use your own.
-rm: /: Permission denied.
-That's embarrassing.
-In soviet Afghanistan, you debug radare2!
-Wow, my cat knows radare2 hotkeys better than me!
-Documentation is for weak people.
-PEBCAK ERROR: Documentation not found.
-License server overloaded (ETOOMUCHCASH)
-Error: cannot yank negative sleep
-If you're not satisfied by our product, you may ask for a refund.
-Already up-to-date.
-How about a nice game of chess?
-THE ONLY WINNING MOVE IS NOT TO PLAY.
-SHALL WE PLAY A GAME?
-sudo make me a pancake
-I nodejs so hard my exams. What a nodejs!
-Now featuring NoSQL!
-One does not simply write documentation.
-We are bleeding edge here. Can't you feel the razors?
-There's a branch for that.
-Everything up-to-date.
-Sharing your latest session to Facebook ...
-This should be documented, since it's not that obvious.
-It's working! Look at the door!
-This is an unacceptable million year dungeon.
-The Hard ROP Cafe
-Wait a minute! I found a bug, self-fixing ... OK
-Hold on, this should never happen!
-Well this is embarrassing ...
-THIS IS NOT FUNNY
+/dev/brain: 没有那个文件或目录。
+虚拟机很棒，但你失去了踹硬件的能力。
+查理！我们到了。
+门就是一切……
+门掌控时间与空间。
+门能看穿你的灵魂。
+我是 Pentium 版的博格，除法无用，你将被近似。
+别看代码，别看。
+反汇编？不准拆，不准拆，不准拆！！！
+警告，你的试用许可证即将到期。
+请立即注册 r2！仅需 £29.90！
+欢迎进入 IDA 10.0。
+不是你，是我。
+本软件未附带大脑，请自备。
+rm: /: 权限不够。
+真尴尬。
+在苏维埃阿富汗，你调试 radare2！
+哇，我家猫比我还熟 r2 快捷键！
+文档是给弱者看的。
+PEBCAK 错误：找不到文档。
+许可证服务器过载（ETOOMUCHCASH）
+错误：无法 yank 负睡眠时间
+若对产品不满意，可申请退款。
+已经是最新。
+来盘国际象棋？
+唯一获胜的方法就是不玩。
+要玩一局吗？
+sudo 给我摊个煎饼
+我 nodejs 太狠，考试都 nodejs！
+现已支持 NoSQL！
+写文档可不是说着玩的。
+我们走在最前沿，你没感觉到剃刀吗？
+那功能有分支了。
+一切已最新。
+正在把最新会话分享到 Facebook……
+这得写文档，毕竟没那么明显。
+它能跑了！快看门！
+这是一百万年不可接受的地下城。
+Hard ROP 咖啡馆
+等等！我找到 Bug 了，正在自修……好了。
+等等，这不该发生啊！
+真尴尬……
+这不好笑。
 ♥  --
-Can you stand on your head?
-May the segfault be with you.
-I script in C, because I can.
-EXPLICIT CONTENT
-Bindings are mostly powered by tears.
-In Soviet Russia, radare2 has documentation.
-Initial frame selected; you cannot go up.
-Unk, unk, unk, unk
-Experts agree, security holes suck, and we fixed some of them!
-This is just an existentialist experiment.
-Nothing to see here. Move along.
-Select your character: RBin Wizard, Master Anal Paladin, or Assembly Warrior
-I accidentally radared my filesystem today.
-No fix, no sleep
-You see it, you fix it!
-V is for Visual
-r2-goverity: found corruption - please eliminate!
-Stop debugging me!
-THIS IS NOT A BUG
-Polish reversers blame git
-vm is like a small cow in ascii
-Do you want to print 333.5K chars? (y/N)
-Now with more better English!
+你能倒立吗？
+愿段错误与你同在。
+我用 C 写脚本，因为我能。
+成人内容
+绑定主要靠眼泪驱动。
+在苏维埃俄罗斯，radare2 有文档。
+已选初始帧，无法上移。
+unk，unk，unk，unk
+专家一致认为，安全漏洞糟透了，我们修了一些！
+这只是存在主义实验。
+没啥好看的，往前走。
+选角色：RBin 巫师、Anal 圣骑士，还是汇编战士？
+我今天不小心把文件系统给 radared 了。
+不修就不睡。
+你看见，你就修！
+V 就是可视。
+r2-goverity：发现损坏——请消灭！
+别调我！
+这不是 Bug。
+波兰逆向者怪 git。
+vm 就像 ASCII 里的小奶牛。
+要打印 333.5K 字符吗？(y/N)
+英文更棒了！
 :(){ :|:& };:
-All your base are belong to r2
-Ask not what r2 can do for you - ask what you can do for r2
-Try with ASAN, and be amazed
-bash: r3: command not found
-R2 loves everyone, even Java coders, but less than others
-It's not a bug, it's a work in progress
-Stop swearing!
-I didn't say that it was working, I said that it's implemented
-Wrong argument
-Remember that word: C H A I R
-what happens in #radare, stays in #radare
-For a full list of commands see `strings /dev/urandom`
-Good morning, pal *<:-)
-Of course r2 runs FreeBSD
-Reverser by Birth, r2 by Choice
-Radare2, what else?
-This incident will be reported
-command not found: calc.exe
-See you at the defcon CTF
-Don't waste your time
-WASTED
-getdruid to get eclectic uid
-Welcome to "IDA - the roguelike"
-255 shades of (truecolor) grey
-When you sold that exploit, what they really bought, was your silence.
-Greetings, human.
-nothing personal, just bitness
-Too old to crash
-Finished a beer
-ESIL ruined my life
-ESIL: The Aftersleep
-Insert coin to continue ...
-See you in shell
-Mess with the best, Die like the rest
-Sarah Connor?
-Log On. Hack In. Go Anywhere. Get Everything.
-phrack, better than java in the browser -- jvoisin
-Did you know that radare2 can decompile to assembly?
-Are you still there?
-Follow the white rabbit
-Do not try to sploit that binary - that's impossible. Instead, only try to realize the truth: there is no binary.
-Hello Mr. Anderson
-Try pressing the pigeon-shaped button
-What has been executed cannot be unexecuted
-What about taking a break? Here, have this nice 0xCC.
-r2 is meant to be read by machines.
-Prove you are a robot to continue ...
-This is fine.
-Using radare2 to generate intelligence ...
-Taking the file and moving it somewhere else
-It's the year of desktop on radare2
+你的基地都属于 r2
+别问 r2 能为你做什么，问你能为 r2 做什么。
+试试 ASAN，保证惊艳。
+bash: r3: 未找到命令
+R2 爱所有人，连 Java 码农也爱，就是少一点。
+这不是 Bug，是进行中的功能。
+别骂人！
+我没说它能跑，我说它实现了。
+参数错了。
+记住这个词：C H A I R
+#radare 里发生的事，就留在 #radare。
+完整命令列表请见 `strings /dev/urandom`
+早安，伙伴 *<:-)
+r2 当然能跑 FreeBSD
+天生逆向者，自选 r2
+Radare2，还用说？
+此事将被上报。
+找不到命令：calc.exe
+Defcon CTF 见。
+别浪费时间。
+已浪费。
+getdruid 获取 eclectic uid
+欢迎进入“IDA 肉鸽”
+255 级真彩灰度
+你卖掉的那个漏洞，其实只是买走了你的沉默。
+你好，人类。
+纯属位宽，无人身攻击。
+太老以致不会崩溃。
+喝完一杯啤酒。
+ESIL 毁了我的人生。
+ESIL：宿醉之后。
+请投币继续……
+shell 里见。
+惹最好的，死得像其余。
+莎拉·康纳？
+登录。入侵。无处不去。全部拿走。
+phrack 比浏览器里的 Java 更好——jvoisin
+知道 r2 能反编译成汇编吗？
+你还在？
+跟着白兔走。
+别想 sploit 那个二进制——不可能。去领悟真相：根本没有二进制。
+你好，安德森先生。
+试试按鸽子形状的按钮。
+已执行的无法撤回。
+不休息一下？来，送你 0xCC。
+r2 是给机器读的。
+证明你是机器人才能继续……
+这很正常。
+用 radare2 生成智能……
+把文件拿走放到别处。
+桌面之年已在 r2 到来。
 💺
-It's the year of radare2 on the desktop
-SSAbotage from ISIL
-"a collection of garbage" -- an r2 pro user
-A git pull a day keeps the segfault away
-Are you a wizard?
-Learn pancake as if you were radare!
-r2 is a great OS, but a terrible hex editor
-THE CAKE IS A PIE
-radare2 0.9.7 is so old, my grandfather was using it with his enigma in WWII
-Have you seen the latest radare2 TV spot?
+r2 桌面之年已到。
+来自 ISIL 的 SSAbotage
+“一堆垃圾”——某 r2 资深用户
+一日 git pull，段故障不来。
+你是巫师吗？
+像 radare 一样学 pancake！
+r2 是绝佳操作系统，却是个糟糕十六进制编辑器。
+蛋糕其实是派。
+radare2 0.9.7 老得我爷爷二战就用它和恩尼格玛。
+看最新 r2 电视广告了吗？
 scp ~/.idapro/ida.key radare.org:/var/www/radare.org/pub/losers/
-Too bad there is no gif support in r2. Yet. -- @r2gif
-Almost 5am, maybe you should go to bed.
-Jingle sploits, jingle sploits, ropchain all the way.
-Mind that the 'g' in radare is silent
-256 colors ought to be enough for anybody
-Hang in there, Baby!
-Run a command with unspecified long sequence of 'a', pancake will be summoned and do the analysis for you.
-In r2land usability is treated as a bug
-radare2 is WYSIWYF - what you see is what you fix
-Your endian swaps
-*(ut64*)buffer ought to be illegal
-How about Global Thermonuclear War?
-There is no F5 key in radare2 yet
-Did you know that r2 is 10 years old?
-Beer in mind.
-r2 -- leading options since 2006
-Don’t feed the bugs! (except delicious stacktraces)!
-Feed the bugs!
-You haxor! Me jane?
-r2 talks to you. tries to make you feel well.
-Now i'm like an evil engineer. MUAHAHAH
-We only have bugs, features are an unintended side-effect
-There are 5 minutes from WTF to FIX in r2land
-Quantum disassemble: it's there as long as you don't observe it
-Ceci n'est pas une r2pipe
-Buy a mac
+r2 还不支持 gif，真可惜。——@r2gif
+都快凌晨 5 点了，去睡吧。
+叮当 sploit，叮当 sploit，一路 ropchain。
+注意，radare 的 g 不发音。
+256 色对谁都够用了。
+坚持住，宝贝！
+打一串超长的 'a'，pancake 会被召唤帮你分析。
+在 r2 大陆，易用性被视为 Bug。
+radare2 是 WYSIWYF——所见即所修。
+你的端序被交换了。
+*(ut64*)buffer 应该违法。
+全球热核战争来一盘？
+r2 还没有 F5 键。
+知道 r2 已 10 岁了吗？
+牢记啤酒。
+r2——自 2006 年起领先选项。
+别喂 Bug！（美味栈追踪除外）！
+喂 Bug 吧！
+你这黑客！我是 Jane？
+r2 跟你说话，想让你开心。
+现在我成了邪恶工程师，哈哈哈。
+我们只有 Bug，功能是意外副作用。
+在 r2 大陆，从 WTF 到 FIX 只需 5 分钟。
+量子反汇编：只要你别看，它就在。
+这不是 r2pipe。
+买台 Mac。
 (gdb) ^D
 ((fn [f s n] (str (f f s n) "dare2")) (fn [f s n] (pr s) (if (> n 0) (f f (str s "ra") (dec n)) s)) "" (/ 1.0 0))
-There's no way you could crash radare2. No. Way.
-When in doubt, try 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa; pd;'
+你不可能把 radare2 弄崩，不可能。
+拿不准就试试 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa; pd;'
 .-. .- -.. .- .-. . ..---
-Disassemble?! No Disassemble Johnny No. 5!!!
-You crackme up!
-Welcome, "reenigne"
-Search returned no hits. Did you mean 'Misassemble'?
-º|<|<|  -( glu glu glu, im the r2 fish )
-Everybody hates warnings. Mr. Pancake, tear down this -Wall
-TIRED OF WAITING
-We fix bugs while you sleep.
-You find bugs while we sleep.
-The stripping process is not deep enough
-Come here, we are relatively friendly
-Don't wait for Travis
-Your problems are solved in an abandoned branch somewhere
+反汇编？不准拆，强尼 5 号！！！
+你把我 crackme 笑翻了！
+欢迎，“reenigne”
+搜索无结果，你是指“Misassemble”？
+º|<|<|  -( 咕噜咕噜，我是 r2 鱼 )
+人人都恨警告。煎饼先生，把这面 -Wall 拆掉吧。
+等烦了。
+你睡觉时我们修 Bug。
+你找 Bug 时我们在睡觉。
+strip 得还不够深。
+过来吧，我们相对友好。
+别等 Travis。
+你的问题早被某个废弃分支解决了。
 git blind --hard
-You need some new glasses
-aaaa is experimental
-We feed trolls
-Mind the tab
-Buy a Mac
-You have been designated for disassembly
-Helping siol merge? No way, that would be like.. way too much not lazy. - vifino
-What is the most complex r2 command? q - then you have to deal with real life /o\
-If you're having fun using radare2, odds are that you're doing something wrong.
-Don't trust what can't be compiled
-Coffee time!
-Can you challenge a perfect immortal machine?
-Add more blockchains to your life.
-Congratulations! You got the segfault 1.000.000! Click [here] to win a prize!
-Well, it looks like it's working.
-There's more than one way to skin a cat
-git pull now
+该换副眼镜了。
+aaaa 是实验性的。
+我们喂巨魔。
+注意 Tab。
+买台 Mac。
+你已被指定拆解。
+帮 siol 合并？才不，那也太不懒了。——vifino
+最复杂的 r2 命令是啥？q——然后你得面对现实 /o\
+要是用 r2 觉得有趣，那你八成用错了。
+别信编译不过的东西。
+咖啡时间！
+你敢挑战完美不朽的机器吗？
+给生活加点区块链。
+恭喜！获得第 1,000,000 次段故障！点[这里]领奖！
+嗯，看起来能跑。
+剥猫皮不止一种办法。
+现在 git pull。
 git checkout hamster
 Noot noot
-This is an unregistered copy.
-10 reasons you want to bt on all threads - you will be shocked by number 3!
-Place a cat on your keyboard while running r2, you'll not believe what will happen next
-This binary may contain traces of human
-Help subcommand will be eventually removed.
-Carpe noctum.
-Your mouse has moved. Radare2 NT must be restarted for the change to take effect. Reboot now? [ OK ]
-There is only one binary, and we are all just reversing pieces of it.
-Radare2 is like violence. If it doesn't solve your problem, you aren't using enough.
-Order pizza for $12.48? [Y/n]
+这是未注册副本。
+10 个理由让你给所有线程 bt——第 3 条震惊！
+运行 r2 时把猫放键盘上，结果你都不敢信。
+本二进制可能含有人类成分。
+help 子命令终将被移除。
+夜袭。
+你的鼠标已移动，必须重启 Radare2 NT 才能生效。立即重启？[ 确定 ]
+只有一个二进制，我们都在反它的碎片。
+Radare2 就像暴力，解决不了问题？那就是用得不够。
+花 $12.48 点披萨？[Y/n]
 r2OS r2pad 0.1 SMP GENERIC r2_64 GNU/r2OS
-AHHHHH!!!! ASSEMBLY CODE!!!!!! HOLD ME I'M SCARED!!!!!!!!!!
-In radare we trust
-We don't make mistakes... just happy little segfaults.
-r2 is for the people
-Use headphones for best experience.
-Starting bitcoin miner in background...
-Downloading and verifying the blockchain...
-The anti-virus database has been updated.
-The motion picture contained in this videodisc is protected under the copyright laws.
-This software is sold for home use only and all other rights are expressly reversed by the copyleft owner.
-Any commercial use or duplication of this copylefted material without prior licensing is forbidden.
-Violators will be prosecuted.
-This shell has been seized by the Internet's Police.
-OpenBSD might pledge r2 but r2 unveils OpenBSD.
-Error: There's a missing space before the opening parenthesis '('
-WARNING: r_list_length: assertion 'list' failed (line 55)
-This accessory is not supported by this version of radare2.
-When can we have an official anime mascot for radare2?
-Radare2, we need you to ctrl+s the world.
-Sorry, radare2 has experienced an internal error.
-Segmentation fault (core dumped)
-Use rabin2 to discover the real TRUTH
-==1337== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-**** COMMODORE 64 RADARE V2 ****  64K RAM SYSTEM  38911 DISASM BYTES FREE  READY.
-Most likely your core dump fell into a blackhole, can't see it.
-Long time no C
-Come to C me!
-Unable to locate package gdb
-You C it, you fix it!
-How good is your C?
-I C dead bugs everywhere!
-You will soon have an out of memory experience.
-This binary no good. Try another.
-BSOD!
-Mind the trap.
-For a full documentation see `r2 -qc iz /lib/libr_core.so`
-99 bugs, take one down pass it around. 100 bugs...
-I like my binary stripped.
-Now 8-bit clean with better ＡＳＣＩＩ!
-Please insert disc 2 and press any key to continue...
-DOOM all the things!
-Put some sugar before the release, attracts the bugs and makes it easier to squash them
-Stay indoors and await further instructions
-radare2 works best, when pirated.
-I could go up there about 11 at night, stay till 4 in the morning, and get all the computer runs I ever wanted.
-Safety third
-You should try our sister project, radar3!
-This pancake guy sure does know his way around r2.
-make: r2: Command not found
-rip and tear until it compiles
-The r emblem on the front is the legendary symbol for invincibility!
-Send PR or GTFO
-If it's stupid and it works, it is not stupid
+啊啊啊啊！！汇编代码！！！抱紧我我怕！！！！！！
+我们信仰 radare。
+我们不犯错……只是可爱的小段故障。
+r2 属于人民。
+请戴耳机获得最佳体验。
+正在后台启动比特币矿工……
+正在下载并验证区块链……
+病毒库已更新。
+本光盘受版权法保护。
+本软件仅限家庭使用，其他权利由 copyleft 所有者明确保留。
+未经许可复制本 copyleft 内容于商业用途属禁止。
+违者将被起诉。
+本 shell 已被网络警察查封。
+OpenBSD 可能 pledge r2，但 r2 揭开 OpenBSD 面纱。
+错误：左括号前缺少空格。
+警告：r_list_length: 断言 'list' 失败（第 55 行）
+本配件不被当前 r2 版本支持。
+r2 官方动漫吉祥物啥时候安排？
+Radare2，我们需要你 ctrl+s 世界。
+抱歉，radare2 遭遇内部错误。
+段故障（核心已转储）
+用 rabin2 发现真正 TRUTH
+==1337== 错误汇总：0 个错误来自 0 个上下文（抑制：0 来自 0）
+**** COMMODORE 64 RADARE V2 ****  64K 内存系统  38911 字节反汇编空闲  就绪。
+你的核心转储很可能掉进黑洞了，找不到。
+好久不见 C。
+来 C 我！
+无法定位软件包 gdb。
+你 C 到了，你就修！
+你的 C 水平如何？
+到处都是死 Bug！
+你即将获得内存不足体验。
+此二进制不行，换一个。
+蓝屏！
+小心陷阱。
+完整文档请见 `r2 -qc iz /lib/libr_core.so`
+99 个 Bug，拿下一个传下去，100 个 Bug……
+我喜欢二进制被剥光。
+现已 8 位清洁，ＡＳＣＩＩ 更佳！
+请插入光盘 2 并按任意键继续……
+万物 DOOM！
+发布前撒点糖，吸引 Bug 再拍扁它们。
+待在室内，等待进一步指示。
+radare2 盗版最好用。
+我能在晚上 11 点上去，待到凌晨 4 点，拿到所有想跑的机时。
+安全第三。
+试试咱们的姐妹项目 radar3！
+这煎饼小子对 r2 可真熟。
+make: r2: 未找到命令
+撕到编译通过为止。
+前面的 r 徽章就是无敌传奇标志！
+发 PR 否则滚。
+如果又蠢又能跑，那就不是蠢。
 33 + 77 = 100
-radare2[15449] Corpse failure, too many 6
-Process[15449] crashed: radare2. Too many corpses being created.
-You can't sleep now there are monsters nearby
-Every journey begins with a choice
-Do 'r2pm -i r2premium; echo "e cfg.fortunes.type = nsfw" >> ~/.radare2rc' for a even more fun with r2
-pneumonic
-Click below to prove you are not a bot
-Sorry, not sorry.
-fix it or set the machine on fire
-burn it before the bug spreads to other installations
-The signals are strong tonight
-It's dangerous to go alone, take this.
-"If you gotta burn it all to the ground; Then let it burn"
-Watch until the end!
-Don't forget to subscribe!
-Ah shit, here we go again.
-Checking whether this software can be played...
-Will it blend?
-Are you still watching?
-Starting application, this might take some time...
-Do you want to restart to install these updates now or try tonight?
-Updates available
-This binary has not been analyzed. Would you like to analyze it now?
-The software is up to date. Just kidding, git pull again
-Caps lock is on.
-$10 or mistery box?
-INSERT COIN
-This program is not compatible with your device.
-Hey hey hey everyone! welcome to infoflash
-Rise and shine beyond the Black wall
-Relic malfunction detected
-It's now safe to turn off your computer.
-No newline at end of file
-Display output is not active.
-The Quick Brown Fox Jumped Over The Lazy Dog!
-gcc: error: no input files
-Now you're thinking with portals
-The bug you've just found it's fixed in git
-Plug me in, and I'll take you up.
-Plug me in, we're running out of time.
-Corrupted cores! We're in luck.
-You think I'll betray you. And on any other day, you'd be right
-I can't believe you came back.
-You don't have permission to access this resource.
-Sign in or head back to home.
-I'd love to help you solve the tests. But I can't.
-Did anything happen while I was out?
-You look great, by the way. Very healthy
-Press the button again.
-It's been a long time.
-Relic malfunction detected.
-You are offline. Some functionality may be unavailable.
-Patching instructions should be illegal
-Are you still watching?
-Downloading update 1 of 1 ...
-Embrace the failure
-It's like progress but backwards
-My other fortunes are funnier
+radare2[15449] 尸体失败，太多 6
+进程[15449] 崩溃：radare2。尸体太多。
+附近怪物出没，无法睡觉。
+每段旅程都始于选择。
+执行 'r2pm -i r2premium; echo "e cfg.fortunes.type = nsfw" >> ~/.radare2rc' 获得更欢乐的 r2
+助记
+点击下方证明你不是机器人
+抱歉，不抱歉。
+要么修，要么把机器烧了。
+在 Bug 蔓延前烧掉它。
+今晚信号很强。
+独自冒险很危险，带上这个。
+“若要烧个精光，那就烧吧”
+看到最后！
+别忘了订阅！
+靠，又来了。
+正在检查本软件能否运行……
+能搅碎吗？
+你还在看？
+启动应用中，可能需要点时间……
+立即重启安装更新还是今晚再试？
+有更新可用。
+本二进制尚未分析，要现在分析吗？
+软件已是最新——才怪，再 git pull 一次。
+大写锁定已开。
+$10 还是神秘盒？
+投币
+本程序与你的设备不兼容。
+嘿各位！欢迎收看 infoflash
+超越黑墙，旭日东升。
+检测到遗物故障。
+现在可以安全关闭计算机。
+文件末尾没有换行。
+显示输出未激活。
+敏捷的棕狐跳过懒狗！
+gcc: 错误：没有输入文件
+现在开始传送门思维。
+你刚发现的 Bug 已在 git 里修好。
+插上我，带你飞。
+插上我，没时间了。
+核心损坏！运气真好。
+你以为我会背叛，换作别日你可能猜对了。
+真不敢相信你又回来了。
+你无权访问此资源。
+登录或返回主页。
+我很想帮你解题，但我不能。
+我不在时发生过啥？
+对了，你气色不错，很健康。
+再按一次按钮。
+好久不见。
+检测到遗物故障。
+你离线了，部分功能可能不可用。
+打补丁说明书应该违法。
+你还在看？
+正在下载更新 1 of 1……
+拥抱失败。
+就像进度条，只是反过来。

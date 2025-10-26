@@ -21,29 +21,29 @@
 #define SPECIAL_CHARS "@;~$#|`\"'()<>"
 
 static const char help_message[] = \
-"\nWelcome to radare2!\n" \
-"\n" \
-"* Type `?` for the root list of commands. \n" \
-"* Append the `?` to any command to list the sub-commands.\n" \
-"* Prefix the command with `'` to avoid evaluating special chars\n" \
-"* The `@` modifier can be used for temporal seeks\n" \
-"* The `~` represents the internal grep. System pipes also work `|`.\n" \
-"* Multiple commands can be chained with `;`.\n" \
-"* Run external scripts with the `.` source command (r2, r2js, python, ..) \n" \
-"* Use the `?*~...` command to inspect all the commands in visual mode\n" \
-"\n" \
-"Use the `e` command to change the configuration options.\n" \
-"* Run `edit` to tweak your ~/.radare2rc script\n" \
-"\n" \
-"Basic commands:\n" \
-"\n" \
-"* s [addr] - seek to a different address\n" \
-"* px, pd  - print hexadecimal, disassembly (pdf/pdr the whole function)\n" \
-"* wx, wa  - write hexpairs, write assembly (w - write string)\n" \
-"* aaa, af - analyze the whole program or function\n" \
-"* /, /x   - search for strings or hexadecimal patterns\n" \
-"* f~...   - search for strings or hexadecimal patterns\n" \
-"* q       - quit (alias for ^D or exit)\n";
+    "\n欢迎使用 radare2！\n" \
+    "\n" \
+    "* 输入 `?` 查看根命令列表。\n" \
+    "* 在任何命令后附加 `?` 可列出子命令。\n" \
+    "* 在命令前添加 `'` 前缀可避免特殊字符被解析。\n" \
+    "* 修饰符 `@` 可用于临时跳转地址。\n" \
+    "* 符号 `~` 代表内置 grep，也支持系统管道符 `|`。\n" \
+    "* 多个命令可用 `;` 连接执行。\n" \
+    "* 使用 `.` 命令运行外部脚本（支持 r2、r2js、python 等）。\n" \
+    "* 在可视化模式中使用 `?*~...` 命令查看所有命令。\n" \
+    "\n" \
+    "使用 `e` 命令修改配置选项。\n" \
+    "* 运行 `edit` 编辑您的 ~/.radare2rc 配置文件。\n" \
+    "\n" \
+       "基础命令：\n" \
+    "\n" \
+    "* s [地址]    - 跳转到指定地址\n" \
+    "* px, pd     - 打印十六进制数据、反汇编代码（pdf/pdr 打印整个函数）\n" \
+    "* wx, wa     - 写入十六进制数据、汇编指令（w 写入字符串）\n" \
+    "* aaa, af    - 分析整个程序或当前函数\n" \
+    "* /, /x      - 搜索字符串或十六进制模式\n" \
+    "* f~...      - 在标志位中搜索字符串或十六进制模式\n" \
+    "* q          - 退出（等价于 ^D 或 exit 命令）\n";
 
 static bool isAnExport(RBinSymbol *s) {
 	/* workaround for some bin plugs */
@@ -107,350 +107,351 @@ R_API ut8 *r_core_readblock(RCore *core, ut64 size) {
 #undef R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_equal_l = {
-	"Usage:", "=l", " [..] list, create and destroy r2 sessions",
-	"=l", "", "list all available sessions",
-	"=l", " [name]", "give a name to the current session",
-	"=l", "-", "stop listening in background",
-	"=l", "l", "start a new session: listening for commands in background",
+	"用法:", "=l", " [..] 列出、创建和销毁 r2 会话",
+	"=l", "", "列出所有可用会话",
+	"=l", " [name]", "为当前会话命名",
+	"=l", "-", "停止在后台监听",
+	"=l", "l", "启动新会话：在后台监听命令",
 	NULL
 };
+
 static RCoreHelpMessage help_msg_dollar = {
-	"Usage:", "$alias[=cmd] [args...]", "Alias commands and data (See ?$? for help on $variables)",
-	"$", "", "list all defined aliases",
-	"$*", "", "list all defined aliases and their values, with unprintable characters escaped",
-	"$**", "", "same as above, but if an alias contains unprintable characters, b64 encode it",
-	"$", "foo:=123", "alias for 'f foo=123'",
-	"$", "foo-=4", "alias for 'f foo-=4'",
-	"$", "foo+=4", "alias for 'f foo+=4'",
-	"$", "foo", "alias for 's foo' (note that command aliases can override flag resolution)",
-	"$", "dis=base64:AAA=", "alias $dis to the raw bytes from decoding this base64 string",
-	"$", "dis=$hello world", "alias $dis to the string after '$'",
-	"$", "dis=$hello\\\\nworld\\\\0a", "string aliases accept double-backslash and hex escaping",
-	"$", "dis=-", "edit $dis in cfg.editor (use single-backslashes for escaping)",
-	"$", "dis=af", "alias $dis to the af command",
-	"\"$", "dis=af;pdf\"", "alias $dis to run af, then pdf. you must quote the whole command.",
-	"$", "test=. /tmp/test.js", "create command - rlangpipe script",
-	"$", "dis=", "undefine alias",
-	"$", "dis", "execute a defined command alias, or print a data alias with unprintable characters escaped",
-	"$", "dis?", "show commands aliased by $dis",
+	"用法:", "$alias[=cmd] [args...]", "别名命令和数据（关于 $ 变量的帮助参见 ?$?）",
+	"$", "", "列出所有已定义的别名",
+	"$*", "", "列出所有已定义的别名及其值，不可打印字符已转义",
+	"$**", "", "同上，但如果别名包含不可打印字符，则进行 base64 编码",
+	"$", "foo:=123", "'f foo=123' 的别名",
+	"$", "foo-=4", "'f foo-=4' 的别名",
+	"$", "foo+=4", "'f foo+=4' 的别名",
+	"$", "foo", "'s foo' 的别名（注意命令别名可以覆盖标志解析）",
+	"$", "dis=base64:AAA=", "将 $dis 别名为此 base64 字符串解码后的原始字节",
+	"$", "dis=$hello world", "将 $dis 别名为 '$' 后的字符串",
+	"$", "dis=$hello\\\\nworld\\\\0a", "字符串别名接受双反斜杠和十六进制转义",
+	"$", "dis=-", "在 cfg.editor 中编辑 $dis（对转义使用单反斜杠）",
+	"$", "dis=af", "将 $dis 别名为 af 命令",
+	"\"$", "dis=af;pdf\"", "将 $dis 别名为运行 af，然后 pdf。必须引用整个命令。",
+	"$", "test=. /tmp/test.js", "创建命令 - rlangpipe 脚本",
+	"$", "dis=", "取消定义别名",
+	"$", "dis", "执行已定义的命令别名，或打印数据别名（不可打印字符已转义）",
+	"$", "dis?", "显示由 $dis 别名的命令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_l = {
-	"Usage:", "l[erls] [arg]", "Internal less (~..) and file listing (!ls)",
-	"lu", " [path]", "same as #!lua",
-	"ll", " [path]", "same as ls -l",
-	"lr", " [path]", "same as ls -r",
-	"li", "", "list source of current function (like gdb's 'list' command)",
-	"ls", " [-e,-l,-j,-q] [path]", "list files in current or given directory",
-	"ls", " -e [path]", "list files using emojis",
-	"ls", " -l [path]", "same as ll (list files with details)",
-	"ls", " -j [path]", "list files in json format",
-	"ls", " -q [path]", "quiet output (one file per line)",
-	"le", "[ss] [path]", "same as cat file~.. (or less)",
+	"用法:", "l[erls] [arg]", "内部 less (~..) 和文件列表 (!ls)",
+	"lu", " [path]", "同 #!lua",
+	"ll", " [path]", "同 ls -l",
+	"lr", " [path]", "同 ls -r",
+	"li", "", "列出当前函数的源代码（类似 gdb 的 'list' 命令）",
+	"ls", " [-e,-l,-j,-q] [path]", "列出当前或给定目录中的文件",
+	"ls", " -e [path]", "使用表情符号列出文件",
+	"ls", " -l [path]", "同 ll（带详细信息列出文件）",
+	"ls", " -j [path]", "以 json 格式列出文件",
+	"ls", " -q [path]", "简洁输出（每行一个文件）",
+	"le", "[ss] [path]", "同 cat file~..（或 less）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_quote = {
-	"Usage:", "\"[\"..|..\"]", "quote the command to avoid evaluating special characters",
-	"\"?", "", "show this help, NOTE that a single quote is simpler and works the same",
-	"\"", "?e hello \\\"world\\\"\"", "print (hello \"world\")",
-	"\"", "?e x;y\";\"?e y;x\"", "run two commands (prints x;y\ny;x)",
-	"\"\"", "[cmd]", "directly call a command ignoring all special chars (fast)",
-	"\"\"@addr\"\"", "[cmd]", "call a command with a temporal seek (EXPERIMENTAL)",
-	"\"\"?e x;y\";\"?e y;x", "", "run two commands ignoring special chars (prints x;y\";\"?e y;x) ",
+	"用法:", "\"[\"..|..\"]", "引用命令以避免评估特殊字符",
+	"\"?", "", "显示此帮助，注意单引号更简单且工作方式相同",
+	"\"", "?e hello \\\"world\\\"\"", "打印 (hello \"world\")",
+	"\"", "?e x;y\";\"?e y;x\"", "运行两个命令（打印 x;y\ny;x）",
+	"\"\"", "[cmd]", "直接调用命令，忽略所有特殊字符（快速）",
+	"\"\"@addr\"\"", "[cmd]", "使用临时定位调用命令（实验性）",
+	"\"\"?e x;y\";\"?e y;x", "", "运行两个命令忽略特殊字符（打印 x;y\";\"?e y;x）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_plus = {
-	"Usage:", "+", "seek forward, same as s+X (see s? and -? for more help)",
-	"+", "8", "seek 8 bytes forward, same as s+8",
-	"++", "", "seek one block forward. Same as s++ (see `b` command)",
+	"用法:", "+", "向前定位，同 s+X（更多帮助参见 s? 和 -?）",
+	"+", "8", "向前定位 8 字节，同 s+8",
+	"++", "", "向前定位一个块。同 s++（参见 `b` 命令）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_j = {
-	"Usage:", "j[:o]in", "run command with json facilities or join two files",
-	"j:", "?e", "run '?e' command and show the result stats in json",
-	"ji:", "[cmd]", "run command and indent it as json like (cmd~{})",
-	"jq", " [...]", "same as !jq",
-	"js", " [expr]", "run given javascript expression ('expr' can start with base64:)",
-	"js-", "", "read from stdin until ^D",
-	"js!", "", "reset js vm (same as #!!)",
-	"js:", "", "enter the interactive repl with autocompletion and colors",
-	"js:", "[file]", "interpret javascript file",
-	"join", " f1 f2", "join the contents of two files",
-	"jobs", "", "list status of background coretask jobs (alias for '&' command, see 'fg' and 'bg')",
+	"用法:", "j[:o]in", "使用 json 工具运行命令或连接两个文件",
+	"j:", "?e", "运行 '?e' 命令并以 json 显示结果统计",
+	"ji:", "[cmd]", "运行命令并将其作为 json 缩进（cmd~{}）",
+	"jq", " [...]", "同 !jq",
+	"js", " [expr]", "运行给定的 javascript 表达式（'expr' 可以以 base64: 开头）",
+	"js-", "", "从 stdin 读取直到 ^D",
+	"js!", "", "重置 js 虚拟机（同 #!!）",
+	"js:", "", "进入交互式 repl，带自动完成和颜色",
+	"js:", "[file]", "解释 javascript 文件",
+	"join", " f1 f2", "连接两个文件的内容",
+	"jobs", "", "列出后台核心任务作业的状态（'&' 命令的别名，参见 'fg' 和 'bg'）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_dash = {
-	"Usage:", "-", "open editor and run the r2 commands in the saved document",
-	"", "'-' '.-' '. -'", " those three commands do the same",
-	"-", "8", "same as s-8, but shorter to type (see +? command)",
-	"-a", " x86", "same as r2 -a x86 or e asm.arch=x86",
-	"-A", "[?]", "same as r2 -A or aaa",
-	"-b", " 32", "same as e or r2 -e",
-	"-c", " cpu", "same as r2 -e asm.cpu=",
-	"-e", " k=v", "same as r2 -b or e asm.bits",
-	"-h", "", "show this help (same as -?)",
-	"-H", " key", "same as r2 -H",
-	"-k", " kernel", "same as r2 -k or e asm.os",
-	"-f", "", "block size = file size (b $s)",
-	"-j", "", "enter the js: repl",
-	"-i", " [file]", "same as . [file], to run a script",
-	"-s", " [addr]", "same as r2 -e asm.cpu=",
-	"-L", "", "same as Lo (or r2 -L)",
-	"-p", " project", "same as 'P [prjname]' to load a project",
-	"-P", " patchfile", "apply given patch file (see doc/rapatch2.md)",
-	"-v", "", "same as -V",
-	"-V", "", "show r2 version, same as ?V",
-	"--", "", "seek one block backward. Same as s-- (see `b` command)",
+	"用法:", "-", "打开编辑器并运行保存文档中的 r2 命令",
+	"", "'-' '.-' '. -'", "这三个命令执行相同操作",
+	"-", "8", "同 s-8，但输入更短（参见 +? 命令）",
+	"-a", " x86", "同 r2 -a x86 或 e asm.arch=x86",
+	"-A", "[?]", "同 r2 -A 或 aaa",
+	"-b", " 32", "同 e 或 r2 -e",
+	"-c", " cpu", "同 r2 -e asm.cpu=",
+	"-e", " k=v", "同 r2 -b 或 e asm.bits",
+	"-h", "", "显示此帮助（同 -?）",
+	"-H", " key", "同 r2 -H",
+	"-k", " kernel", "同 r2 -k 或 e asm.os",
+	"-f", "", "块大小 = 文件大小（b $s）",
+	"-j", "", "进入 js: repl",
+	"-i", " [file]", "同 . [file]，运行脚本",
+	"-s", " [addr]", "同 r2 -e asm.cpu=",
+	"-L", "", "同 Lo（或 r2 -L）",
+	"-p", " project", "同 'P [prjname]' 加载项目",
+	"-P", " patchfile", "应用给定的补丁文件（参见 doc/rapatch2.md）",
+	"-v", "", "同 -V",
+	"-V", "", "显示 r2 版本，同 ?V",
+	"--", "", "向后定位一个块。同 s--（参见 `b` 命令）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_star = {
-	"Usage:", "*<addr>[=[0x]value]", "Pointer read/write data/values",
-	"*", "entry0=cc", "write trap in entrypoint",
-	"*", "entry0+10=0x804800", "write value in delta address",
-	"*", "entry0", "read byte at given address",
-	"*", "/", "end multiline comment. (use '/*' to start mulitiline comment",
+	"用法:", "*<addr>[=[0x]value]", "指针读/写数据/值",
+	"*", "entry0=cc", "在入口点写入陷阱",
+	"*", "entry0+10=0x804800", "在增量地址中写入值",
+	"*", "entry0", "在给定地址读取字节",
+	"*", "/", "结束多行注释。（使用 '/*' 开始多行注释",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_comma = {
-	"Usage:", ",[,.-/*jhr] [file]", "# load table data",
-	",", "", "display table",
-	", ", "[table-query]", "filter and print table. See ,? for more details",
-	",.", " file.csv", "load table from CSV file (comma dot)",
-	",,", "", "print table in csv format (comma comma)",
-	",-", "", "reset table",
-	",/", "?", "query/filter current table (non-destructive)",
-	",*", ">$foo", "print table as r2 commands",
-	",j", "", "print table in json format",
-	",h", " xxd foo bar cow", "define header column names and types",
-	",r", " 1 2 foo", "adds a row using the given format string",
+	"用法:", ",[,.-/*jhr] [file]", "# 加载表格数据",
+	",", "", "显示表格",
+	", ", "[table-query]", "过滤并打印表格。更多细节参见 ,?",
+	",.", " file.csv", "从 CSV 文件加载表格（逗号点）",
+	",,", "", "以 csv 格式打印表格（逗号逗号）",
+	",-", "", "重置表格",
+	",/", "?", "查询/过滤当前表格（非破坏性）",
+	",*", ">$foo", "以 r2 命令打印表格",
+	",j", "", "以 json 格式打印表格",
+	",h", " xxd foo bar cow", "定义标题列名和类型",
+	",r", " 1 2 foo", "使用给定的格式字符串添加行",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_dot = {
-	"Usage:", ".[r2cmd] | [file] | [!command] | [(macro)]", "# define macro or interpret r2, r_lang,\n"
-	"    cparse, d, es6, exe, go, js, lsp, pl, py, rb, sh, vala or zig file",
-	".", "", "repeat last command backward",
-	".", "C*", "run 'C*' command and interpret the printed commands",
-	"..", "123", "alias for s..123 (notice the lack of space)",
-	"..", " [file]", "run the output of the execution of a script as r2 commands",
-	"...", "", "repeat last command forward (same as \\n)",
-	// ".:", "8080", "listen for commands on given tcp port",
-	".--", "", "terminate tcp server for remote commands",
-	".", " foo.r2", "interpret script",
-	".", " foo.py", "also works for running r2pipe and rlang scripts",
-	".-", "", "open cfg.editor and interpret tmp file",
-	".*", " file ...", "same as #!pipe open cfg.editor and interpret tmp file",
-	".!", "rabin -ri $FILE", "interpret output of command",
-	".", "(foo 1 2 3)", "run macro 'foo' with args 1, 2, 3",
-	"./", " ELF", "interpret output of command /m ELF as r. commands",
+	"用法:", ".[r2cmd] | [file] | [!command] | [(macro)]", "# 定义宏或解释 r2、r_lang、\n"
+	"    cparse、d、es6、exe、go、js、lsp、pl、py、rb、sh、vala 或 zig 文件",
+	".", "", "向后重复上一条命令",
+	".", "C*", "运行 'C*' 命令并解释打印的命令",
+	"..", "123", "s..123 的别名（注意没有空格）",
+	"..", " [file]", "将脚本执行的输出作为 r2 命令运行",
+	"...", "", "向前重复上一条命令（同 \\n）",
+	// ".:", "8080", "在给定 tcp 端口监听命令",
+	".--", "", "终止用于远程命令的 tcp 服务器",
+	".", " foo.r2", "解释脚本",
+	".", " foo.py", "也适用于运行 r2pipe 和 rlang 脚本",
+	".-", "", "打开 cfg.editor 并解释临时文件",
+	".*", " file ...", "同 #!pipe 打开 cfg.editor 并解释临时文件",
+	".!", "rabin -ri $FILE", "解释命令的输出",
+	".", "(foo 1 2 3)", "使用参数 1、2、3 运行宏 'foo'",
+	"./", " ELF", "将命令 /m ELF 的输出解释为 r. 命令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_equal = {
-	"Usage:", " =[:!+-=ghH] [...]", " # connect with other instances of r2",
-	"\nremote commands:", "", "",
-	"=", "[*j]", "list all open connections",
-	"=<", "[fd] cmd", "send output of local command to remote fd", // XXX may not be a special char
-	"=", "[fd] cmd", "exec cmd at remote 'fd' (last open is default one)",
-	"=!", " cmd", "run command via r_io_system",
-	"=+", " [proto://]host:port", "connect to remote host:port (*rap://, raps://, tcp://, udp://, http://)",
-	"=-", "[fd]", "remove all hosts or host 'fd'",
-	"==", "[fd]", "open remote session with host 'fd', 'q' to quit",
-	"=!=", "", "disable remote cmd mode",
-	"!=!", "", "enable remote cmd mode",
-	"\nservers:", "", "",
-	// ".:", "9000", "start the tcp server (echo x|nc ::1 9090 or curl ::1:9090/cmd/x)",
-	"=l", "[?]", "list, create or destroy background session server",
-	"=t", "port", "start the tcp server (echo x|nc ::1 9090 or curl ::1:9090/cmd/x)",
-	"=r", "port", "start the rap server (o rap://9999)",
-	"=g", "[?]", "start the gdbserver",
-	"=h", " port", "start the http webserver on 'port'",
-	"=H", " port", "start the http webserver on 'port' (launch browser)",
-	"\nother:", "", "",
-	"=&", ":port", "start rap server in background (same as '&_=h')",
-	"=", ":host:port cmd", "run 'cmd' command on remote server",
-	"\nexamples:", "", "",
-	"=+", "tcp://localhost:9090/", "connect to: r2 -c.:9090 ./bin",
-	// "=+", "udp://localhost:9090/", "connect to: r2 -c.:9090 ./bin",
-	"=+", "rap://localhost:9090/", "connect to: r2 rap://:9090",
-	"=+", "http://localhost:9090/cmd/", "connect to: r2 -c'=h 9090' bin",
-	"o ", "rap://:9090/", "start the rap server on tcp port 9090",
+	"用法:", " =[:!+-=ghH] [...]", " # 与其他 r2 实例连接",
+	"\n远程命令:", "", "",
+	"=", "[*j]", "列出所有打开的连接",
+	"=<", "[fd] cmd", "将本地命令的输出发送到远程 fd", // XXX 可能不是特殊字符
+	"=", "[fd] cmd", "在远程 'fd' 执行 cmd（默认为最后一个打开的）",
+	"=!", " cmd", "通过 r_io_system 运行命令",
+	"=+", " [proto://]host:port", "连接到远程 host:port（*rap://、raps://、tcp://、udp://、http://）",
+	"=-", "[fd]", "移除所有主机或主机 'fd'",
+	"==", "[fd]", "与主机 'fd' 打开远程会话，'q' 退出",
+	"=!=", "", "禁用远程命令模式",
+	"!=!", "", "启用远程命令模式",
+	"\n服务器:", "", "",
+	// ".:", "9000", "启动 tcp 服务器（echo x|nc ::1 9090 或 curl ::1:9090/cmd/x）",
+	"=l", "[?]", "列出、创建或销毁后台会话服务器",
+	"=t", "port", "启动 tcp 服务器（echo x|nc ::1 9090 或 curl ::1:9090/cmd/x）",
+	"=r", "port", "启动 rap 服务器（o rap://9999）",
+	"=g", "[?]", "启动 gdb 服务器",
+	"=h", " port", "在 'port' 上启动 http 网络服务器",
+	"=H", " port", "在 'port' 上启动 http 网络服务器（启动浏览器）",
+	"\n其他:", "", "",
+	"=&", ":port", "在后台启动 rap 服务器（同 '&_=h'）",
+	"=", ":host:port cmd", "在远程服务器上运行 'cmd' 命令",
+	"\n示例:", "", "",
+	"=+", "tcp://localhost:9090/", "连接到：r2 -c.:9090 ./bin",
+	// "=+", "udp://localhost:9090/", "连接到：r2 -c.:9090 ./bin",
+	"=+", "rap://localhost:9090/", "连接到：r2 rap://:9090",
+	"=+", "http://localhost:9090/cmd/", "连接到：r2 -c'=h 9090' bin",
+	"o ", "rap://:9090/", "在 tcp 端口 9090 上启动 rap 服务器",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_equalh = {
-	"Usage:", " =[hH] [...]", " # http server",
-	"http server:", "", "",
-	"=h", " port", "listen for http connections (r2 -qc=H /bin/ls)",
-	"=h-", "", "stop background webserver",
-	"=h--", "", "stop foreground webserver",
-	"=h*", "", "restart current webserver",
-	"=h&", " port", "start http server on 'port' in background",
-	"=H", " port", "start http server on 'port' (launch browser)",
-	"=H&", " port", "start http server on 'port' in background (launch browser)",
+	"用法:", " =[hH] [...]", " # http 服务器",
+	"http 服务器:", "", "",
+	"=h", " port", "监听 http 连接（r2 -qc=H /bin/ls）",
+	"=h-", "", "停止后台网络服务器",
+	"=h--", "", "停止前台网络服务器",
+	"=h*", "", "重启当前网络服务器",
+	"=h&", " port", "在后台启动 http 服务器于 'port'",
+	"=H", " port", "在 'port' 上启动 http 服务器（启动浏览器）",
+	"=H&", " port", "在后台启动 http 服务器于 'port'（启动浏览器）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_equal_equal = {
-	"Usage:", " ==[=] ", "# add connection to remote r2",
-	"==", "[fd]", "shell to send to the nth remote (see '=1 x' / '==1'",
-	"===", "event", "returns socket file or udp port to read events from",
+	"用法:", " ==[=] ", "# 添加到远程 r2 的连接",
+	"==", "[fd]", "发送到第 n 个远程的 shell（参见 '=1 x' / '==1'",
+	"===", "event", "返回套接字文件或 udp 端口以从中读取事件",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_equal_more = {
-	"Usage:", " =+ [proto://][host]:[port](/[path])", " # add connection to remote r2",
-	"=+", "tcp://localhost:9090", "communicates with another instance running '& .:9090'",
-	"=+", "http://localhost:9090/cmd", "talks to remote r2 webserver '& =h'",
-	"=+", "rap://localhost:9090/cmd", "talks to remote r2 webserver 'r2 rap://:9090'",
+	"用法:", " =+ [proto://][host]:[port](/[path])", " # 添加到远程 r2 的连接",
+	"=+", "tcp://localhost:9090", "与运行 '& .:9090' 的另一个实例通信",
+	"=+", "http://localhost:9090/cmd", "与远程 r2 网络服务器 '& =h' 对话",
+	"=+", "rap://localhost:9090/cmd", "与远程 r2 网络服务器 'r2 rap://:9090' 对话",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_equalg = {
-	"Usage:", " =[g] [...]", " # gdb server",
-	"gdbserver:", "", "",
-	"=g", " port file [args]", "listen on 'port' debugging 'file' using gdbserver",
+	"用法:", " =[g] [...]", " # gdb 服务器",
+	"gdb 服务器:", "", "",
+	"=g", " port file [args]", "在 'port' 上监听，使用 gdbserver 调试 'file'",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_b = {
-	"Usage:",  "b[f] [arg]", "change working block size",
-	"b", " 32", "set block size to 33",
-	"b", "=32", "same as 'b 32'",
-	"b", " eip+4", "numeric argument can be an expression",
-	"b", "", "display current block size",
-	"b", "+3", "increase blocksize by 3",
-	"b", "-16", "decrease blocksize by 16",
-	"b*", "", "display current block size in r2 command",
-	"b64:", "AA=", "receive a base64 string that is executed without evaluating special chars",
-	"bf", " foo", "set block size to flag size",
-	"bj", "", "display block size information in JSON",
-	"bm", " 1M", "set max block size",
+	"用法:",  "b[f] [arg]", "更改工作块大小",
+	"b", " 32", "设置块大小为 33",
+	"b", "=32", "同 'b 32'",
+	"b", " eip+4", "数字参数可以是表达式",
+	"b", "", "显示当前块大小",
+	"b", "+3", "将块大小增加 3",
+	"b", "-16", "将块大小减少 16",
+	"b*", "", "以 r2 命令显示当前块大小",
+	"b64:", "AA=", "接收 base64 字符串，执行时不评估特殊字符",
+	"bf", " foo", "设置块大小为标志大小",
+	"bj", "", "以 JSON 格式显示块大小信息",
+	"bm", " 1M", "设置最大块大小",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_k = {
-	"Usage:", "k[s] [key[=value]]", "Sdb Query",
-	"k", " anal/**", "list namespaces under anal",
-	"k", " anal/meta/*", "list kv from anal > meta namespaces",
-	"k", " anal/meta/meta.0x80404", "get value for meta.0x80404 key",
-	"k", " foo", "show value",
-	"k", " foo=bar", "set value",
-	"k", "", "list keys",
-	"kd", " [file.sdb] [ns]", "dump namespace to disk",
-	"kj", "", "List all namespaces and sdb databases in JSON format",
-	"ko", " [file.sdb] [ns]", "open file into namespace",
-	"ks", " [ns]", "enter the sdb query shell",
-	//"kl", " ha.sdb", "load keyvalue from ha.sdb",
-	//"ks", " ha.sdb", "save keyvalue to ha.sdb",
+	"用法:", "k[s] [key[=value]]", "Sdb 查询",
+	"k", " anal/**", "列出 anal 下的命名空间",
+	"k", " anal/meta/*", "列出 anal > meta 命名空间的键值",
+	"k", " anal/meta/meta.0x80404", "获取 meta.0x80404 键的值",
+	"k", " foo", "显示值",
+	"k", " foo=bar", "设置值",
+	"k", "", "列出键",
+	"kd", " [file.sdb] [ns]", "将命名空间转储到磁盘",
+	"kj", "", "以 JSON 格式列出所有命名空间和 sdb 数据库",
+	"ko", " [file.sdb] [ns]", "将文件打开到命名空间",
+	"ks", " [ns]", "进入 sdb 查询 shell",
+	//"kl", " ha.sdb", "从 ha.sdb 加载键值",
+	//"ks", " ha.sdb", "将键值保存到 ha.sdb",
 	NULL,
 };
 
 static RCoreHelpMessage help_msg_r = {
-	"Usage:", "r[+-][ size]", "Resize file",
-	"r", "", "display file size in decimal",
-	"r-", "num", "remove num bytes, move following data down",
-	"r+", "num", "insert num bytes, move following data up",
-	"r", " size", "expand or truncate file to given size",
-	"rb", " oldbase @ newbase", "rebase all flags, bin.info, breakpoints and analysis",
-	"reset" ,"", "reset console settings (clear --hard)",
-	"rh" ,"", "show size in human format",
-	"rj", "", "display the file size in JSON format",
-	"rm" ," [file]", "remove file",
-	"rmrf", " [file|dir]", "recursive remove",
-	"rx", "", "display file size in hexadecimal",
+	"用法:", "r[+-][ size]", "调整文件大小",
+	"r", "", "以十进制显示文件大小",
+	"r-", "num", "移除 num 字节，向下移动后续数据",
+	"r+", "num", "插入 num 字节，向上移动后续数据",
+	"r", " size", "将文件扩展或截断到给定大小",
+	"rb", " oldbase @ newbase", "重新基址所有标志、bin.info、断点和分析",
+	"reset" ,"", "重置控制台设置（clear --hard）",
+	"rh" ,"", "以人类可读格式显示大小",
+	"rj", "", "以 JSON 格式显示文件大小",
+	"rm" ," [file]", "删除文件",
+	"rmrf", " [file|dir]", "递归删除",
+	"rx", "", "以十六进制显示文件大小",
 //
-	"r2" ," [file]", "launch r2 (same for rax2, rasm2, ...)",
-	"r2pm", " [...]", "run r2pm's main",
-	"rabin2", " [...]", "run rabin2's main",
-	"radare2", " [...]", "run radare2's main",
-	"radiff2", " [...]", "run radiff2's main",
-	"rafind2", " [...]", "run rafind2's main",
-	"rafs2", " [...]", "run rafs2's main",
-	"rahash2", " [...]", "run rahash2's main",
-	"rasm2", " [...]", "run rasm2's main",
-	"ravc2", " [...]", "run ravc2's main",
-	"rax2", " [...]", "run rax2's main",
+	"r2" ," [file]", "启动 r2（rax2、rasm2 等同理）",
+	"r2pm", " [...]", "运行 r2pm 的主程序",
+	"rabin2", " [...]", "运行 rabin2 的主程序",
+	"radare2", " [...]", "运行 radare2 的主程序",
+	"radiff2", " [...]", "运行 radiff2 的主程序",
+	"rafind2", " [...]", "运行 rafind2 的主程序",
+	"rafs2", " [...]", "运行rafs2的主程序",
+	"rahash2", " [...]", "运行 rahash2 的主程序",
+	"rasm2", " [...]", "运行 rasm2 的主程序",
+	"ravc2", " [...]", "运行 ravc2 的主程序",
+	"rax2", " [...]", "运行 rax2 的主程序",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_u = {
-	"Usage:", "u", "uname or undo write/seek",
-	"u", "", "show system uname (alias for uname)",
-	"uw", "", "alias for wc (requires: e io.cache=true)",
-	"us", "", "alias for s- (seek history)",
-	"uc", "[?]", "undo core commands (uc?, ucl, uc*, ..) (see `e cmd.undo`)",
-	"uid", "", "display numeric user id",
-	"uniq", "", "filter rows to avoid duplicates",
-	"uname", "[?]", "uname - show system information",
+	"用法:", "u", "uname 或撤销写入/定位",
+	"u", "", "显示系统 uname（uname 的别名）",
+	"uw", "", "wc 的别名（需要：e io.cache=true）",
+	"us", "", "s- 的别名（定位历史）",
+	"uc", "[?]", "撤销核心命令（uc?、ucl、uc*、..）（参见 `e cmd.undo`）",
+	"uid", "", "显示数字用户 ID",
+	"uniq", "", "过滤行以避免重复",
+	"uname", "[?]", "uname - 显示系统信息",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_uname = {
-	"Usage:", "uname", "show information about the current system",
-	"uname", "", "show host operating system",
-	"uname", " -a", "show more system details",
-	"uname", " -j", "show uname information in JSON",
-	"uname", " -b", "show machine cpu register bits size",
-	"uname", " -m", "show machine cpu architecture name",
-	"uname", " -r", "show operating system version",
+	"用法:", "uname", "显示有关当前系统的信息",
+	"uname", "", "显示主机操作系统",
+	"uname", " -a", "显示更多系统细节",
+	"uname", " -j", "以 JSON 显示 uname 信息",
+	"uname", " -b", "显示机器 cpu 寄存器位大小",
+	"uname", " -m", "显示机器 cpu 架构名称",
+	"uname", " -r", "显示操作系统版本",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_uc = {
-	"Usage:", "uc [cmd],[revert-cmd]", "undo core commands (see `e cmd.undo`)",
-	"uc", " w hello,w world", "add a new undo command manually",
-	"uc", "", "list all core undos commands",
-	"uc*", "", "list all core undos as r2 commands",
-	"ucu", "", "up : undo previous action",
-	"ucd", "", "down : redo action",
-	"uc-", "", "undo last action",
-	"uc.", "", "list all reverts in current",
+	"用法:", "uc [cmd],[revert-cmd]", "撤销核心命令（参见 `e cmd.undo`）",
+	"uc", " w hello,w world", "手动添加新的撤销命令",
+	"uc", "", "列出所有核心撤销命令",
+	"uc*", "", "以 r2 命令列出所有核心撤销",
+	"ucu", "", "上：撤销上一个操作",
+	"ucd", "", "下：重做操作",
+	"uc-", "", "撤销最后一个操作",
+	"uc.", "", "列出当前中的所有恢复",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_triple_exclamation = {
-	"Usage:", "!!![-*][cmd] [arg|$type...]", " # user-defined autocompletion for commands",
-	"!!!", "", "list all autocompletions",
-	"!!!?", "", "show this help",
-	"!!!", "-*", "remove all user-defined autocompletions",
-	"!!!", "-\\*", "remove autocompletions matching this glob expression",
-	"!!!", "-foo", "remove autocompletion named 'foo'",
-	"!!!", "foo", "add 'foo' for autocompletion",
-	"!!!", "bar $flag", "add 'bar' for autocompletion with $flag as argument",
-	"Types:", "", "",
+	"用法:", "!!![-*][cmd] [arg|$type...]", " # 用户定义的命令自动完成",
+	"!!!", "", "列出所有自动完成",
+	"!!!?", "", "显示此帮助",
+	"!!!", "-*", "移除所有用户定义的自动完成",
+	"!!!", "-\\*", "移除此通配符表达式匹配的自动完成",
+	"!!!", "-foo", "移除名为 'foo' 的自动完成",
+	"!!!", "foo", "为自动完成添加 'foo'",
+	"!!!", "bar $flag", "为自动完成添加 'bar'，以 $flag 作为参数",
+	"类型:", "", "",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_vertical_bar = {
-	"Usage:", "[cmd] | [program|H|T|.|]", "",
-	"|", " [program]", "pipe output of command to program",
-	"|", "", "disable scr.html and scr.color",
-	"|.", "", "alias for .[cmd]",
-	"|?", "", "show this help",
-	"|H", "", "enable scr.html, respect scr.color",
-	"|J", "", "same as j:cmd",
-	"|E", "", "base64 encode the output of the command",
-	"|D", "", "decode the output of the command as base64",
-	"|T", "", "use scr.tts to speak out the stdout",
+	"用法:", "[cmd] | [program|H|T|.|]", "",
+	"|", " [program]", "将命令输出管道传输到程序",
+	"|", "", "禁用 scr.html 和 scr.color",
+	"|.", "", ".[cmd] 的别名",
+	"|?", "", "显示此帮助",
+	"|H", "", "启用 scr.html，遵循 scr.color",
+	"|J", "", "同 j:cmd",
+	"|E", "", "对命令输出进行 base64 编码",
+	"|D", "", "将命令输出解码为 base64",
+	"|T", "", "使用 scr.tts 朗读 stdout",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_v = {
-	"Usage:", "v[*i]", "",
-	"v", "", "open visual panels",
-	"v", " test", "load saved layout with name test",
-	"ve", " [fg] [bg]", "define foreground and background for current panel",
-	"v.", " [file]", "load visual script (also known as slides)",
-	"v=", " test", "save current layout with name test",
-	"vi", " test", "open the file test in 'cfg.editor'",
+	"用法:", "v[*i]", "",
+	"v", "", "打开可视化面板",
+	"v", " test", "加载名为 test 的已保存布局",
+	"ve", " [fg] [bg]", "为当前面板定义前景色和背景色",
+	"v.", " [file]", "加载可视化脚本（也称为幻灯片）",
+	"v=", " test", "以名称 test 保存当前布局",
+	"vi", " test", "在 'cfg.editor' 中打开文件 test",
 	NULL
 };
 
@@ -2836,7 +2837,7 @@ static bool cmd_r2cmd(RCore *core, const char *_input) {
 		if (input[2] == ' ' || input[2] == 0) {
 			r_sys_cmdf ("%s", input);
 		} else {
-			R_LOG_ERROR ("Invalid command");
+			R_LOG_ERROR ("无效命令");
 		}
 		// rc = __runMain (core->r_main_radare2, input);
 	} else {
@@ -6367,7 +6368,7 @@ static int run_cmd_depth(RCore *core, char *cmd) {
 		}
 		ret = r_core_cmd_subst (core, rcmd);
 		if (R_UNLIKELY (ret == -1)) {
-			R_LOG_ERROR ("Invalid command '%s' (0x%02x)", rcmd, *rcmd);
+			R_LOG_ERROR ("无效命令 '%s' (0x%02x)", rcmd, *rcmd);
 			break;
 		}
 		if (!ptr) {
@@ -6848,56 +6849,56 @@ R_API void r_core_cmd_init(RCore *core) {
 		const char *description;
 		RCmdCb cb;
 	} cmds[] = {
-		{ "!", "run system command", cmd_system },
-		{ "_", "print last output", cmd_last },
-		{ "{", "run a command in json", cmd_json },
-		{ "#", "calculate hash", cmd_hash },
-		{ "$", "alias", cmd_alias },
-		{ "%", "environment variables (same as 'env' command)", cmd_env },
-		{ "&", "tasks", cmd_tasks },
-		{ "(", "macro", cmd_macro },
-		{ "*", "pointer read/write", cmd_pointer },
-		{ "+", "relative seek forward", cmd_plus },
-		{ "-", "open cfg.editor and run script", cmd_stdin },
-		{ ".", "interpret", cmd_interpret },
-		{ ",", "create and manipulate tables", cmd_table },
-		{ "/", "search kw, pattern aes", cmd_search },
-		{ "=", "io pipe", cmd_rap },
-		{ "?", "help message", cmd_help },
-		{ ":", "alias for =!", cmd_iosys },
-		{ "0", "alias for s 0x", cmd_ox },
-		{ "a", "analysis", cmd_anal },
-		{ "b", "change block size", cmd_bsize },
-		{ "c", "compare memory", cmd_cmp },
-		{ "C", "code metadata", cmd_meta },
-		{ "d", "debugger operations", cmd_debug },
-		{ "e", "evaluate configuration variable", cmd_eval },
-		{ "f", "get/set flags", cmd_flag },
-		{ "g", "egg manipulation", cmd_egg },
-		{ "i", "get file info", cmd_info },
-		{ "k", "perform sdb query", cmd_kuery },
-		{ "l", "list files and directories", cmd_l },
-		{ "j", "join the contents of the two files", cmd_j },
-		{ "h", "show the top n number of line in file", cmd_h },
-		{ "L", "manage dynamically loaded plugins", cmd_plugins },
-		{ "m", "mount filesystem", cmd_mount },
-		{ "o", "open or map file", cmd_open },
-		{ "p", "print current block", cmd_print },
-		{ "P", "project", cmd_project },
-		{ "q", "exit program session", cmd_quit },
-		{ "Q", "alias for q!", cmd_Quit },
-		{ "r", "change file size", cmd_resize },
-		{ "s", "seek to an offset", cmd_seek },
-		{ "t", "type information (cparse)", cmd_type },
-		{ "T", "Text log utility", cmd_log },
-		{ "u", "uname/undo", cmd_undo },
-		{ "<", "pipe into RCons.readChar", cmd_pipein },
-		{ "V", "enter visual mode", cmd_visual },
-		{ "v", "enter visual panels", cmd_panels },
-		{ "w", "write bytes", cmd_write },
-		{ "x", "alias for px", cmd_hexdump },
-		{ "y", "yank bytes", cmd_yank },
-		{ "z", "zignatures", cmd_zign },
+		{ "!", "运行系统命令", cmd_system },
+		{ "_", "打印最后输出", cmd_last },
+		{ "{", "以 json 运行命令", cmd_json },
+		{ "#", "计算哈希", cmd_hash },
+		{ "$", "别名", cmd_alias },
+		{ "%", "环境变量（与 'env' 命令相同）", cmd_env },
+		{ "&", "任务", cmd_tasks },
+		{ "(", "宏", cmd_macro },
+		{ "*", "指针读/写", cmd_pointer },
+		{ "+", "相对前移", cmd_plus },
+		{ "-", "打开 cfg.editor 并运行脚本", cmd_stdin },
+		{ ".", "解释", cmd_interpret },
+		{ ",", "创建和操作表", cmd_table },
+		{ "/", "搜索关键字，模式 aes", cmd_search },
+		{ "=", "io 管道", cmd_rap },
+		{ "?", "帮助信息", cmd_help },
+		{ ":", "别名为 =!", cmd_iosys },
+		{ "0", "别名为 s 0x", cmd_ox },
+		{ "a", "分析", cmd_anal },
+		{ "b", "更改块大小", cmd_bsize },
+		{ "c", "比较内存", cmd_cmp },
+		{ "C", "代码元数据", cmd_meta },
+		{ "d", "调试器操作", cmd_debug },
+		{ "e", "评估配置变量", cmd_eval },
+		{ "f", "获取/设置标志", cmd_flag },
+		{ "g", "蛋操作", cmd_egg },
+		{ "i", "获取文件信息", cmd_info },
+		{ "k", "执行 sdb 查询", cmd_kuery },
+		{ "l", "列出文件和目录", cmd_l },
+		{ "j", "合并两个文件的内容", cmd_j },
+		{ "h", "显示文件中的前 n 行", cmd_h },
+		{ "L", "管理动态加载的插件", cmd_plugins },
+		{ "m", "挂载文件系统", cmd_mount },
+		{ "o", "打开或映射文件", cmd_open },
+		{ "p", "打印当前块", cmd_print },
+		{ "P", "项目", cmd_project },
+		{ "q", "退出程序会话", cmd_quit },
+		{ "Q", "别名为 q!", cmd_Quit },
+		{ "r", "更改文件大小", cmd_resize },
+		{ "s", "寻址到偏移量", cmd_seek },
+		{ "t", "类型信息（cparse）", cmd_type },
+		{ "T", "文本日志工具", cmd_log },
+		{ "u", "uname/撤销", cmd_undo },
+		{ "<", "管道到 RCons.readChar", cmd_pipein },
+		{ "V", "进入可视模式", cmd_visual },
+		{ "v", "进入可视面板", cmd_panels },
+		{ "w", "写入字节", cmd_write },
+		{ "x", "别名为 px", cmd_hexdump },
+		{ "y", "复制字节", cmd_yank },
+		{ "z", "签名", cmd_zign },
 	};
 
 	core->rcmd = r_cmd_new (core);

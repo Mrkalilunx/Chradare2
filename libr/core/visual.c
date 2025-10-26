@@ -279,84 +279,84 @@ static bool __core_visual_gogo(RCore *core, int ch) {
 }
 
 static RCoreHelpMessage help_visual = {
-	"?", "full help",
-	"!", "enter panels",
-	"a", "code analysis",
-	"c", "toggle cursor",
-	"d", "debugger / emulator",
-	"e", "toggle configurations",
-	"i", "insert / write",
-	"m", "moving around (seeking)",
-	"p", "print commands and modes",
-	"v", "view management",
+	"?", "完整帮助",
+	"!", "进入面板模式",
+	"a", "代码分析",
+	"c", "切换光标",
+	"d", "调试器 / 模拟器",
+	"e", "切换配置",
+	"i", "插入 / 写入",
+	"m", "移动导航 (寻址)",
+	"p", "打印命令和模式",
+	"v", "视图管理",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_visual = {
-	"?", "show visual mode help (short)",
-	"??", "show visual mode help (full)",
-	"$", "set the program counter to the current offset + cursor",
-	"&", "rotate asm.bits between 8, 16, 32 and 64 applying hints",
-	"%", "in cursor mode finds matching pair, otherwise toggle autoblocksz",
-	"0", "reset print mode (V0pp)",
-	"^", "seek to the beginning of the function",
-	"!", "swap into visual panels mode",
-	"TAB", "switch to the next print mode (or element in cursor mode)",
-	"_", "enter the flag/comment/functions/.. hud (same as VF_)",
-	"=", "set cmd.vprompt (top row)",
-	"|", "set cmd.cprompt (right column)",
-	".", "seek to program counter",
-	"#", "toggle decompiler comments in disasm (see pdd* from r2dec)",
-	"\\", "toggle visual split mode",
-	"\"", "toggle the column mode (uses pC..)",
-	"/", "in cursor mode search in current block",
-	"(", "toggle snow",
-	")", "toggle emu.str",
-	":cmd", "run radare command",
-	";[-]cmt", "add/remove comment",
-	"0", "seek to beginning of current function",
-	"[1-9]", "follow jmp/call identified by shortcut (like ;[1])",
-	",file", "add a link to the text file",
-	"/*+-[]", "change block size, [] = resize hex.cols",
-	"<,>", "seek aligned to block size (in cursor slurp or dump files)",
-	"a/A", "(a)ssemble code, visual (A)ssembler",
-	"b", "browse evals, symbols, flags, mountpoints, evals, classes, ...",
-	"B", "toggle breakpoint",
-	"c/C", "toggle (c)ursor and (C)olors",
-	"d[f?]", "define function, data, code, ..",
-	"D", "enter visual diff mode (set diff.from/to)",
-	"f/F", "set/unset or browse flags. f- to unset, F to browse, ..",
-	"hjkl", "move around (or HJKL) (left-down-up-right)",
-	"i", "insert hex or string (in hexdump) use tab to toggle",
-	"I", "insert hexpair block ",
-	"mK/'K", "mark/go to Key (any key)",
-	"n/N", "seek next/prev function/flag/hit (scr.nkey)",
-	"g", "go/seek to given offset (g[g/G]<enter> to seek begin/end of file)",
-	"O", "toggle asm.pseudo and asm.esil",
-	"p/P", "rotate print modes (hex, disasm, debug, words, buf)",
-	"q", "back to radare shell",
-	"r", "toggle callhints/jmphints/leahints",
-	"R", "randomize color palette (ecr)",
-	"sS", "step / step over",
-	"tT", "tt new tab, t[1-9] switch to nth tab, t= name tab, t- close tab",
-	"uU", "undo/redo seek",
-	"v", "visual function/vars code analysis mode",
-	"V", "(V)iew interactive ascii art graph (agfv)",
-	"wW", "seek cursor to next/prev word",
-	"xX", "show xrefs/refs of current function from/to data/code",
-	"yY", "copy and paste selection",
-	"z", "fold/unfold comments in disassembly",
-	"Z", "shift-tab rotate print modes", // ctoggle zoom mode",
-	"Enter", "follow address of jump/call",
+	"?", "显示可视化模式帮助 (精简)",
+	"??", "显示可视化模式帮助 (完整)",
+	"$", "将程序计数器设置为当前偏移 + 光标位置",
+	"&", "在 8、16、32 和 64 位之间轮换 asm.bits 并应用提示",
+	"%", "在光标模式下查找匹配对，否则切换自动块大小",
+	"0", "重置打印模式 (V0pp)",
+	"^", "寻址到函数的开头",
+	"!", "切换到可视化面板模式",
+	"TAB", "切换到下一个打印模式 (或在光标模式下切换到下一个元素)",
+	"_", "进入标志/注释/函数/.. HUD (与 VF_ 相同)",
+	"=", "设置 cmd.vprompt (顶部行)",
+	"|", "设置 cmd.cprompt (右侧列)",
+	".", "寻址到程序计数器",
+	"#", "在反汇编中切换反编译器注释 (参见 r2dec 的 pdd*)",
+	"\\", "切换可视化分割模式",
+	"\"", "切换列模式 (使用 pC..)",
+	"/", "在光标模式下在当前块中搜索",
+	"(", "切换雪花效果",
+	")", "切换 emu.str",
+	":cmd", "运行 radare 命令",
+	";[-]cmt", "添加/移除注释",
+	"0", "寻址到当前函数的开头",
+	"[1-9]", "跟随由快捷键标识的 jmp/call (如 ;[1])",
+	",file", "添加文本文件的链接",
+	"/*+-[]", "更改块大小，[] = 调整 hex.cols",
+	"<,>", "寻址到块大小对齐 (在光标模式下读取或转储文件)",
+	"a/A", "(a)汇编代码，可视化(A)汇编器",
+	"b", "浏览评估、符号、标志、挂载点、评估、类等",
+	"B", "切换断点",
+	"c/C", "切换(c)光标和(C)颜色",
+	"d[f?]", "定义函数、数据、代码等",
+	"D", "进入可视化差异模式 (设置 diff.from/to)",
+	"f/F", "设置/取消设置或浏览标志。f- 取消设置，F 浏览等",
+	"hjkl", "移动导航 (或 HJKL) (左-下-上-右)",
+	"i", "插入十六进制或字符串 (在十六进制转储中) 使用 tab 切换",
+	"I", "插入十六进制对块",
+	"mK/'K", "标记/转到键 (任意键)",
+	"n/N", "寻址下一个/上一个函数/标志/命中 (scr.nkey)",
+	"g", "转到/寻址到给定偏移 (g[g/G]<enter> 寻址到文件开头/结尾)",
+	"O", "切换 asm.pseudo 和 asm.esil",
+	"p/P", "轮换打印模式 (十六进制、反汇编、调试、字、缓冲区)",
+	"q", "返回 radare shell",
+	"r", "切换调用提示/跳转提示/lea提示",
+	"R", "随机化颜色调色板 (ecr)",
+	"sS", "单步步入 / 单步步过",
+	"tT", "tt 新标签页，t[1-9] 切换到第 n 个标签页，t= 命名标签页，t- 关闭标签页",
+	"uU", "撤销/重做寻址",
+	"v", "可视化函数/变量代码分析模式",
+	"V", "(V)查看交互式 ASCII 艺术图 (agfv)",
+	"wW", "将光标寻址到下一个/上一个字",
+	"xX", "显示当前函数从/到数据/代码的交叉引用/引用",
+	"yY", "复制和粘贴选择",
+	"z", "在反汇编中折叠/展开注释",
+	"Z", "shift-tab 轮换打印模式", // 切换缩放模式",
+	"Enter", "跟随跳转/调用的地址",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_visual_fn = {
-	"F2", "toggle breakpoint",
-	"F4", "run to cursor",
-	"F7", "single step",
-	"F8", "step over",
-	"F9", "continue",
+	"F2", "切换断点",
+	"F4", "运行到光标位置",
+	"F7", "单步步入",
+	"F8", "单步步过",
+	"F9", "继续执行",
 	NULL
 };
 
@@ -605,7 +605,7 @@ repeat:
 		return 0;
 	}
 	r_cons_clear00 (core->cons);
-	r_core_visual_append_help (core, q, "Visual Mode Help (short)", help_visual);
+	r_core_visual_append_help (core, q, "可视化模式帮助 (精简)", help_visual);
 	r_cons_printf (core->cons, "%s", r_strbuf_get (q));
 	r_cons_flush (core->cons);
 	const char *lesstr = NULL;
@@ -618,39 +618,39 @@ repeat:
 		r_core_panels_root (core, core->panels_root);
 		break;
 	case '?':
-		r_core_visual_append_help (core, p, "Visual Mode Help (full)", help_msg_visual);
-		r_core_visual_append_help (core, p, "Function Keys Defaults  # Use `e key.` to owerwrite", help_msg_visual_fn);
+		r_core_visual_append_help (core, p, "可视化模式帮助 (完整)", help_msg_visual);
+		r_core_visual_append_help (core, p, "功能键默认设置  # 使用 `e key.` 覆盖", help_msg_visual_fn);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'v':
-		r_strbuf_append (p, "Visual Views:\n\n");
+		r_strbuf_append (p, "可视化视图:\n\n");
 		r_strbuf_append (p,
-			" \\     toggle horizonal split mode\n"
-			" tt     create a new tab (same as t+)\n"
-			" t=     give a name to the current tab\n"
-			" t-     close current tab\n"
-			" th     select previous tab (same as tj)\n"
-			" tl     select next tab (same as tk)\n"
-			" t[1-9] select nth tab\n"
-			" C   -> rotate scr.color=0,1,2,3\n"
-			" R   -> rotate color theme with ecr command which honors scr.randpal\n"
+			" \\     切换水平分割模式\n"
+			" tt    创建新标签页 (与 t+ 相同)\n"
+			" t=    为当前标签页命名\n"
+			" t-    关闭当前标签页\n"
+			" th    选择上一个标签页 (与 tj 相同)\n"
+			" tl    选择下一个标签页 (与 tk 相同)\n"
+			" t[1-9] 选择第 n 个标签页\n"
+			" C   -> 轮换 scr.color=0,1,2,3\n"
+			" R   -> 使用 ecr 命令轮换颜色主题，遵循 scr.randpal\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'p':
-		r_strbuf_append (p, "Visual Print Modes:\n\n");
+		r_strbuf_append (p, "可视化打印模式:\n\n");
 		r_strbuf_append (p,
-			" pP     change to the next/previous print mode (hex, dis, ..)\n"
-			" TAB    rotate between all the configurations for the current print mode\n"
-			" SPACE  toggle between graph/disasm or similar hex modes\n"
+			" pP     切换到下一个/上一个打印模式 (十六进制、反汇编等)\n"
+			" TAB    在当前打印模式的所有配置之间轮换\n"
+			" SPACE  在图/反汇编或类似的十六进制模式之间切换\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'e':
-		r_strbuf_append (p, "Visual Evals:\n\n");
+		r_strbuf_append (p, "可视化评估:\n\n");
 		r_strbuf_append (p,
-			" E   toggle asm.hint.lea\n"
-			" &   rotate asm.bits=16,32,64\n"
+			" E   切换 asm.hint.lea\n"
+			" &   轮换 asm.bits=16,32,64\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
@@ -659,51 +659,51 @@ repeat:
 		r_strbuf_free (p);
 		return ret;
 	case 'i':
-		r_strbuf_append (p, "Visual Insertion Help:\n\n");
+		r_strbuf_append (p, "可视化插入帮助:\n\n");
 		r_strbuf_append (p,
-			" i   insert bits, bytes or text depending on view\n"
-			" a   assemble instruction and write the bytes in the current offset\n"
-			" A   visual assembler\n"
-			" +   increment value of byte\n"
-			" -   decrement value of byte\n"
+			" i   根据视图插入位、字节或文本\n"
+			" a   汇编指令并在当前偏移处写入字节\n"
+			" A   可视化汇编器\n"
+			" +   递增字节值\n"
+			" -   递减字节值\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'd':
-		r_strbuf_append (p, "Visual Debugger Help:\n\n");
+		r_strbuf_append (p, "可视化调试器帮助:\n\n");
 		r_strbuf_append (p,
-			" $    set the program counter (PC register)\n"
-			" s    step in\n"
-			" S    step over\n"
-			" B    toggle breakpoint\n"
-			" :dc  continue\n"
+			" $    设置程序计数器 (PC 寄存器)\n"
+			" s    单步步入\n"
+			" S    单步步过\n"
+			" B    切换断点\n"
+			" :dc  继续执行\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'm':
-		r_strbuf_append (p, "Visual Moving Around:\n\n");
+		r_strbuf_append (p, "可视化移动导航:\n\n");
 		r_strbuf_append (p,
-			" g        type flag/offset/register name to seek\n"
-			" hl       seek to the next/previous byte\n"
-			" jk       seek to the next row (core.offset += hex.cols)\n"
-			" JK       seek one page down\n"
-			" ^        seek to the beginning of the current map\n"
-			" $        seek to the end of the current map\n"
-			" c        toggle cursor mode (use hjkl to move and HJKL to select a range)\n"
-			" mK/'K    mark/go to Key (any key)\n"
+			" g        输入标志/偏移/寄存器名称进行寻址\n"
+			" hl       寻址到下一个/上一个字节\n"
+			" jk       寻址到下一行 (core.offset += hex.cols)\n"
+			" JK       向下寻址一页\n"
+			" ^        寻址到当前映射的开头\n"
+			" $        寻址到当前映射的结尾\n"
+			" c        切换光标模式 (使用 hjkl 移动和 HJKL 选择范围)\n"
+			" mK/'K    标记/转到键 (任意键)\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
 	case 'a':
-		r_strbuf_append (p, "Visual Analysis:\n\n");
+		r_strbuf_append (p, "可视化分析:\n\n");
 		r_strbuf_append (p,
-			" df  define function\n"
-			" du  undefine function\n"
-			" dc  define as code\n"
-			" dw  define as dword (32bit)\n"
-			" dw  define as qword (64bit)\n"
-			" dd  define current block or selected bytes as data\n"
-			" V   view graph (same as press the 'space' key)\n"
+			" df  定义函数\n"
+			" du  取消定义函数\n"
+			" dc  定义为代码\n"
+			" dw  定义为双字 (32位)\n"
+			" dw  定义为四字 (64位)\n"
+			" dd  将当前块或选定的字节定义为数据\n"
+			" V   查看图 (与按 'space' 键相同)\n"
 		);
 		lesstr = r_strbuf_get (p);
 		break;
@@ -1440,18 +1440,18 @@ static int follow_ref(RCore *core, RVecAnalRef *xrefs, int choice, int xref) {
 }
 
 static RCoreHelpMessage help_msg_visual_xref = {
-	"j/k",	"select next or previous item (use arrows)",
-	"J/K",	"scroll by 10 refs",
-	"g/G",	"scroll to top / bottom",
-	"p/P",	"rotate between various print modes",
-	":",	"run r2 command",
-	"/",	"highlight given word",
-	"?",	"show this help message",
-	"x/<",	"show xrefs",
-	"X/>",	"show refs",
-	"l/Space/Enter",	"seek to ref or xref",
-	"Tab",	"toggle between address and function references",
-	"h/q/Q",	"quit xref mode",
+	"j/k",	"选择下一个或上一个项目 (使用方向键)",
+	"J/K",	"滚动10个引用",
+	"g/G",	"滚动到顶部/底部",
+	"p/P",	"在各种打印模式之间轮换",
+	":",	"运行r2命令",
+	"/",	"高亮给定单词",
+	"?",	"显示此帮助信息",
+	"x/<",	"显示交叉引用",
+	"X/>",	"显示引用",
+	"l/Space/Enter",	"寻址到引用或交叉引用",
+	"Tab",	"在地址和函数引用之间切换",
+	"h/q/Q",	"退出交叉引用模式",
 	NULL
 };
 

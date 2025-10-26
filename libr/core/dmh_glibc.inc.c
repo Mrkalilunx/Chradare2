@@ -1825,24 +1825,24 @@ static void GH(dmhg)(RCore *core, const char *input, MallocState *main_arena, GH
 	}
 }
 
-static const char* GH(help_msg)[] = {
-	"Usage:", " dmh", " # Memory map heap",
-	"dmh", " @[malloc_state]", "List heap chunks of a particular arena",
-	"dmh", "", "List the chunks inside the heap segment",
-	"dmh*", "", "Display heap details as radare2 commands",
-	"dmha", "", "List all malloc_state instances in application",
-	"dmhb", " @[malloc_state]", "Display all parsed Double linked list of main_arena's or a particular arena bins instance",
-	"dmhb", " [bin_num|bin_num:malloc_state]", "Display parsed double linked list of bins instance from a particular arena",
-	"dmhbg", " [bin_num]", "Display double linked list graph of main_arena's bin [Under developemnt]",
-	"dmhc", " @[chunk_addr]", "Display malloc_chunk struct for a given malloc chunk",
-	"dmhf", " @[malloc_state]", "Display all parsed fastbins of main_arena's or a particular arena fastbinY instance",
-	"dmhf", " [fastbin_num(:malloc_state)]", "Display single linked list in fastbinY instance from a particular arena",
-	"dmhg", " [malloc_state]", "Display heap graph of a particular arena",
-	"dmhg", "", "Display heap graph of heap segment",
-	"dmhi", " @[malloc_state]", "Display heap_info structure/structures for a given arena",
-	"dmhj", "", "List the chunks inside the heap segment in JSON format",
-	"dmhm", "[*j]", "List all malloc_state instance of a particular arena (@ malloc_state#addr)",
-	"dmht", "", "Display all parsed thread cache bins of all arena's tcache instance",
+static const char *GH(help_msg)[] = {
+	"用法:", " dmh", " # 内存映射堆",
+	"dmh", " @[malloc_state]", "列出特定区域的堆块",
+	"dmh", "", "列出堆段内的块",
+	"dmh*", "", "以radare2命令显示堆详细信息",
+	"dmha", "", "列出应用程序中的所有malloc_state实例",
+	"dmhb", " @[malloc_state]", "显示主区域或特定区域bins实例的所有解析双向链表",
+	"dmhb", " [bin_num|bin_num:malloc_state]", "显示特定区域的bins实例的解析双向链表",
+	"dmhbg", " [bin_num]", "显示主区域的bin的双向链表图 [开发中]",
+	"dmhc", " @[chunk_addr]", "显示给定malloc块的malloc_chunk结构",
+	"dmhf", " @[malloc_state]", "显示主区域或特定区域fastbinY实例的所有解析fastbins",
+	"dmhf", " [fastbin_num(:malloc_state)]", "显示特定区域的fastbinY实例中的单向链表",
+	"dmhg", " [malloc_state]", "显示特定区域的堆图",
+	"dmhg", "", "显示堆段的堆图",
+	"dmhi", " @[malloc_state]", "显示给定区域的heap_info结构/结构",
+	"dmhj", "", "以JSON格式列出堆段内的块",
+	"dmhm", "[*j]", "列出特定区域的所有malloc_state实例 (@ malloc_state#addr)",
+	"dmht", "", "显示所有区域的所有解析线程缓存bins实例",
 	NULL
 };
 

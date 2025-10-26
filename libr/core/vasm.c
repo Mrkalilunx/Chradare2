@@ -39,14 +39,14 @@ static int readline_callback(RCons *cons, void *_a, const char *str) {
 		line->buffer.length = strlen (a->otherstr);
 		line->buffer.index = line->buffer.length;
 	} else if (*str == '?') {
-		r_cons_printf (core->cons, "[VA]> ?\n\n"
-			"Visual assembler help:\n\n"
-			"  assemble input while typing using asm.arch, asm.bits and cfg.bigendian\n"
-			"  press enter to quit (prompt if there are bytes to be written)\n"
-			"  this assembler supports various directives like .hex ...\n"
-			"!       toggle between hexpairs or assembly as input\n"
-			"RETURN  write the bytes/assembly in place\n"
-			"^C      leave this mode\n"
+		r_cons_printf(core->cons, "[VA]> ?\n\n"
+			"可视汇编器帮助:\n\n"
+			" 在输入时使用 asm.arch, asm.bits 和 cfg.bigendian 进行汇编\n"
+			" 按回车退出（如果有字节需要写入则提示）\n"
+			" 此汇编器支持各种指令，如 .hex ...\n"
+			"! 切换输入为十六进制对或汇编\n"
+			"RETURN 在当前位置写入字节/汇编\n"
+			"^C 离开此模式\n"
 			);
 	} else if (a->amode) {
 		r_asm_code_free (a->acode);

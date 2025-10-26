@@ -6,17 +6,17 @@
 // R2R db/cmd/cmd_macros
 
 static RCoreHelpMessage help_msg_lparen = {
-	"Usage:", "(foo args;cmd1;cmd2;..)", "Command macros",
-	"(foo args;..;..)", "", "define a macro",
-	"(foo args;..;..)()", "", "define and call a macro",
-	"(-foo)", "", "remove a macro",
-	".(foo)", "", "to call it",
-	"()", "", "break inside macro",
-	"(*)", "", "list all defined macros",
-	"(j)", "", "list macros in json format",
-	"", "Argument support:", "",
-	"(foo x y; $0 @ $1)", "", "define fun with args (x - $0; y - $1)",
-	".(foo 128 0x804800)", "", "call it with args",
+	"用法:", "(foo args;cmd1;cmd2;..)", "命令宏",
+	"(foo args;..;..)", "", "定义一个宏",
+	"(foo args;..;..)()", "", "定义并调用一个宏",
+	"(-foo)", "", "移除一个宏",
+	".(foo)", "", "调用它",
+	"()", "", "在宏内部中断",
+	"(*)", "", "列出所有已定义的宏",
+	"(j)", "", "以 JSON 格式列出宏",
+	"", "参数支持:", "",
+	"(foo x y; $0 @ $1)", "", "定义带参数的函数 (x - $0; y - $1)",
+	".(foo 128 0x804800)", "", "用参数调用它",
 	NULL
 };
 

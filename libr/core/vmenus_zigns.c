@@ -141,14 +141,14 @@ R_API int r_core_visual_view_zigns(RCore *core) {
 			break;
 		case '?':
 			r_cons_clear00 (core->cons);
-			r_cons_printf (core->cons,
-			"vbz: Visual Zignatures:\n\n"
-			" jkJK  - scroll up/down\n"
-			" d     - delete current signature\n"
-			" g     - regenerate signatures\n"
-			" q     - quit this visual mode\n"
-			" _     - enter the hud\n"
-			" :     - enter command\n");
+			r_cons_printf(core->cons,
+				"vbz: 可视化签名：\n\n"
+				" jkJK - 向上/向下滚动\n"
+				" d - 删除当前签名\n"
+				" g - 重新生成签名\n"
+				" q - 退出此可视化模式\n"
+				" _ - 进入 HUD\n"
+				" : - 输入命令\n");
 			r_cons_flush (core->cons);
 			r_cons_any_key (core->cons, NULL);
 			break;

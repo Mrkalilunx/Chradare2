@@ -8,154 +8,154 @@
 #include "../bin/format/pdb/pdb_downloader.h"
 
 static RCoreHelpMessage help_msg_ih = {
-	"Usage: ih", "[*jq]", "Display header information",
-	"ih", "", "normal output to display binary headers",
-	"ih*", "", "same as above, but in r2 commands",
-	"ihj", "", "in json format",
+	"用法: ih", "[*jq]", "显示头信息",
+	"ih", "", "正常输出以显示二进制头",
+	"ih*", "", "与上面相同，但在 r2 命令中",
+	"ihj", "", "以 json 格式",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_iH = {
-	"Usage: iH", "[*jq]", "Display header fields information",
-	"iH", "", "normal output to display binary headers",
-	"iH*", "", "same as above, but in r2 commands",
-	"iHj", "", "in json format",
+	"用法: iH", "[*jq]", "显示头字段信息",
+	"iH", "", "正常输出以显示二进制头",
+	"iH*", "", "与上面相同，但在 r2 命令中",
+	"iHj", "", "以 json 格式",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_is = {
-	"Usage: is", "[*hjq]", "List symbols from current selected binary",
-	"is,", "[table-query]", "list symbols in table using given expression",
-	"is.", "", "current symbol",
-	"is*", "", "same as above, but in r2 commands",
-	"isj", "", "in json format",
-	"ise", "", "entrypoints symbols (see 'ies')",
+	"用法: is", "[*hjq]", "列出当前选定二进制的符号",
+	"is,", "[table-query]", "使用给定表达式列出表中的符号",
+	"is.", "", "当前符号",
+	"is*", "", "与上面相同，但在 r2 命令中",
+	"isj", "", "以 json 格式",
+	"ise", "", "入口点符号（见 'ies'）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_ic = {
-	"Usage: ic", "[.-+clgjsq][jq]", "Display class information",
-	"ic", "", "List classes, methods and fields (icj for json)",
-	"ic.", "", "show class and method name in current seek",
-	"ic,", "[table-query]", "query comma separated values",
-	"ic-", "[klass.method]", "delete given klass or klass.name",
-	"ic+", "[klass.method]", "add new symbol in current seek for a given klass and method name",
-	"icc", " [lang]", "List classes, methods and fields in Header Format (see bin.lang=swift,java,objc,cxx)",
-	"icg", " [str]", "List classes hirearchy graph with agn/age (match str if provided)",
-	"icq", "", "List classes, in quiet mode (just the classname)",
-	"icqq", "", "List classes, in quieter mode (only show non-system classnames)",
-	"icl", "[c]", "Show addresses of class and it methods, without names (iclc = class count)",
-	"ics", "", "Show class symbols in an easy to parse format",
+	"用法: ic", "[.-+clgjsq][jq]", "显示类信息",
+	"ic", "", "列出类、方法和字段（icj 为 json）",
+	"ic.", "", "显示当前查找中的类和方法名称",
+	"ic,", "[table-query]", "查询以逗号分隔的值",
+	"ic-", "[klass.method]", "删除给定的类或类名",
+	"ic+", "[klass.method]", "为给定的类和方法名称在当前查找中添加新符号",
+	"icc", " [lang]", "以头格式列出类、方法和字段（见 bin.lang=swift,java,objc,cxx）",
+	"icg", " [str]", "列出类层次图与 agn/age（如果提供则匹配 str）",
+	"icq", "", "以安静模式列出类（仅类名）",
+	"icqq", "", "以更安静的模式列出类（仅显示非系统类名）",
+	"icl", "[c]", "显示类及其方法的地址，无需名称（iclc = 类计数）",
+	"ics", "", "以易于解析的格式显示类符号",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_iz = {
-	"Usage: iz", "[][jq*]", "List strings",
-	"iz", "", "strings in data sections (in JSON/Base64)",
-	"iz,", "[:help]", "perform a table query on strings listing",
-	"iz-", " [addr]", "purge string via bin.str.purge",
-	"iz*", "", "print flags and comments r2 commands for all the strings",
-	"izz", "", "search for Strings in the whole binary",
-	"izz*", "", "same as iz* but exposing the strings of the whole binary",
-	"izzz", "", "dump Strings from whole binary to r2 shell (for huge files)",
+	"用法: iz", "[][jq*]", "列出字符串",
+	"iz", "", "数据段中的字符串（以 JSON/Base64 格式）",
+	"iz,", "[:help]", "对字符串列表执行表查询",
+	"iz-", " [addr]", "通过 bin.str.purge 清除字符串",
+	"iz*", "", "打印所有字符串的标志和评论 r2 命令",
+	"izz", "", "在整个二进制中搜索字符串",
+	"izz*", "", "与 iz* 相同，但暴露整个二进制的字符串",
+	"izzz", "", "从整个二进制转储字符串到 r2 shell（用于大文件）",
 	NULL
 };
 
-static RCoreHelpMessage help_msg_iE = { // rename to ise? maybe
-	"Usage: iE", "[][jq*]", "List exported symbols",
-	"iE", "", "exports (global symbols)",
-	"iE,", "[table-query]", "exported symbols using the table query",
-	"iE.", "", "show export in current address",
+static RCoreHelpMessage help_msg_iE = { // 重命名为 ise? 也许
+	"用法: iE", "[][jq*]", "列出导出符号",
+	"iE", "", "导出（全局符号）",
+	"iE,", "[table-query]", "使用表查询的导出符号",
+	"iE.", "", "显示当前地址的导出",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_iS = {
-	"Usage: iS", "[][jq*]", "List sections and segments",
-	"iS ", "[sha1,crc32(,..)]", "sections (see Lh to list the hash algorithms supported)",
-	"iS.", "", "current section",
-	"iS,", "[table-query]", "list sections in table using given expression",
-	"iS=", "", "show ascii-art color bars with the section ranges",
-	"iSS", "[,tablequery]", "list memory segments (maps with om)",
-	"iSm", "[cj]", "list sections with the symbols contained (iSmc for count only, iSmj for json)",
+	"用法: iS", "[][jq*]", "列出节和段",
+	"iS ", "[sha1,crc32(,..)]", "节（见 Lh 列出支持的哈希算法）",
+	"iS.", "", "当前节",
+	"iS,", "[table-query]", "使用给定表达式列出表中的节",
+	"iS=", "", "显示带有节范围的 ascii-art 彩条",
+	"iSS", "[,tablequery]", "列出内存段（与 om 映射）",
+	"iSm", "[cj]", "列出包含符号的节（iSmc 仅计数，iSmj 为 json）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_iic = {
-	"Usage: iic", "[jkq*]", "info import classes",
-	"iic", " [symname]", "show all imports matching a class",
-	"iic", "", "list imports grouped by class",
-	"iic.", "", "show classes associated with the import in the current address",
-	"iicc", " [type]", "show kind of given symbol name",
-	"iiccx", " [type]", "show functions calling the imports of this class",
-	"iicj", "", "list grouped imports in json",
-	"iick", "", "group imports by class, listed in key/value format",
+	"用法: iic", "[jkq*]", "信息导入类",
+	"iic", " [symname]", "显示与类匹配的所有导入",
+	"iic", "", "按类分组列出导入",
+	"iic.", "", "显示当前地址中与导入相关的类",
+	"iicc", " [type]", "显示给定符号名称的类型",
+	"iiccx", " [type]", "显示调用此类导入的函数",
+	"iicj", "", "以 json 格式列出分组导入",
+	"iick", "", "按类分组导入，以键/值格式列出",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_ie = {
-	"Usage: ie", "[qj=]", "Show entrypoints and constructors",
-	"ie", "[j]", "show entrypointsie=entrypoint",
-	"iee", "[j]", "list constructors and destructors",
-	"ies", "[j]", "list entrypoint symbols (see 'ise')",
+	"用法: ie", "[qj=]", "显示入口点和构造函数",
+	"ie", "[j]", "显示入口点 ie=entrypoint",
+	"iee", "[j]", "列出构造函数和析构函数",
+	"ies", "[j]", "列出入口点符号（见 'ise'）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_i = {
-	"Usage: i", "", "Get info from opened file (see rabin2's manpage)",
-	"i", "[*jq]", "show info of current file (in JSON)",
-	"i:", "[?]", "run rbinplugin specific commands",
-	"ia", "", "list archs found in current binary (same as rabin2 -A)",
-	"ib", "", "reload the current buffer for setting of the bin (use once only)",
-	"ic", "[?]", "List classes, methods and fields (icj for json)",
-	"iC", "[j]", "show signature info (entitlements, ...)",
-	"id", "[?]", "show DWARF source lines information",
-	"iD", " lang sym", "demangle symbolname for given language",
-	"ie", "[?][es]", "ie=entrypoint, iee=constructors+destructors, ies=epsymbols",
-	"iE", "[?]", "exports (global symbols)",
-	"ig", "[?][h]", "guess size of binary program (igh use human units instead of number of bytes)",
-	"ih", "[?]", "show binary headers (see iH)",
-	"iH", "[?]", "show binary headers fields",
-	"ii", "[?][cj*,]", "list the symbols imported from other libraries",
-	"iic", "[?][jqk*] ([type])", "classify imports",
-	"iI", "", "binary info", // deprecate imho, may confuse with il and its already in `i`
-	"ik", " [query]", "key-value database from RBinObject",
-	"il", "", "libraries",
-	"iL", " [plugin]", "list all RBin plugins loaded or plugin details",
-	"im", "", "show info about predefined memory allocation",
-	"iM", "", "show main address",
-	"io", " [file]", "load info from file (or last opened) use bin.baddr",
-	"iO", "[?]", "perform binary operation (dump, resize, change sections, ...)",
-	"ir", "", "list the relocations",
-	"iR", "", "list the resources",
-	"is", "[?]", "list the symbols",
-	"iS", "[?]", "list sections, segments and compute their hash",
-	"it", "", "file hashes", // hashes in it? wtf, thats a pretty bad subcommand
-	"iT", "", "file signature", // iT for signatures omg thats worst
-	"iV", "", "display file version info", // wtf why not iv
-	"iw", "", "show try/catch blocks", // bad naming..
-	"iz", "[?]", "strings in data sections (in JSON/Base64)",
+	"用法: i", "", "从打开的文件获取信息（见 rabin2 的手册）",
+	"i", "[*jq]", "显示当前文件的信息（以 JSON 格式）",
+	"i:", "[?]", "运行特定于 rbinplugin 的命令",
+	"ia", "", "列出在当前二进制中找到的架构（与 rabin2 -A 相同）",
+	"ib", "", "重新加载当前缓冲区以设置 bin（仅使用一次）",
+	"ic", "[?]", "列出类、方法和字段（icj 为 json）",
+	"iC", "[j]", "显示签名信息（权限等）",
+	"id", "[?]", "显示 DWARF 源代码行信息",
+	"iD", " lang sym", "为给定语言解码符号名称",
+	"ie", "[?][es]", "ie=入口点，iee=构造函数+析构函数，ies=epsymbols",
+	"iE", "[?]", "导出（全局符号）",
+	"ig", "[?][h]", "猜测二进制程序的大小（igh 使用人类单位而不是字节数）",
+	"ih", "[?]", "显示二进制头（见 iH）",
+	"iH", "[?]", "显示二进制头字段",
+	"ii", "[?][cj*,]", "列出从其他库导入的符号",
+	"iic", "[?][jqk*] ([type])", "分类导入",
+	"iI", "", "二进制信息", // 在我看来不推荐使用，可能与 il 混淆，且已在 i 中
+	"ik", " [query]", "来自 RBinObject 的键值数据库",
+	"il", "", "库",
+	"iL", " [plugin]", "列出所有加载的 RBin 插件或插件详细信息",
+	"im", "", "显示有关预定义内存分配的信息",
+	"iM", "", "显示主地址",
+	"io", " [file]", "从文件加载信息（或最后打开的文件）使用 bin.baddr",
+	"iO", "[?]", "执行二进制操作（转储、调整大小、改变节等）",
+	"ir", "", "列出重定位",
+	"iR", "", "列出资源",
+	"is", "[?]", "列出符号",
+	"iS", "[?]", "列出节、段并计算其哈希",
+	"it", "", "文件哈希", // 在它中哈希？什么鬼，这是个相当糟糕的子命令
+	"iT", "", "文件签名", // iT 用于签名，天哪，这太糟糕了
+	"iV", "", "显示文件版本信息", // 什么鬼，为什么不使用 iv
+	"iw", "", "显示 try/catch 块", // 命名糟糕..
+	"iz", "[?]", "数据段中的字符串（以 JSON/Base64 格式）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_idl = {
-	"Usage: idl", "", "Debug information",
-	"idl", "", "show debuglink file",
-	"idl*", "", "show command to load the debuglink file",
-	"idld", "", "download associated debuglink file",
-	"idld*", "", "show url to pull the debuglink file",
+	"用法: idl", "", "调试信息",
+	"idl", "", "显示 debuglink 文件",
+	"idl*", "", "显示加载 debuglink 文件的命令",
+	"idld", "", "下载关联的 debuglink 文件",
+	"idld*", "", "显示拉取 debuglink 文件的 URL",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_id = {
-	"Usage: id", "", "Debug information",
-	"id", "", "show DWARF source lines information",
-	"idj", "", "show addrline information in json format",
-	"idl", "[?]", "show debug link file name",
-	"idp", " [file.pdb]", "load pdb file information",
-	"idpd", "", "download pdb file on remote server",
-	"idpi", " [file.pdb]", "show pdb file information",
-	"idpi*", "", "show symbols from pdb as flags (prefix with dot to import)",
-	"idx", "", "display source files used via dwarf (previously known as iX)",
+	"用法: id", "", "调试信息",
+	"id", "", "显示 DWARF 源代码行信息",
+	"idj", "", "以 json 格式显示 addrline 信息",
+	"idl", "[?]", "显示调试链接文件名",
+	"idp", " [file.pdb]", "加载 pdb 文件信息",
+	"idpd", "", "在远程服务器上下载 pdb 文件",
+	"idpi", " [file.pdb]", "显示 pdb 文件信息",
+	"idpi*", "", "以标志形式显示 pdb 中的符号（前缀为点以导入）",
+	"idx", "", "显示通过 dwarf 使用的源文件（以前称为 iX）",
 	NULL
 };
 

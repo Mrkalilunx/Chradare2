@@ -3,74 +3,74 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_message_ci = {
-	"Usage: ci", "[sil] ([obid])", "Compare two bin objects",
-	"cis", " 0", "compare symbols with current `ob 1` with given obid (0)",
-	"cii", " 0", "compare imports",
-	"ciE", " 0", "compare exports",
-	"cil", " 0", "compare libraries",
+	"用法: ci", "[sil] ([obid])", "比较两个二进制对象",
+	"cis", " 0", "将当前 `ob 1` 的符号与给定 obid (0) 进行比较",
+	"cii", " 0", "比较导入",
+	"ciE", " 0", "比较导出",
+	"cil", " 0", "比较库",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_cmp = {
-	"Usage: cmp", " [file] [file]", "Compare two ($alias) files, and change $? value",
-	"cmp", " ls ls.old", "compare contents of given files",
-	"cmp", " $a $b", "same as above but using alias files",
+	"用法: cmp", " [file] [file]", "比较两个 ($alias) 文件，并更改 $? 值",
+	"cmp", " ls ls.old", "比较给定文件的内容",
+	"cmp", " $a $b", "同上，但使用别名文件",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_c = {
-	"Usage:", "c[?dfx] [argument]", " # Compare",
-	"c", " [string]", "compare a plain with escaped chars string",
-	"c*", " [string]", "same as c, but printing r2 commands instead",
-	"cj", " [string]", "same as c, with JSON output",
-	"c1", " [addr]", "compare byte at addr with current offset",
-	"c2", "[*] [value]", "compare word at offset with given value",
-	"c4", "[*] [value]", "compare doubleword at offset with given value",
-	"c8", "[*] [value]", "compare quadword at offset with given value",
-	"cat", " [file]", "show contents of file (see pwd, ls)",
-	"cc", " [at]", "compares in two hexdump columns of block size",
-	"ccc", " [at]", "same as above, but only showing different lines",
-	"ccd", " [at]", "compares in two disasm columns of block size",
-	"ccdf", " [at]", "compares function disasm with the other function",
-	"ccdd", " [at]", "compares decompiler output (e cmd.pdc=pdg|pdd)",
-	"cd", " [dir]", "chdir",
-	// "cc", " [offset]", "code bindiff current block against offset"
-	// "cD", " [file]", "like above, but using radiff -b",
-	"cf", " [file]", "compare contents of file at current seek",
-	"cg", "[?][afo] [file]", "compare graphdiff current file and find similar functions",
-	"ci", "[?] [obid] ([obid2])", "compare two bin-objects (symbols, imports, ...)",
-	"cl|cls|clear", "", "clear screen, (clear0 to goto 0, 0 only)",
-	"cmp", " [file] [file]", "compare two files",
-	"cu", "[?] [addr] @at", "compare memory hexdumps of $$ and dst in unified diff",
-	"cud", " [addr] @at", "unified diff disasm from $$ and given address",
-	"cv", "[1248] [hexpairs] @at", "compare 1,2,4,8-byte (silent return in $?)",
-	"cV", "[1248] [addr] @at", "compare 1,2,4,8-byte address contents (silent, return in $?)",
-	"cw", "[?][*dqjru] [addr]", "compare memory watchers",
-	"cx", " [hexpair]", "compare hexpair string (use '.' as nibble wildcard)",
-	"cx*", " [hexpair]", "compare hexpair string (output r2 commands)",
-	"cX", " [addr]", "Like 'cc' but using hexdiff output",
+	"用法:", "c[?dfx] [argument]", " # 比较",
+	"c", " [string]", "比较带有转义字符的纯字符串",
+	"c*", " [string]", "与 c 相同，但打印 r2 命令",
+	"cj", " [string]", "与 c 相同，但输出 JSON",
+	"c1", " [addr]", "比较地址处的字节与当前偏移",
+	"c2", "[*] [value]", "比较偏移处的字与给定值",
+	"c4", "[*] [value]", "比较偏移处的双字与给定值",
+	"c8", "[*] [value]", "比较偏移处的四字与给定值",
+	"cat", " [file]", "显示文件内容 (参见 pwd, ls)",
+	"cc", " [at]", "以块大小的两列十六进制转储进行比较",
+	"ccc", " [at]", "同上，但仅显示不同的行",
+	"ccd", " [at]", "以块大小的两列反汇编进行比较",
+	"ccdf", " [at]", "比较函数反汇编与另一个函数",
+	"ccdd", " [at]", "比较反编译器输出 (e cmd.pdc=pdg|pdd)",
+	"cd", " [dir]", "改变目录",
+	// "cc", " [offset]", "代码二进制差异比较当前块与偏移"
+	// "cD", " [file]", "同上，但使用 radiff -b",
+	"cf", " [file]", "比较当前搜索位置的文件内容",
+	"cg", "[?][afo] [file]", "比较图形差异当前文件并查找相似函数",
+	"ci", "[?] [obid] ([obid2])", "比较两个二进制对象 (符号、导入等)",
+	"cl|cls|clear", "", "清屏，(clear0 跳到 0, 0 仅清屏)",
+	"cmp", " [file] [file]", "比较两个文件",
+	"cu", "[?] [addr] @at", "以统一差异比较 $$ 和目标的十六进制内存转储",
+	"cud", " [addr] @at", "从 $$ 和给定地址的统一差异反汇编",
+	"cv", "[1248] [hexpairs] @at", "比较 1,2,4,8 字节 (静默返回 $?)",
+	"cV", "[1248] [addr] @at", "比较 1,2,4,8 字节地址内容 (静默，返回 $?)",
+	"cw", "[?][*dqjru] [addr]", "比较内存监视器",
+	"cx", " [hexpair]", "比较十六进制对字符串 (使用 '.' 作为半字节通配符)",
+	"cx*", " [hexpair]", "比较十六进制对字符串 (输出 r2 命令)",
+	"cX", " [addr]", "类似 'cc' 但使用十六进制差异输出",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_cu = {
-	"Usage: cu", " [offset]", "# Prints unified comparison to make hexpatches",
-	"cu", " $$+1 > p", "compare hexpairs from current seek and +1",
-	"cu1", " $$+1 > p", "compare bytes from current seek and +1",
-	"cu2", " $$+1 > p", "compare words (half, 16bit) from current seek and +1",
-	"cu4", " $$+1 > p", "compare dwords from current seek and +1",
-	"cu8", " $$+1 > p", "compare qwords from current seek and +1",
-	"cud", " $$+1 > p", "compare disasm current seek and +1",
-	"wu", " p", "apply unified hex patch (see output of cu)",
+	"用法: cu", " [offset]", "# 打印统一比较以制作十六进制补丁",
+	"cu", " $$+1 > p", "比较当前搜索位置和 +1 的十六进制对",
+	"cu1", " $$+1 > p", "比较当前搜索位置和 +1 的字节",
+	"cu2", " $$+1 > p", "比较当前搜索位置和 +1 的字 (半字, 16位)",
+	"cu4", " $$+1 > p", "比较当前搜索位置和 +1 的双字",
+	"cu8", " $$+1 > p", "比较当前搜索位置和 +1 的四字",
+	"cud", " $$+1 > p", "比较当前搜索位置和 +1 的反汇编",
+	"wu", " p", "应用统一十六进制补丁 (参见 cu 的输出)",
 	"curl", " ([-D data]) [http-url]", "",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_cg = {
-	"Usage: cg", "", "Graph compare",
-	"cg", " [file]", "diff ratio among functions (columns: off-A, match-ratio, off-B)",
-	"cgf", " [fcn]", "compare functions (curseek vs fcn)",
-	"cgfa", "", "list all functions similar to the current one",
-	"cgo", "", "opcode-bytes code graph diff",
+	"用法: cg", "", "图形比较",
+	"cg", " [file]", "函数间的差异比率 (列: off-A, 匹配比率, off-B)",
+	"cgf", " [fcn]", "比较函数 (当前搜索位置 vs fcn)",
+	"cgfa", "", "列出与当前函数相似的所有函数",
+	"cgo", "", "操作码字节代码图形差异",
 	NULL
 };
 

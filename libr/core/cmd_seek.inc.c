@@ -5,92 +5,92 @@
 static void __core_cmd_search_backward_prelude(RCore *core, bool doseek, bool forward);
 
 static RCoreHelpMessage help_msg_s = {
-	"Usage: s", "", " # Help for the seek commands. See ?$? to see all variables",
-	"s", "", "print current address",
-	"s", " addr", "seek to address",
-	"s.", "[?]hexoff", "seek honoring a base from core->addr",
-	"s:", "pad", "print current address with N padded zeros (defaults to 8)",
-	"s-", "", "undo seek",
-	"s-*", "", "reset undo seek history",
-	"s-", " n", "seek n bytes backward",
-	"s--", "[n]", "seek blocksize bytes backward (/=n)",
-	"s+", "", "redo seek",
-	"s+", " n", "seek n bytes forward",
-	"s++", "[n]", "seek blocksize bytes forward (/=n)",
-	"s[j*=!]", "", "list undo seek history (JSON, =list, *r2, !=names, s==)",
-	"s/", " DATA", "search for next occurrence of 'DATA' (see /?)",
-	"s/x", " 9091", "search for next occurrence of \\x90\\x91",
-	"sa", " ([+-]addr)", "seek to block-size aligned address (addr=$$ if not specified)",
-	"sb", " ([addr])", "seek to the beginning of the basic block",
-	"sC", "[?] string", "seek to comment matching given string",
-	"sd", " ([addr])", "show delta seek compared to all possible reference bases",
-	"sf", "", "seek to next function (f->addr+f->size)",
-	"sf", " function", "seek to address of specified function",
-	"sf.", "", "seek to the beginning of current function",
-	"sfp", "", "seek to the function prelude checking back blocksize bytes",
-	"sff", "", "seek to the nearest flag backwards (uses fd and ignored the delta)",
-	"sg/sG", "", "seek begin (sg) or end (sG) of section or file",
-	"sh", "", "open a basic shell (aims to support basic posix syntax)",
-	"sl", "[?] [+-]line", "seek to line",
-	"sn/sp", " ([nkey])", "seek to next/prev location, as specified by scr.nkey",
-	"snp", "", "seek to next function prelude",
-	"spp", "", "seek to prev function prelude",
-	"so", " ([[-]N])", "seek to N opcode(s) forward (or backward when N is negative), N=1 by default",
-	"sr", " PC", "seek to register (or register alias) value",
-	"ss", "[?]", "seek silently (without adding an entry to the seek history)",
-	// "sp [page]  seek page N (page = block)",
-	"sort", " [file]", "sort the contents of the file",
+	"用法: s", "", " # 寻址命令帮助。参见 ?$? 查看所有变量",
+	"s", "", "打印当前地址",
+	"s", " addr", "寻址到地址",
+	"s.", "[?]hexoff", "寻址时遵循来自 core->addr 的基址",
+	"s:", "pad", "用 N 个填充零打印当前地址 (默认为 8)",
+	"s-", "", "撤销寻址",
+	"s-*", "", "重置撤销寻址历史",
+	"s-", " n", "向后寻址 n 字节",
+	"s--", "[n]", "向后寻址块大小字节 (/=n)",
+	"s+", "", "重做寻址",
+	"s+", " n", "向前寻址 n 字节",
+	"s++", "[n]", "向前寻址块大小字节 (/=n)",
+	"s[j*=!]", "", "列出撤销寻址历史 (JSON, =列表, *r2, !=名称, s==)",
+	"s/", " DATA", "搜索 'DATA' 的下一个出现 (参见 /?)",
+	"s/x", " 9091", "搜索 \\x90\\x91 的下一个出现",
+	"sa", " ([+-]addr)", "寻址到块大小对齐的地址 (如果未指定 addr=$$)",
+	"sb", " ([addr])", "寻址到基本块的开头",
+	"sC", "[?] string", "寻址到匹配给定字符串的注释",
+	"sd", " ([addr])", "显示与所有可能参考基址相比的增量寻址",
+	"sf", "", "寻址到下一个函数 (f->addr+f->size)",
+	"sf", " function", "寻址到指定函数的地址",
+	"sf.", "", "寻址到当前函数的开头",
+	"sfp", "", "寻址到函数前导码，检查后块大小字节",
+	"sff", "", "寻址到最近的标志向后 (使用 fd 并忽略增量)",
+	"sg/sG", "", "寻址到区段或文件的开头 (sg) 或结尾 (sG)",
+	"sh", "", "打开基本 shell (旨在支持基本 posix 语法)",
+	"sl", "[?] [+-]line", "寻址到行",
+	"sn/sp", " ([nkey])", "寻址到下一个/上一个位置，由 scr.nkey 指定",
+	"snp", "", "寻址到下一个函数前导码",
+	"spp", "", "寻址到上一个函数前导码",
+	"so", " ([[-]N])", "寻址到 N 个操作码向前 (或当 N 为负时向后)，默认为 N=1",
+	"sr", " PC", "寻址到寄存器 (或寄存器别名) 值",
+	"ss", "[?]", "静默寻址 (不向寻址历史添加条目)",
+	// "sp [page]  寻址到第 N 页 (页 = 块)",
+	"sort", " [file]", "对文件内容进行排序",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sdot = {
-	"Usage:", "s.", "Seek here or there (near seeks)",
-	"s.", "", "seek here, same as 's $$'",
-	"s..", "32a8", "seek to the same address but replacing the lower nibbles",
+	"用法:", "s.", "寻址到此处或附近 (附近寻址)",
+	"s.", "", "寻址到此处，与 's $$' 相同",
+	"s..", "32a8", "寻址到相同地址但替换较低的半字节",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sh = {
-	"Usage:", "sh", "r2's posix shell compatible subset",
-	"sh", "", "enters a posix shell subset repl (requires scr.interactive)",
-	"sh", " [cmd]", "run the given line and update $?",
+	"用法:", "sh", "r2 的 posix shell 兼容子集",
+	"sh", "", "进入 posix shell 子集 repl (需要 scr.interactive)",
+	"sh", " [cmd]", "运行给定行并更新 $?",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sC = {
-	"Usage:", "sC", "Comment grep",
-	"sC", "*", "list all comments",
-	"sC", " str", "seek to the first comment matching 'str'",
+	"用法:", "sC", "注释 grep",
+	"sC", "*", "列出所有注释",
+	"sC", " str", "寻址到第一个匹配 'str' 的注释",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sn = {
-	"Usage:", "sn[p]", "",
-	"sn", " [line]", "seek to next address",
-	"snp", "", "seek to next prelude",
+	"用法:", "sn[p]", "",
+	"sn", " [line]", "寻址到下一个地址",
+	"snp", "", "寻址到下一个前导码",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sp = {
-	"Usage:", "sp[p]", "",
-	"sp", " [line]", "seek to previous address",
-	"spp", "", "seek to previous prelude",
+	"用法:", "sp[p]", "",
+	"sp", " [line]", "寻址到上一个地址",
+	"spp", "", "寻址到上一个前导码",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_sl = {
-	"Usage:", "sl+ or sl- or slc", "",
-	"sl", " [line]", "seek to absolute line",
-	"sl", "[+-][line]", "seek to relative line",
-	"slc", "", "clear line cache",
-	"sll", "", "show total number of lines",
-	"sleep", " [seconds]", "sleep for an specific amount of time (support decimal values)",
+	"用法:", "sl+ 或 sl- 或 slc", "",
+	"sl", " [line]", "寻址到绝对行",
+	"sl", "[+-][line]", "寻址到相对行",
+	"slc", "", "清除行缓存",
+	"sll", "", "显示总行数",
+	"sleep", " [seconds]", "睡眠特定时间 (支持小数值)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_ss = {
-	"Usage: ss", "", " # Seek silently (not recorded in the seek history)",
-	"s?", "", "works with all s subcommands, for example ssr = silent 'sr'",
+	"用法: ss", "", " # 静默寻址 (不记录在寻址历史中)",
+	"s?", "", "适用于所有 s 子命令，例如 ssr = 静默 'sr'",
 	NULL
 };
 

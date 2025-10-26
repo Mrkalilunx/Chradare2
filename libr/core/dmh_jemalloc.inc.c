@@ -466,12 +466,12 @@ static void GH(jemalloc_get_runs)(RCore *core, const char *input) {
 
 static int GH(dmh_jemalloc)(RCore *core, const char *input) {
 	const RCoreHelpMessage help_msg_jemalloc = {
-		"Usage:", "dmh", " # Memory map heap",
-		"dmha", "[arena_t]", "show all arenas created, or print arena_t structure for given arena",
-		"dmhb", "[arena_t]", "show all bins created for given arena",
-		"dmhc", "*|[arena_t]", "show all chunks created in all arenas, or show all chunks created for a given arena_t instance",
-		// "dmhr", "[arena_chunk_t]", "print all runs created for a given arena_chunk_t instance",
-		"dmh?", "", "Show map heap help", NULL
+		"用法:", "dmh", " # 内存映射堆",
+		"dmha", "[arena_t]", "显示所有创建的 arenas，或打印给定 arena 的 arena_t 结构",
+		"dmhb", "[arena_t]", "显示给定 arena 创建的所有 bins",
+		"dmhc", "*|[arena_t]", "显示所有 arenas 中创建的所有 chunks，或显示给定 arena_t 实例创建的所有 chunks",
+		// "dmhr", "[arena_chunk_t]", "打印给定 arena_chunk_t 实例创建的所有 runs",
+		"dmh?", "", "显示 map heap 帮助", NULL
 	};
 
 	switch (input[0]) {

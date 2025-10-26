@@ -199,96 +199,96 @@ static int r_main_version_verify(RCore *core, bool show, bool json) {
 
 static int main_help(int line) {
 	if (line < 2) {
-		printf ("Usage: r2 [-ACdfjLMnNqStuvwzX] [-P patch] [-p prj] [-a arch] [-b bits] [-c cmd]\n"
+		printf ("用法: r2 [-ACdfjLMnNqStuvwzX] [-P patch] [-p prj] [-a arch] [-b bits] [-c cmd]\n"
 			"          [-s addr] [-B baddr] [-m maddr] [-i script] [-e k=v] file|pid|-|--|=\n");
 	}
 	if (line != 1) {
 		printf (
-		" --           run radare2 without opening any file\n"
-		" -            same as 'r2 malloc://512'\n"
-		" =            read file from stdin (use -i and -c to run cmds)\n"
-		" -=           perform !=! command to run all commands remotely\n"
-		" -0           print \\x00 after init and every command\n"
-		" -1           redirect stderr to stdout\n"
-		" -2           close stderr file descriptor (silent warning messages)\n"
-		" -a [arch]    set asm.arch\n"
-		" -A           run 'aaa' command to analyze all referenced code\n"
-		" -b [bits]    set asm.bits\n"
-		" -B [baddr]   set base address for PIE binaries\n"
-		" -c 'cmd..'   execute radare command\n"
-		" -C           file is host:port (alias for -c+=http://%%s/cmd/)\n"
-		" -d           debug the executable 'file' or running process 'pid'\n"
-		" -D [backend] enable debug mode (e cfg.debug=true)\n"
-		" -e k=v       evaluate config var\n"
-		" -f           block size = file size\n"
-		" -F [binplug] force to use that rbin plugin\n"
-		" -h, -hh      show help message, -hh for long\n"
-		" -H ([var])   display variable\n"
-		" -i [file]    run rlang program, r2script file or load plugin\n"
-		" -I [file]    run script file before the file is opened\n"
-		" -j           use json for -v, -L and maybe others\n"
-		" -k [OS/kern] set asm.os (linux, macos, w32, netbsd, ...)\n"
-		" -L, -LL      list supported IO plugins (-LL list core plugins)\n"
-		" -m [addr]    map file at given address (loadaddr)\n"
-		" -M           do not demangle symbol names\n"
-		" -n, -nn      do not load RBin info (-nn only load bin structures)\n"
-		" -N           do not load user settings and scripts\n"
-		" -NN          do not load any script or plugin\n"
-		" -q           quiet mode (no prompt) and quit after -i\n"
-		" -qq          quit after running all -c and -i\n"
-		" -Q           quiet mode (no prompt) and quit faster (quickLeak=true)\n"
-		" -p [prj]     use project, list if no arg, load if no file\n"
-		" -P [file]    apply rapatch file and quit\n"
-		" -r [rarun2]  specify rarun2 profile to load (same as -e dbg.profile=X)\n"
-		" -R [rr2rule] specify custom rarun2 directive (uses base64 dbg.profile)\n"
-		" -s [addr]    initial seek\n"
-		" -S           start r2 in sandbox mode\n"
+		" --           运行radare2而不打开任何文件\n"
+		" -            同 'r2 malloc://512'\n"
+		" =            从stdin读取文件（使用-i和-c运行命令）\n"
+		" -=           执行!=!命令以远程运行所有命令\n"
+		" -0           在初始化和每条命令后打印\\x00\n"
+		" -1           将stderr重定向到stdout\n"
+		" -2           关闭stderr文件描述符（静默警告消息）\n"
+		" -a [arch]    设置asm.arch\n"
+		" -A           运行'aaa'命令分析所有引用代码\n"
+		" -b [bits]    设置asm.bits\n"
+		" -B [baddr]   为PIE二进制文件设置基地址\n"
+		" -c 'cmd..'   执行radare命令\n"
+		" -C           文件为host:port（-c+=http://%%s/cmd/的别名）\n"
+		" -d           调试可执行文件'file'或运行进程'pid'\n"
+		" -D [backend] 启用调试模式（e cfg.debug=true）\n"
+		" -e k=v       评估配置变量\n"
+		" -f           块大小=文件大小\n"
+		" -F [binplug] 强制使用该rbin插件\n"
+		" -h, -hh      显示帮助消息，-hh显示详细帮助\n"
+		" -H ([var])   显示变量\n"
+		" -i [file]    运行rlang程序、r2script文件或加载插件\n"
+		" -I [file]    在文件打开前运行脚本文件\n"
+		" -j           对-v、-L等使用json输出\n"
+		" -k [OS/kern] 设置asm.os（linux, macos, w32, netbsd, ...）\n"
+		" -L, -LL      列出支持的IO插件（-LL列出核心插件）\n"
+		" -m [addr]    在给定地址映射文件（loadaddr）\n"
+		" -M           不解混淆符号名\n"
+		" -n, -nn      不加载RBin信息（-nn仅加载bin结构）\n"
+		" -N           不加载用户设置和脚本\n"
+		" -NN          不加载任何脚本或插件\n"
+		" -q           静默模式（无提示符）并在-i后退出\n"
+		" -qq          运行所有-c和-i后退出\n"
+		" -Q           静默模式（无提示符）并快速退出（quickLeak=true）\n"
+		" -p [prj]     使用项目，无参数则列出，无文件则加载\n"
+		" -P [file]    应用rapatch文件并退出\n"
+		" -r [rarun2]  指定要加载的rarun2配置文件（同-e dbg.profile=X）\n"
+		" -R [rr2rule] 指定自定义rarun2指令（使用base64 dbg.profile）\n"
+		" -s [addr]    初始跳转地址\n"
+		" -S           在沙盒模式下启动r2\n"
 #if USE_THREADS && ALLOW_THREADED
-		" -t           load rabin2 info in thread\n"
+		" -t           在线程中加载rabin2信息\n"
 #endif
-		" -u           set bin.filter=false to get raw sym/sec/cls names\n"
-		" -v, -V       show radare2 version (-V show lib versions)\n"
-		" -w           open file in write mode\n"
-		" -x           open without exec-flag (asm.emu will not work), See io.exec\n"
-		" -X           same as -e bin.usextr=false (useful for dyldcache)\n"
-		" -z, -zz      do not load strings or load them even in raw\n");
+		" -u           设置bin.filter=false以获取原始sym/sec/cls名称\n"
+		" -v, -V       显示radare2版本（-V显示库版本）\n"
+		" -w           以写入模式打开文件\n"
+		" -x           无exec标志打开文件（asm.emu将不工作），见io.exec\n"
+		" -X           同-e bin.usextr=false（对dyldcache有用）\n"
+		" -z, -zz      不加载字符串或在原始模式下加载字符串\n");
 	}
 	if (line == 2) {
 		char *datahome = r_xdg_datadir (NULL);
 		const char *dirPrefix = r_sys_prefix (NULL);
 		RStrBuf *sb = r_strbuf_new ("");
 
-		r_strbuf_append (sb, "Scripts:\n");
-		r_strbuf_appendf (sb, " system          %s/share/radare2/radare2rc\n", dirPrefix);
-		r_strbuf_append (sb, " user            ~/.radare2rc ${XDG_CONFIG_DIR:=~/.config/radare2}/rc{.d/}\n");
-		r_strbuf_append (sb, " file            ${filename}.r2\n");
-		r_strbuf_append (sb, "Plugins:\n");
+		r_strbuf_append (sb, "脚本:\n");
+		r_strbuf_appendf (sb, " 系统          %s/share/radare2/radare2rc\n", dirPrefix);
+		r_strbuf_append (sb, " 用户          ~/.radare2rc ${XDG_CONFIG_DIR:=~/.config/radare2}/rc{.d/}\n");
+		r_strbuf_append (sb, " 文件          ${filename}.r2\n");
+		r_strbuf_append (sb, "插件:\n");
 		r_strbuf_appendf (sb, " R2_LIBR_PLUGINS " R_JOIN_2_PATHS ("%s", R2_PLUGINS) "\n"
 		" R2_USER_PLUGINS ${XDG_DATA_DIR:=~/.local/share/radare2}/plugins\n"
 		" R2_USER_ZIGNS   ${XDG_DATA_DIR:=~/.local/share/radare2}/zigns\n"
-		"Environment:\n"
-		" R2_COLOR        sets the initial value for 'scr.color'. set to 0 for no color\n"
-		" R2_ARGS         ignore cli arguments and use these ones instead\n"
-		" R2_DEBUG        if defined, show error messages and crash signal\n"
-		" R2_CFLAGS       compiler flags to build against libr\n"
-		" R2_LDFLAGS      linker flags to build against libr\n"
-		" R2_PAPI_SCRIPT  path to the custom r2papi csript\n"
-		" R2_DEBUG_NOPAPI do not load r2papi in the -j qjs shell\n"
-		" R2_DEBUG_NOLANG do not load rlang plugins (except qjs)\n"
-		" R2_DEBUG_ASSERT set a breakpoint when hitting an assert\n"
-		" R2_IGNVER       load plugins ignoring the specified version (be careful)\n"
-		" R2_IGNABI       ignore abiversion field from the radare (be even more careful)\n"
+		"环境变量:\n"
+		" R2_COLOR        设置'scr.color'初始值。设为0表示无颜色\n"
+		" R2_ARGS         忽略cli参数并使用这些参数\n"
+		" R2_DEBUG        如定义，显示错误消息和崩溃信号\n"
+		" R2_CFLAGS       构建libr的编译器标志\n"
+		" R2_LDFLAGS      构建libr的链接器标志\n"
+		" R2_PAPI_SCRIPT  自定义r2papi脚本路径\n"
+		" R2_DEBUG_NOPAPI 在-j qjs shell中不加载r2papi\n"
+		" R2_DEBUG_NOLANG 不加载rlang插件（qjs除外）\n"
+		" R2_DEBUG_ASSERT 在遇到assert时设置断点\n"
+		" R2_IGNVER       忽略指定版本加载插件（小心使用）\n"
+		" R2_IGNABI       忽略radare的abiversion字段（更要小心使用）\n"
 		" R2_MAGICPATH    %s/"R2_SDB_MAGIC"\n"
-		" R2_NOPLUGINS    do not load r2 shared plugins\n", dirPrefix, dirPrefix);
+		" R2_NOPLUGINS    不加载r2共享插件\n", dirPrefix, dirPrefix);
 		r_strbuf_append (sb, " R2_HISTORY      ${XDG_CACHE_DIR:=~/.cache/radare2}/history\n");
-		r_strbuf_append (sb, " R2_RCFILE       ~/.radare2rc (user preferences, batch script)\n" // TOO GENERIC
-		" R2_CURL         set to '1' to use system curl program instead of r2 apis\n"
+		r_strbuf_append (sb, " R2_RCFILE       ~/.radare2rc（用户首选项，批处理脚本）\n"
+		" R2_CURL         设为'1'以使用系统curl程序而非r2 api\n"
 		);
 		r_strbuf_appendf (sb, " R2_DATA_HOME    %s\n"
-		" R2_VERSION      contains the current version of r2\n"
-		" R2_LOG_LEVEL    numeric value of the max level of messages to show\n"
-		" R2_LOG_FILE     dump all logs to a file\n"
-		"Paths:\n"
+		" R2_VERSION      包含当前r2版本\n"
+		" R2_LOG_LEVEL    要显示的消息的最大级别数值\n"
+		" R2_LOG_FILE     将所有日志转储到文件\n"
+		"路径:\n"
 		" R2_RCFILE    ~/.radare2rc\n"
 		" R2_INCDIR    "R2_INCDIR"\n"
 		" R2_BINDIR    "R2_BINDIR"\n"

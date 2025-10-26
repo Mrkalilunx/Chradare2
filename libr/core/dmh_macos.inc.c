@@ -5,8 +5,8 @@ https://opensource.apple.com/source/xnu/xnu-201/osfmk/vm/vm_debug.c
 #endif
 
 static RCoreHelpMessage help_dmh_macos = {
-	"Usage:", " dmh[?]", " # debug memory heap",
-	"dmh", "", "List process memory zones",
+	"用法:", " dmh[?]", " # 调试内存堆",
+	"dmh", "", "列出进程内存区域",
 	NULL
 };
 

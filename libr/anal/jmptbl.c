@@ -61,7 +61,7 @@ static inline void analyze_new_case(RAnal *anal, RAnalFunction *fcn, RAnalBlock 
 			if (block) {
 				if (block->addr != ip) {
 					st64 d = block->addr - ip;
-					R_LOG_WARN ("Cannot find basic block for switch case at 0x%08"PFMT64x" bbdelta = %d", ip, (int)R_ABS (d));
+					R_LOG_WARN("无法在 0x%08" PFMT64x " 处找到 switch 分支对应的基本块，基本块偏移 = %d", ip, (int)R_ABS(d));
 					block = NULL;
 					return;
 				}

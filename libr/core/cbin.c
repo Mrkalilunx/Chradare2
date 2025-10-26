@@ -1941,7 +1941,7 @@ static bool bin_relocs(RCore *core, PJ *pj, int mode, int va) {
 			core->bin->iob.overlay_write_at = r_io_write_at;
 			relocs = r_bin_patch_relocs (core->bin->cur); // XXX other way to get RBinFile?
 		} else if (relocs) {
-			R_LOG_WARN ("Relocs has not been applied. Please use `-e bin.relocs.apply=true` or `-e bin.cache=true` next time");
+			R_LOG_WARN ("重定向尚未应用。下次请使用 `-e bin.relocs.apply=true` 或 `-e bin.cache=true`");
 		}
 	}
 	if (!relocs) {

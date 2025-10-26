@@ -3,90 +3,90 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_z = {
-	"Usage:", "z[*j-aof/cs] [args] ", "# Manage zignatures",
-	"z", " ([addr])", "show/list zignatures", // TODO: rename to zl ?
-	"z.", "", "find matching zignatures in current offset", // rename to 'z' ?
-	"z,", "([:help])", "list zignatures loaded in table format (see z,:help)",
-	"zb", "[?][n=5]", "search for best match",
-	"zd", "zignature", "diff current function and signature",
-	"z*", " ([addr])", "show zignatures in radare format",
-	"zq", " ([addr])", "show zignatures in quiet mode",
-	"zj", " ([addr])", "show zignatures in json format",
-	"zk", "", "show zignatures in sdb format",
-	"z-", "zignature", "delete zignature",
-	"z-", "*", "delete all zignatures",
-	"za", "[?]", "add zignature",
-	"zg", "", "generate zignatures (alias for zaF)",
-	"zo", "[?]", "manage zignature files",
-	"zf", "[?]", "manage FLIRT signatures",
-	"z/", "[?]", "search zignatures",
-	"zc", "[?]", "compare current zignspace zignatures with another one",
-	"zs", "[?]", "manage zignspaces",
-	"zi", " [text]", "show zignatures matching information",
+	"用法:", "z[*j-aof/cs] [args] ", "# 管理签名",
+	"z", " ([addr])", "显示/列出签名", // TODO: 重命名为 zl ?
+	"z.", "", "在当前偏移处查找匹配的签名", // 重命名为 'z' ?
+	"z,", "([:help])", "以表格格式列出加载的签名 (参见 z,:help)",
+	"zb", "[?][n=5]", "搜索最佳匹配",
+	"zd", "zignature", "比较当前函数和签名",
+	"z*", " ([addr])", "以 radare 格式显示签名",
+	"zq", " ([addr])", "以安静模式显示签名",
+	"zj", " ([addr])", "以 JSON 格式显示签名",
+	"zk", "", "以 sdb 格式显示签名",
+	"z-", "zignature", "删除签名",
+	"z-", "*", "删除所有签名",
+	"za", "[?]", "添加签名",
+	"zg", "", "生成签名 (zaF 的别名)",
+	"zo", "[?]", "管理签名文件",
+	"zf", "[?]", "管理 FLIRT 签名",
+	"z/", "[?]", "搜索签名",
+	"zc", "[?]", "比较当前签名空间与另一个签名空间的签名",
+	"zs", "[?]", "管理签名空间",
+	"zi", " [text]", "显示匹配信息的签名",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_zb = {
-	"Usage:", "zb[r?] [args]", "# search for closest matching signatures",
-	"zb ", "[n]", "find n closest matching zignatures to function at current offset",
-	"zbr ", "zigname [n]", "search for n most similar functions to zigname",
+	"用法:", "zb[r?] [args]", "# 搜索最接近的匹配签名",
+	"zb ", "[n]", "查找与当前偏移处函数最接近的 n 个匹配签名",
+	"zbr ", "zigname [n]", "搜索与 zigname 最相似的 n 个函数",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_z_slash = {
-	"Usage:", "z/[f*] ", "# Search signatures (see 'e?search' for options)",
-	"z/ ", "", "search zignatures on range and flag matches",
-	"z/f ", "", "zignature search on known functions",
-	"z/* ", "", "search zignatures on range and output radare commands",
+	"用法:", "z/[f*] ", "# 搜索签名 (参见 'e?search' 获取选项)",
+	"z/ ", "", "在范围和标志匹配上搜索签名",
+	"z/f ", "", "在已知函数上搜索签名",
+	"z/* ", "", "在范围上搜索签名并输出 radare 命令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_za = {
-	"Usage:", "za[fFM?] [args] ", "# Add zignature",
-	"za ", "zigname type params", "add zignature",
-	"zac ", "", "Compute collisions between signatures",
-	"zaf ", "[fcnname] [zigname]", "create zignature for function",
-	"zaF ", "", "generate zignatures for all functions",
-	"zaM ", "", "Same as zaF but merge signatures of same name",
-	"za?? ", "", "show extended help",
+	"用法:", "za[fFM?] [args] ", "# 添加签名",
+	"za ", "zigname type params", "添加签名",
+	"zac ", "", "计算签名之间的冲突",
+	"zaf ", "[fcnname] [zigname]", "为函数创建签名",
+	"zaF ", "", "为所有函数生成签名",
+	"zaM ", "", "与 zaF 相同，但合并同名签名",
+	"za?? ", "", "显示扩展帮助",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_zf = {
-	"Usage:", "zf[dsz] filename ", "# Manage FLIRT signatures",
-	"zfd ", "filename", "open FLIRT file and dump",
-	"zfs ", "filename", "open FLIRT file and scan",
-	"zfs ", "/path/**.sig", "recursively search for FLIRT files and scan them (see dir.depth)",
-	"zfz ", "filename", "open FLIRT file and get sig commands (zfz flirt_file > zignatures.sig)",
+	"用法:", "zf[dsz] filename ", "# 管理 FLIRT 签名",
+	"zfd ", "filename", "打开 FLIRT 文件并转储",
+	"zfs ", "filename", "打开 FLIRT 文件并扫描",
+	"zfs ", "/path/**.sig", "递归搜索 FLIRT 文件并扫描它们 (参见 dir.depth)",
+	"zfz ", "filename", "打开 FLIRT 文件并获取签名命令 (zfz flirt_file > zignatures.sig)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_zo = {
-	"Usage:", "zo[zs] filename ", "# Manage zignature files (see dir.zigns)",
-	"zo ", "filename", "load zinatures from sdb file",
-	"zoz ", "filename", "load zinatures from gzipped sdb file",
-	"zos ", "filename", "save zignatures to sdb file (merge if file exists)",
+	"用法:", "zo[zs] filename ", "# 管理签名文件 (参见 dir.zigns)",
+	"zo ", "filename", "从 sdb 文件加载签名",
+	"zoz ", "filename", "从 gzip 压缩的 sdb 文件加载签名",
+	"zos ", "filename", "保存签名到 sdb 文件 (如果文件存在则合并)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_zs = {
-	"Usage:", "zs[+-*] [namespace] ", "# Manage zignspaces",
-	"zs", "", "display zignspaces",
-	"zs ", "zignspace", "select zignspace",
-	"zs ", "*", "select all zignspaces",
-	"zs-", "zignspace", "delete zignspace",
-	"zs-", "*", "delete all zignspaces",
-	"zs+", "zignspace", "push previous zignspace and set",
-	"zs-", "", "pop to the previous zignspace",
-	"zsr ", "newname", "rename selected zignspace",
+	"用法:", "zs[+-*] [namespace] ", "# 管理签名空间",
+	"zs", "", "显示签名空间",
+	"zs ", "zignspace", "选择签名空间",
+	"zs ", "*", "选择所有签名空间",
+	"zs-", "zignspace", "删除签名空间",
+	"zs-", "*", "删除所有签名空间",
+	"zs+", "zignspace", "推送前一个签名空间并设置",
+	"zs-", "", "弹出到前一个签名空间",
+	"zsr ", "newname", "重命名选定的签名空间",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_zc = {
-	"Usage:", "zc[n!] other_space ", "# Compare zignspaces, match >= threshold (e zign.diff.*)",
-	"zc", " other_space", "compare all current space with other_space",
-	"zcn", " other_space", "compare current space with zigns with same name on other_space",
-	"zcn!", " other_space", "same as above but show the ones not matching",
+	"用法:", "zc[n!] other_space ", "# 比较签名空间，匹配 >= 阈值 (e zign.diff.*)",
+	"zc", " other_space", "比较所有当前空间与 other_space",
+	"zcn", " other_space", "比较当前空间与 other_space 中同名的签名",
+	"zcn!", " other_space", "同上，但显示不匹配的签名",
 	NULL
 };
 

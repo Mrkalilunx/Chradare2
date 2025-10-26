@@ -14,33 +14,33 @@
 static int r2pm_install(RList *targets, bool uninstall, bool clean, bool force, bool global);
 
 static const char *helpmsg =
-	"Usage: r2pm [-flags] [pkgs...]\n"
-	"Commands:\n"
-	" -a [repository]   add or -delete external repository\n"
-	" -c ([git/dir])    clear source cache (R2PM_GITDIR)\n"
-	" -ci <pkgname>     clean + install\n"
-	" -cp               clean the user's home plugin directory\n"
-	" -d,doc [pkgname]  show documentation and source for given package\n"
-	" -e [pkgname]      edit using $EDITOR the given package script\n"
-	" -f                force operation (Use in combination of -U, -i, -u, ..)\n"
-	" -gi <pkg>         global install (system-wide)\n"
-	" -h                display this help message\n"
-	" -H ([variable])   list all or selected r2pm environment variables\n"
-	" -i <pkgname>      install/update package and its dependencies (see -c, -g)\n"
-	" -I                information about the repository and installed packages\n"
-	" -j                json output\n"
-	" -l                list installed packages\n"
-	" -q                be quiet\n"
-	" -r [cmd ...args]  run shell command with R2PM_BINDIR in PATH\n"
-	" -R <pkgname>      reload plugin (See R2PM_RELOAD code block package)\n"
-	" -s [<keyword>]    search available packages in database matching a string\n"
-	" -t [YYYY-MM-DD]   set a moment in time to pull the code from the git packages\n"
-	" -u <pkgname>      uninstall package (see -f to force uninstall)\n"
-	" -uci <pkgname>    uninstall + clean + install\n"
-	" -ui <pkgname>     uninstall + install\n"
-	" -U                download/initialize or update database (-f for a clean clone)\n"
-	" -UU               same as -U but upgrade all the installed r2 plugins\n"
-	" -v                show version\n";
+	"用法: r2pm [-flags] [pkgs...]\n"
+	"命令:\n"
+	" -a [repository]   添加或 -delete 外部仓库\n"
+	" -c ([git/dir])    清除源码缓存 (R2PM_GITDIR)\n"
+	" -ci <pkgname>     清理 + 安装\n"
+	" -cp               清理用户的主插件目录\n"
+	" -d,doc [pkgname]  显示指定包的文档和源码\n"
+	" -e [pkgname]      使用 $EDITOR 编辑指定的包脚本\n"
+	" -f                强制操作（与 -U, -i, -u 等组合使用）\n"
+	" -gi <pkg>         全局安装（系统范围内）\n"
+	" -h                显示此帮助信息\n"
+	" -H ([variable])   列出所有或选定的 r2pm 环境变量\n"
+	" -i <pkgname>      安装/更新包及其依赖（见 -c, -g）\n"
+	" -I                关于仓库和已安装包的信息\n"
+	" -j                json 输出\n"
+	" -l                列出已安装的包\n"
+	" -q                静默模式\n"
+	" -r [cmd ...args]  使用 PATH 中的 R2PM_BINDIR 运行 shell 命令\n"
+	" -R <pkgname>      重新加载插件（见 R2PM_RELOAD 代码块包）\n"
+	" -s [<keyword>]    在数据库中搜索匹配字符串的可用包\n"
+	" -t [YYYY-MM-DD]   设置时间点从 git 包拉取代码\n"
+	" -u <pkgname>      卸载包（使用 -f 强制卸载）\n"
+	" -uci <pkgname>    卸载 + 清理 + 安装\n"
+	" -ui <pkgname>     卸载 + 安装\n"
+	" -U                下载/初始化或更新数据库（-f 用于清理克隆）\n"
+	" -UU               同 -U 但升级所有已安装的 r2 插件\n"
+	" -v                显示版本\n";
 
 typedef struct r_r2pm_t {
 	bool add;
@@ -70,11 +70,11 @@ typedef struct r_r2pm_t {
 
 static int git_pull(const char *dir, bool verbose, bool reset) {
 	if (strchr (dir, ' ')) {
-		R_LOG_ERROR ("Directory '%s' cannot contain spaces", dir);
+		R_LOG_ERROR ("目录 '%s' 不能包含空格", dir);
 		return -1;
 	}
 	if (!r_file_is_directory (dir)) {
-		R_LOG_ERROR ("Directory '%s' does not exist", dir);
+		R_LOG_ERROR ("目录 '%s' 不存在", dir);
 		return -1;
 	}
 	if (reset) {
@@ -95,12 +95,12 @@ static int git_pull(const char *dir, bool verbose, bool reset) {
 
 static int git_clone(const char *dir, const char *url) {
 	if (strchr (dir, ' ')) {
-		R_LOG_ERROR ("Directory '%s' cannot contain spaces", dir);
+		R_LOG_ERROR ("目录 '%s' 不能包含空格", dir);
 		return -1;
 	}
 	char *git = r_file_path ("git");
 	if (!git) {
-		R_LOG_ERROR ("Cannot find `git` in $PATH");
+		R_LOG_ERROR ("在 $PATH 中找不到 `git`");
 		return 1;
 	}
 	free (git);
@@ -113,7 +113,7 @@ static int git_clone(const char *dir, const char *url) {
 }
 
 static bool r2pm_add(R2Pm *r2pm, const char *repository) {
-	R_LOG_INFO ("r2pm.add is not implemented");
+	R_LOG_INFO ("r2pm.add 未实现");
 	return false;
 }
 

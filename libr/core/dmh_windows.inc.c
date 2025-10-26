@@ -1331,17 +1331,17 @@ static void w32_list_heaps_blocks(RCore *core, const char format) {
 }
 
 static RCoreHelpMessage help_msg = {
-	"Usage:", " dmh[?|b][f|j]", " # Memory map heap",
-	"dmh[j]", "", "List process heaps",
-	"dmhb[?] [addr]", "", "List process heap blocks",
+	"用法:", " dmh[?|b][f|j]", " # 内存映射堆",
+	"dmh[j]", "", "列出进程堆",
+	"dmhb[?] [addr]", "", "列出进程堆块",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_block = {
-	"Usage:", " dmhb[f|j]", " # Memory map heap",
-	"dmhb [addr]", "", "List allocated heap blocks",
-	"dmhbf", "", "Create flags for each allocated block",
-	"dmhbj [addr]", "", "Print output in JSON format",
+	"用法:", " dmhb[f|j]", " # 内存映射堆",
+	"dmhb [addr]", "", "列出已分配的堆块",
+	"dmhbf", "", "为每个已分配的块创建标志",
+	"dmhbj [addr]", "", "以 JSON 格式打印输出",
 	NULL
 };
 

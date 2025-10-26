@@ -3,15 +3,15 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_q = {
-	"Usage:",  "q[!][!] [retval]", "",
-	"q", "", "quit program",
-	"q!", "", "force quit (no questions)",
-	"q!!", "", "force quit without saving history",
-	"q!!!", "", "force quit without freeing anything",
-	"q", " 1", "quit with return value 1",
-	"q", " a-b", "quit with return value a-b",
-	"q[y/n][y/n]", "", "quit, chose to kill process, chose to save project ",
-	"Q", "", "same as q!!",
+	"用法:", "q[!][!] [retval]", "",
+	"q", "", "退出程序",
+	"q!", "", "强制退出 (不询问)",
+	"q!!", "", "强制退出而不保存历史",
+	"q!!!", "", "强制退出而不释放任何资源",
+	"q", " 1", "以返回值 1 退出",
+	"q", " a-b", "以返回值 a-b 退出",
+	"q[y/n][y/n]", "", "退出，选择杀死进程，选择保存项目 ",
+	"Q", "", "与 q!! 相同",
 	NULL
 };
 

@@ -386,14 +386,14 @@ R_API int r_core_visual_view_graph(RCore *core) {
 			break;
 		case '?':
 			r_cons_clear00 (core->cons);
-			r_cons_printf (core->cons,
-			"vbg: Visual Browser (Code) Graph:\n\n"
-			" jkJK  - scroll up/down\n"
-			" hl    - move to the left/right panel\n"
-			" q     - quit this visual mode\n"
-			" _     - enter the hud\n"
-			" .     - go back to the initial function list view\n"
-			" :     - enter command\n");
+			r_cons_printf(core->cons,
+			"vbg: 可视浏览器 (代码) 图形:\n\n"
+			" jkJK - 向上/向下滚动\n"
+			" hl - 移动到左/右面板\n"
+			" q - 退出此可视模式\n"
+			" _ - 进入 HUD\n"
+			" . - 返回初始函数列表视图\n"
+			" : - 输入命令\n");
 			r_cons_flush (core->cons);
 			r_cons_any_key (core->cons, NULL);
 			break;

@@ -16,218 +16,218 @@ static int cmd_search(void *data, const char *input);
 #define ED25519_PUBKEY_LENGTH 32*2
 
 static RCoreHelpMessage help_msg_slash_wide_string = {
-	"Usage: /w[ij]", "[str]", "Wide string search subcommands",
-	"/w ", "foo", "search for wide string 'f\\0o\\0o\\0'",
-	"/wj ", "foo", "search for wide string 'f\\0o\\0o\\0' (json output)",
-	"/wi ", "foo", "search for wide string 'f\\0o\\0o\\0' but ignoring case",
-	"/wij ", "foo", "search for wide string 'f\\0o\\0o\\0' but ignoring case (json output)",
+	"用法: /w[ij]", "[str]", "宽字符串搜索子命令",
+	"/w ", "foo", "搜索宽字符串 'f\\0o\\0o\\0'",
+	"/wj ", "foo", "搜索宽字符串 'f\\0o\\0o\\0' (JSON 输出)",
+	"/wi ", "foo", "搜索宽字符串 'f\\0o\\0o\\0' 但忽略大小写",
+	"/wij ", "foo", "搜索宽字符串 'f\\0o\\0o\\0' 但忽略大小写 (JSON 输出)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_esil = {
-	"/E", " [esil-expr]", "search offsets matching a specific esil expression",
-	"/Ej", " [esil-expr]", "same as above but using the given magic file",
-	"/E?", " ", "show this help",
-	"\nExamples:", "", "",
-	"", "/E $$,0x100001060,-,!", "hit when address is 0x100001060",
+	"/E", " [esil-expr]", "搜索匹配特定 ESIL 表达式的偏移",
+	"/Ej", " [esil-expr]", "同上，但使用给定的魔法文件",
+	"/E?", " ", "显示此帮助",
+	"\n示例:", "", "",
+	"", "/E $$,0x100001060,-,!", "当地址为 0x100001060 时命中",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_backward = {
-	"Usage: /b[p]<command>", "[value]", "Backward search subcommands",
-	"/b", "[x] [str|414243]", "search in hexadecimal 'ABC' backwards starting in current address",
-	"/bp", "", "search previous prelude and set hit.prelude flag",
+	"用法: /b[p]<command>", "[value]", "向后搜索子命令",
+	"/b", "[x] [str|414243]", "从当前地址开始向后搜索十六进制 'ABC'",
+	"/bp", "", "搜索前导码并设置 hit.prelude 标志",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_forward = {
-	"Usage: /f", " ", "search forwards, command modifier, followed by other command",
+	"用法: /f", " ", "向前搜索，命令修饰符，后跟其他命令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_sections = {
-	"Usage: /s[*]", "[threshold]", "finds sections by grouping blocks with similar entropy.",
+	"用法: /s[*]", "[threshold]", "通过分组具有相似熵的块来查找区段",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_delta = {
-	"Usage: /d", "delta", "search for a deltified sequence of bytes.",
+	"用法: /d", "delta", "搜索增量字节序列",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_pattern = {
-	"Usage: /p[p]", " [pattern]", "Search for patterns or preludes",
-	"/p", " [hexpattern]", "search in hexpairs pattern in search.in",
-	"/pp", "", "search for function preludes",
+	"用法: /p[p]", " [pattern]", "搜索模式或前导码",
+	"/p", " [hexpattern]", "在 search.in 中搜索十六进制对模式",
+	"/pp", "", "搜索函数前导码",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_ad = {
-	"Usage: /ad[/<*jq>]", "[value]", "Backward search subcommands",
-	"/ad", " rax", "search in plaintext disasm for matching instructions",
-	"/ad", " rax$", "search in plaintext disasm for instruction matchin given glob expression",
-	"/adj", " rax", "json output searching in disasm with plaintext",
-	"/adq", " rax", "quiet mode ideal for scripting",
-	"/ad/", " ins1;ins2", "search for regex instruction 'ins1' followed by regex 'ins2'",
-	"/ad/a", " instr", "search for every byte instruction that matches regexp 'instr'",
+	"用法: /ad[/<*jq>]", "[value]", "向后搜索子命令",
+	"/ad", " rax", "在纯文本反汇编中搜索匹配指令",
+	"/ad", " rax$", "在纯文本反汇编中搜索匹配给定通配符表达式的指令",
+	"/adj", " rax", "在反汇编中使用纯文本搜索的 JSON 输出",
+	"/adq", " rax", "安静模式，适用于脚本",
+	"/ad/", " ins1;ins2", "搜索正则指令 'ins1' 后跟正则 'ins2'",
+	"/ad/a", " instr", "搜索匹配正则表达式 'instr' 的每个字节指令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_magic = {
-	"/m", "", "search for known magic patterns",
-	"/m", " [file]", "same as above but using the given magic file",
-	"/me", " [msg]", "like ?e similar to IRC's /me",
-	"/mm", "", "search for known filesystems and mount them automatically",
-	"/mb", "", "search recognized RBin headers",
+	"/m", "", "搜索已知的魔法模式",
+	"/m", " [file]", "同上，但使用给定的魔法文件",
+	"/me", " [msg]", "类似 ?e 类似于 IRC 的 /me",
+	"/mm", "", "搜索已知的文件系统并自动挂载",
+	"/mb", "", "搜索识别的 RBin 头部",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash = {
-	"Usage:", "/[!bf] [arg]", "Search stuff (see 'e??search' for options)\n"
-	"Use io.va for searching in non virtual addressing spaces",
-	"/", " foo\\x00", "search for string 'foo\\0'",
-	"/j", " foo\\x00", "search for string 'foo\\0' (json output)",
-	"/!", " ff", "search for first occurrence not matching, command modifier",
-	"/!x", " 00", "inverse hexa search (find first byte != 0x00)",
-	"/+", " /bin/sh", "construct the string with chunks",
-	"//", "", "repeat last search",
-	"/a", "[?][1aoditfmsltf] jmp eax", "find instructions by text or bytes (asm/disasm)",
-	"/b", "[?][p]", "search backwards, command modifier, followed by other command",
-	"/B", "", "search possible base address",
-	"/c", "[?][adr]", "search for crypto materials",
-	"/d", " 101112", "search for a deltified sequence of bytes",
-	"/e", " /E.F/i", "match regular expression",
-	"/E", " esil-expr", "address matching given esil expressions $$ = here",
-	"/f", "", "search forwards, (command modifier)",
-	"/F", " file [off] [sz]", "search contents of file with offset and size",
-	// TODO: add subcommands to find paths between functions and filter only function names instead of offsets, etc
-	"/g", "[g] [from]", "find all graph paths A to B (/gg follow jumps, see search.count and anal.depth)",
-	"/h", "[?*] [algorithm] [digest] [size]", "find block of size bytes having this digest. See ph",
-	"/i", " foo", "search for string 'foo' ignoring case",
-	"/k", " foo", "search for string 'foo' using Rabin Karp alg",
-	"/m", "[?][ebm] magicfile", "search for magic, filesystems or binary headers",
-	"/o", " [n]", "show offset of n instructions backward",
-	"/O", " [n]", "same as /o, but with a different fallback if anal cannot be used",
-	"/p", "[?][p] patternsize", "search for pattern of given size",
-	"/P", " patternsize", "search similar blocks",
-	"/s", "[*] [threshold]", "find sections by grouping blocks with similar entropy",
-	"/r", "[?][erwx] sym.printf", "analyze opcode reference an offset (/re for esil)",
-	"/R", "[?] [grepopcode]", "search for matching ROP gadgets, semicolon-separated",
-	// moved into /as "/s", "", "search for all syscalls in a region (EXPERIMENTAL)",
-	"/v", "[1248] value", "look for an `cfg.bigendian` 32bit value",
-	"/V", "[1248] min max", "look for an `cfg.bigendian` 32bit value in range",
-	"/w", " foo", "search for wide string 'f\\0o\\0o\\0'",
-	"/wi", " foo", "search for wide string ignoring case 'f\\0o\\0o\\0'",
-	"/x", "[?] [bytes]", "search for hex string with mask, ignoring some nibbles",
-	"/z", " min max", "search for strings of given size",
-	"/*", " [comment string]", "add multiline comment, end it with '*/'",
+	"用法:", "/[!bf] [arg]", "搜索内容 (参见 'e??search' 获取选项)\n"
+	"使用 io.va 在非虚拟寻址空间中搜索",
+	"/", " foo\\x00", "搜索字符串 'foo\\0'",
+	"/j", " foo\\x00", "搜索字符串 'foo\\0' (JSON 输出)",
+	"/!", " ff", "搜索不匹配的第一个出现，命令修饰符",
+	"/!x", " 00", "反向十六进制搜索 (查找第一个字节 != 0x00)",
+	"/+", " /bin/sh", "使用块构造字符串",
+	"//", "", "重复上次搜索",
+	"/a", "[?][1aoditfmsltf] jmp eax", "按文本或字节查找指令 (汇编/反汇编)",
+	"/b", "[?][p]", "向后搜索，命令修饰符，后跟其他命令",
+	"/B", "", "搜索可能的基地址",
+	"/c", "[?][adr]", "搜索加密材料",
+	"/d", " 101112", "搜索增量字节序列",
+	"/e", " /E.F/i", "匹配正则表达式",
+	"/E", " esil-expr", "匹配给定 ESIL 表达式的地址 $$ = 此处",
+	"/f", "", "向前搜索，(命令修饰符)",
+	"/F", " file [off] [sz]", "搜索具有偏移和大小的文件内容",
+	// TODO: 添加子命令以查找函数间的路径，并仅过滤函数名称而不是偏移等
+	"/g", "[g] [from]", "查找所有图路径 A 到 B (/gg 跟随跳转，参见 search.count 和 anal.depth)",
+	"/h", "[?*] [algorithm] [digest] [size]", "查找具有此摘要的大小字节块。参见 ph",
+	"/i", " foo", "搜索字符串 'foo' 忽略大小写",
+	"/k", " foo", "使用 Rabin Karp 算法搜索字符串 'foo'",
+	"/m", "[?][ebm] magicfile", "搜索魔法、文件系统或二进制头部",
+	"/o", " [n]", "显示 n 条指令向后的偏移",
+	"/O", " [n]", "与 /o 相同，但如果无法使用分析则有不同的回退",
+	"/p", "[?][p] patternsize", "搜索给定大小的模式",
+	"/P", " patternsize", "搜索相似的块",
+	"/s", "[*] [threshold]", "通过分组具有相似熵的块来查找区段",
+	"/r", "[?][erwx] sym.printf", "分析操作码引用偏移 (/re 用于 esil)",
+	"/R", "[?] [grepopcode]", "搜索匹配的 ROP 小工具，分号分隔",
+	// 已移至 /as "/s", "", "在区域中搜索所有系统调用 (实验性)",
+	"/v", "[1248] value", "查找 `cfg.bigendian` 32 位值",
+	"/V", "[1248] min max", "查找范围内的 `cfg.bigendian` 32 位值",
+	"/w", " foo", "搜索宽字符串 'f\\0o\\0o\\0'",
+	"/wi", " foo", "搜索宽字符串忽略大小写 'f\\0o\\0o\\0'",
+	"/x", "[?] [bytes]", "使用掩码搜索十六进制字符串，忽略某些半字节",
+	"/z", " min max", "搜索给定大小的字符串",
+	"/*", " [comment string]", "添加多行注释，以 '*/' 结束",
 #if 0
-	"\nConfiguration:", "", " (type `e??search.` for a complete list)",
-	"e", " cmd.hit = x", "command to execute on every search hit",
-	"e", " search.in = ?", "specify where to search stuff (depends on .from/.to)",
-	"e", " search.align = 4", "only catch aligned search hits",
-	"e", " search.from = 0", "start address",
-	"e", " search.to = 0", "end address",
-	"e", " search.flags = true", "if enabled store flags on keyword hits",
+	"\n配置:", "", " (输入 `e??search.` 获取完整列表)",
+	"e", " cmd.hit = x", "在每个搜索命中上执行的命令",
+	"e", " search.in = ?", "指定搜索内容的位置 (取决于 .from/.to)",
+	"e", " search.align = 4", "仅捕获对齐的搜索命中",
+	"e", " search.from = 0", "起始地址",
+	"e", " search.to = 0", "结束地址",
+	"e", " search.flags = true", "如果启用，在关键字命中时存储标志",
 #endif
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_at = {
-	"Usage:", "/at[flmj] [arg]", "Search for instructions matching type/family/mnemonic",
-	"/at", " [optype,optype2]", "list instructions matching any of the comma separated optypes",
-	"/atj", " [optype,optype2]", "same as above but using json as output",
-	"/atf", " [family]", "search for given-family type of instructions",
-	"/atl", "", "list all the instruction types (RAnalOp.Type)",
-	"/atm", "", "search matching only the instruction mnemonic",
+	"用法:", "/at[flmj] [arg]", "搜索匹配类型/系列/助记符的指令",
+	"/at", " [optype,optype2]", "列出匹配任何逗号分隔操作类型的指令",
+	"/atj", " [optype,optype2]", "同上，但使用 JSON 作为输出",
+	"/atf", " [family]", "搜索给定系列类型的指令",
+	"/atl", "", "列出所有指令类型 (RAnalOp.Type)",
+	"/atm", "", "仅搜索匹配指令助记符",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_a = {
-	"Usage:", "/a[?] [arg]", "Search for assembly instructions matching given properties",
-	"/a", " push rbp", "assemble given instruction and search the bytes",
-	"/a1", " [number]", "find valid assembly generated by changing only the nth byte",
-	"/aI", "", "search for infinite loop instructions (jmp $$)",
-	"/aa", " mov eax", "linearly find aproximated assembly (case insensitive strstr)",
-	"/ab", "[f] [delta]", "search for backward jumps (usually loops)",
-	"/ac", " mov eax", "same as /aa, but case-sensitive",
-	"/ad", "[?][/*jq] push;mov", "match ins1 followed by ins2 in linear disasm",
-	"/ae", " esil", "search for esil expressions matching substring",
-	"/af", "[l] family", "search for instruction of specific family (afl=list)",
-	"/aF", "[d] opstr", "find instructions matching given opstr only in analyzed code",
-	"/ai", "[j] 0x300 [0x500]", "find all the instructions using that immediate (in range)",
-	"/al", "", "same as aoml, list all opcodes",
-	"/am", " opcode", "search for specific instructions of specific mnemonic",
-	"/ao", " instr", "search for instruction 'instr' (in all offsets)",
-	"/as", "[qjl] ([type])", "search for syscalls (See /at swi and /af priv)",
-	"/at", "[?][qjl] ([type])", "search for instructions of given type",
-	"/az", "[q] ([minstr])", "search assembly constructed strings (q)uiet reduces FP (uses bin.minsz)",
+	"用法:", "/a[?] [arg]", "搜索具有给定属性的汇编指令",
+	"/a", " push rbp", "汇编给定指令并搜索字节",
+	"/a1", " [number]", "通过仅更改第 n 个字节查找有效的汇编",
+	"/aI", "", "搜索无限循环指令 (jmp $$)",
+	"/aa", " mov eax", "线性查找近似汇编 (不区分大小写的 strstr)",
+	"/ab", "[f] [delta]", "搜索向后跳转 (通常是循环)",
+	"/ac", " mov eax", "与 /aa 相同，但区分大小写",
+	"/ad", "[?][/*jq] push;mov", "在线性反汇编中匹配 ins1 后跟 ins2",
+	"/ae", " esil", "搜索匹配子字符串的 ESIL 表达式",
+	"/af", "[l] family", "搜索特定系列的指令 (afl=列表)",
+	"/aF", "[d] opstr", "仅在分析的代码中查找匹配给定操作字符串的指令",
+	"/ai", "[j] 0x300 [0x500]", "查找使用该立即数的所有指令 (在范围内)",
+	"/al", "", "与 aoml 相同，列出所有操作码",
+	"/am", " opcode", "搜索特定助记符的特定指令",
+	"/ao", " instr", "搜索指令 'instr' (在所有偏移中)",
+	"/as", "[qjl] ([type])", "搜索系统调用 (参见 /at swi 和 /af priv)",
+	"/at", "[?][qjl] ([type])", "搜索给定类型的指令",
+	"/az", "[q] ([minstr])", "搜索汇编构造的字符串 (q)uiet 减少误报 (使用 bin.minsz)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_c = {
-	"Usage: /c", "", "Search for crypto materials",
-	"/ca", "[?] [algo]", "search for keys expanded in memory (algo can be 'aes' or 'sm4')",
-	"/cc", "[?] [algo] [digest]", "find collisions (bruteforce block length values until given checksum is found)",
-	"/cd", "", "search for ASN1/DER certificates",
-	"/cg", "", "search for GPG/PGP keys and signatures (Plaintext and binary form)",
-	"/ck", "", "find well known constant tables from different hash and crypto algorithms",
-	"/cp", "[?] [algo] [pubkey]", "search for a private key matching a given public key",
-	"/cr", "", "search for ASN1/DER private keys (RSA and ECC)",
+	"用法: /c", "", "搜索加密材料",
+	"/ca", "[?] [algo]", "搜索在内存中扩展的密钥 (算法可以是 'aes' 或 'sm4')",
+	"/cc", "[?] [algo] [digest]", "查找冲突 (暴力破解块长度值直到找到给定的校验和)",
+	"/cd", "", "搜索 ASN1/DER 证书",
+	"/cg", "", "搜索 GPG/PGP 密钥和签名 (纯文本和二进制形式)",
+	"/ck", "", "查找来自不同哈希和加密算法的知名常量表",
+	"/cp", "[?] [algo] [pubkey]", "搜索匹配给定公钥的私钥",
+	"/cr", "", "搜索 ASN1/DER 私钥 (RSA 和 ECC)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_cc = {
-	"Usage: /cc[aAldpb]", "[algo] [digest]", "find collisions",
-	"/cca", " [algo] [digest]", "lowercase alphabet chars only",
-	"/ccA", " [algo] [digest]", "uppercase alphabet chars only",
-	"/ccl", " [algo] [digest]", "letters (lower + upper alphabet chars)",
-	"/ccd", " [algo] [digest]", "digits (only numbers)",
-	"/ccp", " [algo] [digest]", "printable (alpha + digit)",
-	"/ccb", " [algo] [digest]", "binary (any number is valid)",
+	"用法: /cc[aAldpb]", "[algo] [digest]", "查找冲突",
+	"/cca", " [algo] [digest]", "仅小写字母字符",
+	"/ccA", " [algo] [digest]", "仅大写字母字符",
+	"/ccl", " [algo] [digest]", "字母 (小写 + 大写字母字符)",
+	"/ccd", " [algo] [digest]", "数字 (仅数字)",
+	"/ccp", " [algo] [digest]", "可打印字符 (字母 + 数字)",
+	"/ccb", " [algo] [digest]", "二进制 (任何数字都有效)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_r = {
-	"Usage:", "/r[acerwx] [address]", " search references to this specific address",
-	"/r", " [addr]", "search references to this specific address",
-	"/ra", "", "search all references",
-	"/rc", " ([addr])", "search for call references",
-	"/re", " [addr]", "search references using esil",
-	"/rr", "", "find read references",
-	"/ru", "[*qj]", "search for UDS CAN database tables (binbloom)",
-	"/rw", "", "find write references",
-	"/rx", "", "find exec references",
+	"用法:", "/r[acerwx] [address]", " 搜索对此特定地址的引用",
+	"/r", " [addr]", "搜索对此特定地址的引用",
+	"/ra", "", "搜索所有引用",
+	"/rc", " ([addr])", "搜索调用引用",
+	"/re", " [addr]", "使用 ESIL 搜索引用",
+	"/rr", "", "查找读取引用",
+	"/ru", "[*qj]", "搜索 UDS CAN 数据库表 (binbloom)",
+	"/rw", "", "查找写入引用",
+	"/rx", "", "查找执行引用",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_R = {
-	"Usage: /R", "", "search for ROP gadgets (see \"? for escaping chars in the shell)",
-	"/R", " [string]", "show gadgets",
-	"/R/", " [regexp]", "show gadgets [regular expression]",
-	"/R/j", " [regexp]", "json output [regular expression]",
-	"/R/q", " [regexp]", "show gadgets in a quiet manner [regular expression]",
-	"/Rj", " [string]", "json output",
-	"/Rk", " [ropklass]", "query stored ROP gadgets klass",
-	"/Rq", " [string]", "show gadgets in a quiet manner",
+	"用法: /R", "", "搜索 ROP 小工具 (参见 \"? 用于在 shell 中转义字符)",
+	"/R", " [string]", "显示小工具",
+	"/R/", " [regexp]", "显示小工具 [正则表达式]",
+	"/R/j", " [regexp]", "JSON 输出 [正则表达式]",
+	"/R/q", " [regexp]", "以安静方式显示小工具 [正则表达式]",
+	"/Rj", " [string]", "JSON 输出",
+	"/Rk", " [ropklass]", "查询存储的 ROP 小工具类",
+	"/Rq", " [string]", "以安静方式显示小工具",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_Rk = {
-	"Usage: /Rk", "", "query stored ROP gadgets",
-	"/Rk", " [nop|mov|const|arithm|arithm_ct]", "show gadgets",
-	"/Rkj", "", "json output",
-	"/Rkq", "", "list Gadgets offsets",
+	"用法: /Rk", "", "查询存储的 ROP 小工具",
+	"/Rk", " [nop|mov|const|arithm|arithm_ct]", "显示小工具",
+	"/Rkj", "", "JSON 输出",
+	"/Rkq", "", "列出小工具偏移",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_slash_x = {
-	"Usage:", "/x[v] [hexpairs]:[binmask]", "search in memory",
-	"/x ", "9090cd80", "search for those bytes",
-	"/x ", "ff..33", "search for hex string ignoring some nibbles",
-	"/x ", "9090cd80:ffff7ff0", "search with binary mask",
-	"/xn", "[1|2|4|8] value amount", "search for an array of Value repeated Amount of times",
-	"/xv", "[1|2|4|8] v0 v1 v2 v3 ..", "search for an array of values with given size and endian",
+	"用法:", "/x[v] [hexpairs]:[binmask]", "在内存中搜索",
+	"/x ", "9090cd80", "搜索这些字节",
+	"/x ", "ff..33", "搜索忽略某些半字节的十六进制字符串",
+	"/x ", "9090cd80:ffff7ff0", "使用二进制掩码搜索",
+	"/xn", "[1|2|4|8] value amount", "搜索重复次数的值数组",
+	"/xv", "[1|2|4|8] v0 v1 v2 v3 ..", "搜索具有给定大小和字节序的值数组",
 	NULL
 };
 

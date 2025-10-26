@@ -5,49 +5,49 @@
 #include "cmd_mmc.inc.c"
 
 static RCoreHelpMessage help_msg_m = {
-	"Usage:", "m[-?*dgy] [...] ", "Mountpoints management",
-	"m", " /mnt ext2 0", "mount ext2 fs at /mnt with delta 0 on IO",
-	"m", " /mnt", "mount fs at /mnt with autodetect fs and current offset",
-	"m", "", "list all mountpoints in human readable format",
-	"m*", "", "same as above, but in r2 commands",
-	"m-/", "", "umount given path (/)",
-	"mL", "[Lj]", "list filesystem plugins (Same as Lm), mLL shows only fs plugin names",
-	"mc", " [file]", "cat: Show the contents of the given file",
-	"md", " /", "list files and directory on the virtual r2's fs",
-	"mdd", " /", "show file size like `ls -l` in ms",
-	"mdq", " /", "show just the file name (quiet)",
-	"mf", "[?] [o|n]", "search files for given filename or for offset",
-	"mg", " /foo [offset size]", "get fs file/dir and dump to disk (support base64:)",
-	"mi", " /foo/bar", "get offset and size of given file",
-	"mis", " /foo/bar", "get offset and size of given file and seek to it",
-	"mj", "", "list mounted filesystems in JSON",
-	"mmc", "[left_path] [right_path]", "Mountpoint Miknight Commander (dual-panel file manager)",
-	"mn", " [mountpoint]", "show filesystem information details",
-	"mo", " /foo/bar", "open given file into a malloc://",
-	"mp", " msdos 0", "show partitions in msdos format at offset 0",
-	"mp", "", "list all supported partition types",
-	"ms", " /mnt", "open filesystem shell at /mnt (or fs.cwd if not defined)",
-	"md+", " /dir", "create directory inside mounted filesystem",
-	"mw", " [file] [data]", "write data into file",
-	"mwf", " [diskfile] [r2filepath]", "write contents of local diskfile into r2fs mounted path",
-	"my", "", "yank contents of file into clipboard",
-	"mal", "", "list available r2 docs",
-	"man", " [page]", "man=manpage reading (see mal)",
-	//"TODO: support multiple mountpoints and RFile IO's (need io+core refactorn",
+	"用法:", "m[-?*dgy] [...] ", "挂载点管理",
+	"m", " /mnt ext2 0", "在/mnt挂载ext2文件系统，IO偏移为0",
+	"m", " /mnt", "在/mnt挂载文件系统，自动检测文件系统和当前偏移",
+	"m", "", "以可读格式列出所有挂载点",
+	"m*", "", "同上，但以r2命令格式输出",
+	"m-/", "", "卸载给定路径(/)",
+	"mL", "[Lj]", "列出文件系统插件（同Lm），mLL仅显示文件系统插件名称",
+	"mc", " [file]", "cat：显示给定文件内容",
+	"md", " /", "列出虚拟r2文件系统中的文件和目录",
+	"mdd", " /", "以`ls -l`格式显示文件大小（毫秒）",
+	"mdq", " /", "仅显示文件名（静默模式）",
+	"mf", "[?] [o|n]", "按文件名或偏移搜索文件",
+	"mg", " /foo [offset size]", "获取文件系统文件/目录并转储到磁盘（支持base64:）",
+	"mi", " /foo/bar", "获取给定文件的偏移和大小",
+	"mis", " /foo/bar", "获取给定文件的偏移和大小并跳转到该位置",
+	"mj", "", "以JSON格式列出已挂载的文件系统",
+	"mmc", "[left_path] [right_path]", "挂载点Miknight Commander（双面板文件管理器）",
+	"mn", " [mountpoint]", "显示文件系统详细信息",
+	"mo", " /foo/bar", "将给定文件打开到malloc://中",
+	"mp", " msdos 0", "在偏移0处显示msdos格式的分区",
+	"mp", "", "列出所有支持的分区类型",
+	"ms", " /mnt", "在/mnt打开文件系统shell（如未定义则使用fs.cwd）",
+	"md+", " /dir", "在挂载的文件系统中创建目录",
+	"mw", " [file] [data]", "向文件写入数据",
+	"mwf", " [diskfile] [r2filepath]", "将本地磁盘文件内容写入r2fs挂载路径",
+	"my", "", "将文件内容复制到剪贴板",
+	"mal", "", "列出可用的r2文档",
+	"man", " [page]", "手册页阅读（见mal）",
+	//"TODO: 支持多个挂载点和RFile IO（需要io+core重构）",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_mcolon = {
-	"Usage:", "m:", "[plugin-command]",
-	"m:", "", "list the fs plugins",
-	"m:", "posix", "run the command associated with the 'posix' fs plugin",
+	"用法:", "m:", "[plugin-command]",
+	"m:", "", "列出文件系统插件",
+	"m:", "posix", "运行与'posix'文件系统插件关联的命令",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_mf = {
-	"Usage:", "mf[no] [...]", "search files matching name or offset",
-	"mfn", " /foo *.c","search files by name in /foo path",
-	"mfo", " /foo 0x5e91","search files by offset in /foo path",
+	"用法:", "mf[no] [...]", "搜索匹配名称或偏移的文件",
+	"mfn", " /foo *.c","在/foo路径中按名称搜索文件",
+	"mfo", " /foo 0x5e91","在/foo路径中按偏移搜索文件",
 	NULL
 };
 
@@ -273,7 +273,7 @@ static int cmd_man(RCore *core, const char *input) {
 		}
 #endif
 	} else {
-		R_LOG_ERROR ("Usage: man [page]");
+		R_LOG_ERROR ("用法: man [page]");
 	}
 	return 0;
 }
@@ -599,7 +599,7 @@ static int cmd_mount(void *data, const char *_input) {
 		} else if (input[1] == '+') { // "md+"
 			const char *arg = r_str_trim_head_ro (input + 2);
 			if (R_STR_ISEMPTY (arg)) {
-				R_LOG_ERROR ("Usage: md+ /path");
+				R_LOG_ERROR ("用法: md+ /path");
 				r_core_return_value (core, R_CMD_RC_FAILURE);
 				break;
 			}

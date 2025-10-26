@@ -3,62 +3,62 @@
 #if R_INCLUDE_BEGIN
 
 static RCoreHelpMessage help_msg_La = {
-	"Usage:", "La[qj]", " # asm/anal plugin list",
-	"La",  "", "List arch plugins (See rasm2 -L)",
-	"Laq",  "", "Only list the plugin name",
-	"Laj",  "", "Full list, but in JSON format",
+	"用法:", "La[qj]", " # asm/anal 插件列表",
+	"La", "", "列出架构插件 (查看 rasm2 -L)",
+	"Laq", "", "仅列出插件名称",
+	"Laj", "", "完整列表，但以 JSON 格式",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_LA = {
-	"Usage:", "LA[qj]", " # analysis plugin list",
-	"LA",  "", "List analysis plugins (See rasm2 -L)",
-	"LAq",  "", "Only list the plugin name",
-	"LAj",  "", "Full list, but in JSON format",
+	"用法:", "LA[qj]", " # 分析插件列表",
+	"LA", "", "列出分析插件 (查看 rasm2 -L)",
+	"LAq", "", "仅列出插件名称",
+	"LAj", "", "完整列表，但以 JSON 格式",
 	NULL
 };
 
-// TODO #7967 help refactor: move to another place
+// TODO #7967 帮助重构: 移动到其他地方
 static RCoreHelpMessage help_msg_L = {
-	"Usage:", "L[acio]", "[-name][ file]",
-	"L",  "", "show this help",
-	"L", " blah."R_LIB_EXT, "load plugin file",
-	"L-", "duk", "unload core plugin by name or file name",
-	"La", "[qj]", "list arch plugins",
-	"LA", "[qj]", "list analysis plugins",
-	"Lb", "[qj]", "list bin plugins",
-	"Lc", "[j]", "list core plugins",
-	"Ld", "[j]", "list debug plugins (dL)",
-	"LD", "[j]", "list supported decompilers (e cmd.pdc=?)",
-	"Le", "[j]", "list esil plugins",
-	"Lg", "[j]", "list egg plugins",
-	"Lh", "", "list hash plugins (ph)",
-	"Li", "[j]", "list bin plugins (iL)",
-	"Ll", "[qj]", "list lang plugins (#!)",
-	"LL", "", "lock screen",
-	"Lm", "[j]", "list fs plugins (mL)",
-	"Lo", "[j]", "list io plugins (oL)",
-	"Lp", "[j]", "list parser plugins (e asm.parser=?)",
-	"Ls", "[qj]", "list assembler plugins",
-	"Lt", "[j]", "list color themes (eco)",
+	"用法:", "L[acio]", "[-name][ 文件]",
+	"L", "", "显示此帮助",
+	"L", " blah." R_LIB_EXT, "加载插件文件",
+	"L-", "duk", "通过名称或文件名卸载核心插件",
+	"La", "[qj]", "列出架构插件",
+	"LA", "[qj]", "列出分析插件",
+	"Lb", "[qj]", "列出二进制插件",
+	"Lc", "[j]", "列出核心插件",
+	"Ld", "[j]", "列出调试插件 (dL)",
+	"LD", "[j]", "列出支持的反编译器 (e cmd.pdc=?)",
+	"Le", "[j]", "列出 esil 插件",
+	"Lg", "[j]", "列出 egg 插件",
+	"Lh", "", "列出哈希插件 (ph)",
+	"Li", "[j]", "列出二进制插件 (iL)",
+	"Ll", "[qj]", "列出语言插件 (#!)",
+	"LL", "", "锁定屏幕",
+	"Lm", "[j]", "列出 fs 插件 (mL)",
+	"Lo", "[j]", "列出 io 插件 (oL)",
+	"Lp", "[j]", "列出解析器插件 (e asm.parser=?)",
+	"Ls", "[qj]", "列出汇编插件",
+	"Lt", "[j]", "列出颜色主题 (eco)",
 	NULL
 };
 
 static RCoreHelpMessage help_msg_T = {
-	"Usage:", "T", "[-][ num|msg] # text-log utility with timestamps",
-	"T", "", "list all Text log messages",
-	"T", " message", "add new log message",
-	"T", " 123", "list log from 123",
-	"T", " 10 3", "list 3 log messages starting from 10",
-	"T*", "", "list in radare commands",
-	"T-", "", "delete all logs",
-	"T-", " 123", "delete logs before 123",
-	"Tl", "", "get last log message id",
-	"Tj", "", "list in json format",
-	"Tm", " [idx]", "display log messages without index",
-	"TT", "", "enter into the text log chat console",
-	"T=", "[.]", "pull logs from remote r2 instance specified by http.sync",
-	"T=&", "", "start background thread syncing with the remote server",
+	"用法:", "T", "[-][ num|msg] # 带时间戳的文本日志工具",
+	"T", "", "列出所有文本日志消息",
+	"T", " 消息", "添加新日志消息",
+	"T", " 123", "列出从 123 开始的日志",
+	"T", " 10 3", "列出从 10 开始的 3 条日志消息",
+	"T*", "", "在 radare 命令中列出",
+	"T-", "", "删除所有日志",
+	"T-", " 123", "删除 123 之前的日志",
+	"Tl", "", "获取最后的日志消息 ID",
+	"Tj", "", "以 JSON 格式列出",
+	"Tm", " [idx]", "显示没有索引的日志消息",
+	"TT", "", "进入文本日志聊天控制台",
+	"T=", "[.]", "从指定的 http.sync 远程 r2 实例拉取日志",
+	"T=&", "", "启动后台线程与远程服务器同步",
 	NULL
 };
 
