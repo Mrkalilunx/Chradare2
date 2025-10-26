@@ -8,7 +8,7 @@
 
 ```bash
 git clone https://github.com/Mrkalilunx/Chradare2C
-cd Chradare2C
+cd Chradare2
 bash sys/install.sh
 ```
 
