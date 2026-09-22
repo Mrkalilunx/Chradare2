@@ -230,6 +230,11 @@ static bool manr2auto(RCore *core, const char *p)
 	if (i == n) {
 		return n > 0;
 	}
+	// ? 的二级帮助页如 ?e?、?$?、?@?、?>?、?|?、?~?、?&?、?#? 是合法帮助,放行
+	// 形态为 ? 开头 ? 结尾,中间段不含空白与命令分隔符
+	if (p[0] == '?' && n > 2 && p[n - 1] == '?' && !strpbrk (p + 1, " \t;!:")) {
+		return true;
+	}
 	// 普通帮助请求必须恰好一个 ? 且只在末尾,如 wx? 或 l?
 	if (strchr (p, '?') != p + n - 1) {
 		return false;
