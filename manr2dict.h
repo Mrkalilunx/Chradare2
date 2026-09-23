@@ -426,7 +426,7 @@ static const Manr2Dict manr2dict[] = {
 	{ "$iv", "操作码立即数值（例如 lui a0,0x8010 => 0x8010）" },
 	{ "$k{kv}", "获取 sdb 查询值的值" },
 	{ "$o", "此处（当前磁盘 io 偏移量）" },
-	{ "$p", "getpid()" },
+	{ "$p", "获取进程号" },
 	{ "$r", "获取控制台高度（行数，列数见 $c）" },
 	{ "$r{reg}", "获取寄存器 <reg> 的值（支持 $r{PC} 和 $r:PC）" },
 	{ "$s", "文件大小" },
@@ -3610,6 +3610,7 @@ static const Manr2Dict manr2dict[] = {
 	{ "zoom level", "缩放级别" },
 	{ "|=  or", "|=  或" },
 	{ "|= or", "|= 或" },
+	{ "getpid()", "获取进程号" },
 	{ NULL, NULL },
 };
 

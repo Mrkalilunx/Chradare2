@@ -1,0 +1,35 @@
+u	pdc[acjlot*]  experimental, unreliable and hacky pseudo-decompiler	用法: pdc[acjlot*]  实验性、不可靠且粗糙的伪反编译器
+d	pseudo decompile function in current offset	在当前偏移处伪反编译函数
+d	emit decompiled lines as CCu comment commands	将反编译行作为 CCu 注释命令输出
+d	side by side comparing assembly and pseudo	并排比较汇编和伪代码
+d	pseudo-decompile with C helpers around	带 C 辅助代码的伪反编译
+d	linear pseudo-decompilation scrolling across functions	跨函数滚动的线性伪反编译
+d	show associated offset next to pseudecompiled output	在伪反编译输出旁显示关联偏移
+d	in json format for codemeta annotations (used by frontends like iaito)	以 JSON 格式输出用于 codemeta 注解(供 iaito 等前端使用)
+d	dump the structuring region AST (decompiler debug)	转储结构化区域 AST(反编译器调试)
+u	pdd[*tcabojAfi]  # Core plugin for r2dec	用法: pdd[*tcabojAfi]  # r2dec 核心插件
+d	decompile current function	反编译当前函数
+d	lists the supported architectures	列出支持的架构
+d	decompiled code is returned to r2 as comment (via CCu)	反编译代码通过 CCu 作为注释返回给 r2
+d	decompiled code is returned to r2 as 'file:line code' (via CL)	反编译代码通过 CL 以 'file:line code' 形式返回给 r2
+d	decompile current function with side assembly	反编译当前函数并附带旁侧汇编
+d	decompile current function but show only scopes	反编译当前函数但仅显示作用域
+d	decompile current function side by side with offsets	并排显示偏移反编译当前函数
+d	decompile current function as json	以 JSON 格式反编译当前函数
+d	decompile current function with annotation output	反编译当前函数并输出注解
+d	decompile all functions	反编译所有函数
+d	generate issue data	生成问题数据
+u	pdg  # Native Ghidra decompiler plugin	用法: pdg  # 原生 Ghidra 反编译器插件
+d	# Decompile current function with the Ghidra decompiler	# 使用 Ghidra 反编译器反编译当前函数
+d	# Decompiled code is returned to r2 as comment	# 反编译代码作为注释返回给 r2
+d	# Side by side two column disasm and decompilation	# 并排双列显示反汇编和反编译
+d	# Dump the debug XML Dump	# 转储调试 XML Dump
+d	# Dump the current decompiled function as JSON	# 以 JSON 格式转储当前反编译函数
+d	# Decompile current function side by side with offsets	# 并排显示偏移反编译当前函数
+d	# Switch to RAsm and RAnal plugins driven by SLEIGH from Ghidra	# 切换到由 Ghidra 的 SLEIGH 驱动的 RAsm 和 RAnal 插件
+d	# Display loaded Sleigh Languages (alias for pdgL)	# 显示已加载的 Sleigh 语言(pdgL 的别名)
+d	# Disassemble N instructions with Sleigh and print pcode	# 使用 Sleigh 反汇编 N 条指令并打印 pcode
+d	# Display automatically matched Sleigh Language ID	# 显示自动匹配的 Sleigh 语言 ID
+d	# Decompile and write recovered names, types and signature back into r2	# 反编译并将恢复的名称、类型和签名写回 r2
+d	# Dump the XML of the current decompiled function	# 转储当前反编译函数的 XML
+d	# Path to ghidra sleigh directory (same as r2ghidra.sleighhome)	# ghidra sleigh 目录路径(与 r2ghidra.sleighhome 相同)

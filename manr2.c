@@ -11,6 +11,8 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
+#include <dlfcn.h>
 #include <r_core.h>
 #include "manr2dict.h"
 
@@ -27,6 +29,9 @@
  */
 static const char *manr2trans(const Manr2Dict *dict, const char *key)
 {
+	if (!dict || !key) {
+		return NULL;
+	}
 	size_t i;
 	for (i = 0; dict[i].en; i++) {
 		if (!strcmp (dict[i].en, key)) {
@@ -34,6 +39,152 @@ static const char *manr2trans(const Manr2Dict *dict, const char *key)
 		}
 	}
 	return NULL;
+}
+
+// 动态翻译表,运行时从 tsv 加载,空指针结束
+static Manr2Dict *g_usage = NULL; // 动态 usage 表
+static Manr2Dict *g_dict = NULL; // 动态 desc/标题表
+static Manr2Dict *g_argtab = NULL; // 动态参数占位符表
+
+/**
+ * 从 tsv 追加词条到动态表
+ * tsv 每行三个字段:类型\ten\tzh,类型 u/d/a 分别对应 usage/desc/arg
+ * 两文件先后读入,同一键后者覆盖前者,实现扩展表覆盖官方表
+ *
+ * @param name 表名(usage/desc/arg),决定追加到哪张表
+ * @param en 英文键
+ * @param zh 中文值
+ */
+static void manr2tabadd(const char *name, const char *en, const char *zh)
+{
+	Manr2Dict **dst = !strcmp (name, "u") ? &g_usage
+		: !strcmp (name, "a") ? &g_argtab : &g_dict;
+	size_t n = 0;
+	while ((*dst) && (*dst)[n].en) {
+		n++;
+	}
+	Manr2Dict *nt = realloc (*dst, (n + 2) * sizeof (Manr2Dict)); // 末尾留空终止行
+	if (!nt) {
+		return;
+	}
+	*dst = nt;
+	nt[n].en = strdup (en);
+	nt[n].zh = strdup (zh);
+	nt[n + 1].en = NULL;
+	nt[n + 1].zh = NULL;
+}
+
+/**
+ * 从 tsv 文件加载词条到动态表
+ * 按行解析,忽略空行与注释行,字段不足 3 个跳过
+ *
+ * @param path tsv 文件路径
+ * @return 解析到词条返回 true,文件不可读返回 false
+ */
+static bool manr2tsvload(const char *path)
+{
+	FILE *f = fopen (path, "r");
+	if (!f) {
+		return false;
+	}
+	char ln[4096];
+	while (fgets (ln, sizeof (ln), f)) {
+		if (ln[0] == '\n' || ln[0] == '#') {
+			continue;
+		}
+		char *p = ln;
+		while (*p && !isspace ((unsigned char) *p)) {
+			p++;
+		}
+		if (!*p) {
+			continue;
+		}
+		*p = 0;
+		char *en = p + 1;
+		p = en;
+		while (*p && *p != '\t') {
+			p++;
+		}
+		if (!*p) {
+			continue;
+		}
+		*p = 0;
+		char *zh = p + 1;
+		size_t zl = strlen (zh);
+		while (zl && (zh[zl - 1] == '\n' || zh[zl - 1] == '\r')) {
+			zh[--zl] = 0;
+		}
+		manr2tabadd (ln, en, zh);
+	}
+	fclose (f);
+	return true;
+}
+
+/**
+ * 定位当前插件 .so 的目录
+ * 用 dladdr 取本函数地址所在模块路径,截取目录部分
+ *
+ * @param out 输出缓冲
+ * @param sz 缓冲大小
+ */
+static void manr2sodir(char *out, size_t sz)
+{
+	Dl_info di;
+	if (dladdr ((void *) manr2sodir, &di) && di.dli_fname && di.dli_fname[0]) {
+		snprintf (out, sz, "%s", di.dli_fname);
+		char *sl = strrchr (out, '/');
+		if (sl) {
+			*sl = 0;
+		}
+	} else {
+		snprintf (out, sz, ".");
+	}
+}
+
+/**
+ * 加载全部翻译表
+ * 优先读插件同目录 manr2.tsv 与 manr2ext.tsv
+ * 任一 tsv 缺失时保留内置空表,不阻断插件功能
+ */
+static void manr2tabload(void)
+{
+	if (g_usage || g_dict || g_argtab) { // 已加载过,防重复
+		return;
+	}
+	char dir[512];
+	manr2sodir (dir, sizeof (dir));
+	char p1[640];
+	char p2[640];
+	snprintf (p1, sizeof (p1), "%s/manr2.tsv", dir);
+	snprintf (p2, sizeof (p2), "%s/manr2ext.tsv", dir);
+	manr2tsvload (p1);
+	manr2tsvload (p2);
+}
+
+/**
+ * 释放动态翻译表
+ * 先释放每条词条字符串再释放表本体,并置空防止重复释放
+ *
+ * @param ctx 插件会话上下文,仅作签名对齐,未使用
+ * @return 恒返回 true
+ */
+static bool manr2tabfree(RCorePluginSession *ctx)
+{
+	Manr2Dict *tabs[] = { g_usage, g_dict, g_argtab };
+	size_t t;
+	for (t = 0; t < 3; t++) {
+		Manr2Dict *d = tabs[t];
+		size_t i;
+		for (i = 0; d && d[i].en; i++) {
+			free ((void *) d[i].en);
+			free ((void *) d[i].zh);
+		}
+		free (d);
+	}
+	g_usage = NULL;
+	g_dict = NULL;
+	g_argtab = NULL;
+	return true;
 }
 
 /**
@@ -289,9 +440,9 @@ static void manr2argtr(char *dst, size_t dstsz, const char *src)
 				size_t plen = (size_t) (e - s) + 1; // 含两端括号的占位符长度
 				const char *zh = NULL; // 查表命中的中文译名
 				size_t i; // 词条下标
-				for (i = 0; manr2argtab[i].en; i++) { // 遇 NULL 终止行停止
-					if (strlen (manr2argtab[i].en) == plen && !strncmp (manr2argtab[i].en, s, plen)) { // 整占位符精确匹配
-						zh = manr2argtab[i].zh;
+for (i = 0; g_argtab && g_argtab[i].en; i++) { // 遇 NULL 终止行停止
+				if (strlen (g_argtab[i].en) == plen && !strncmp (g_argtab[i].en, s, plen)) { // 整占位符精确匹配
+					zh = g_argtab[i].zh;
 						break;
 					}
 				}
@@ -407,7 +558,7 @@ static bool manr2render(RCons *cons, const char *text)
 				r_cons_printf (cons, "\n");
 			} else if (!strncmp (buf, "Usage:", 6)) {
 				const char *rest = buf + 6;
-				const char *zh = manr2trans (manr2usage, rest);
+				const char *zh = manr2trans (g_usage, rest);
 				char mrest[256]; // 参数占位符翻译缓冲
 				manr2argtr (mrest, sizeof (mrest), zh ? zh : rest);
 				r_cons_printf (cons, "用法:");
@@ -421,7 +572,7 @@ static bool manr2render(RCons *cons, const char *text)
 					while (cl && (buf[2 + cl - 1] == ' ' || buf[2 + cl - 1] == '\t')) {
 						cl--;
 					}
-					const char *zh = manr2trans (manr2dict, desc);
+					const char *zh = manr2trans (g_dict, desc);
 					if (cl) {
 						char cmd[128];
 						if (cl > sizeof (cmd) - 1) {
@@ -447,7 +598,7 @@ static bool manr2render(RCons *cons, const char *text)
 				}
 				used = true;
 			} else {
-				const char *zh = manr2trans (manr2dict, buf);
+				const char *zh = manr2trans (g_dict, buf);
 				manr2colout (cons, colmsg, zh ? zh : buf);
 				r_cons_printf (cons, "\n");
 				used = true;
@@ -567,6 +718,7 @@ static bool manr2init(RCorePluginSession *ctx)
 	if (!ctx || !ctx->core || !ctx->core->config) {
 		return true;
 	}
+	manr2tabload (); // 读插件同目录 tsv,失败保留空表不阻断
 	RConfig *cfg = ctx->core->config;
 	RConfigNode *node = r_config_node_new (MANR2_AUTOCFG, "true"); // 键含点号,r_config_set_b 不会自动入表
 	if (node) {
@@ -587,6 +739,7 @@ static RCorePlugin r_core_plugin_manr2 = {
 	},
 	.init = manr2init,
 	.call = manr2call,
+	.fini = manr2tabfree, // 插件卸载时释放动态翻译表
 };
 
 #ifndef R2_PLUGIN_INCORE
