@@ -16,7 +16,6 @@
 
 #define MANR2_PREFIX "manr2"
 #define MANR2_AUTOCFG "manr2.auto" // r2 配置键,为真开启自动接管,默认开启
-#define MANR2_INDENT "  " // 输出缩进,统一由本宏控制
 #define MANR2_GAP 2 // 命令列补齐后到说明的空格数
 
 /**
@@ -466,32 +465,18 @@ static bool manr2render(RCons *cons, const char *text)
 }
 
 /**
- * 带缩进打印一行,缩进由 MANR2_INDENT 统一控制
- *
- * @param cons 输出控制台
- * @param fmt 格式串
- */
-static void manr2line(RCons *cons, const char *fmt, ...)
-{
-	r_cons_printf (cons, "%s", MANR2_INDENT);
-	va_list ap;
-	va_start (ap, fmt);
-	r_cons_printf_list (cons, fmt, ap);
-	va_end (ap);
-}
-
-/**
  * 打印 manr2 帮助文本
  *
  * @param cons 输出控制台
  */
 static void manr2help(RCons *cons)
 {
-	r_cons_printf (cons, "用法: manr2 <r2命令>\n");
-	r_cons_printf (cons, "按命令名查其中文手册,命令串与参数取自 r2 自身\n");
-	manr2line (cons, "help 显示本帮助\n");
-	manr2line (cons, "说明自动翻译,未收录的英文说明原样显示\n");
-	manr2line (cons, "例: manr2 ag 查图命令手册,manr2 agn 查节点手册\n");
+	// r2 帮助排版:首行 Usage: 说明,后续行 | 前缀,命令列对齐到 10 列再补 2 空格
+	r_cons_printf (cons, "Usage: manr2 [cmd]   # 按命令名查中文手册,命令串与参数取自 r2 自身\n");
+	r_cons_printf (cons, "| manr2 help    显示本帮助,any \"xxx?\" 输出自动接管\n");
+	r_cons_printf (cons, "| manr2 ag      查图命令手册\n");
+	r_cons_printf (cons, "| manr2 agn     查节点命令手册\n");
+	r_cons_printf (cons, "| manr2.auto    开关自动接管(0/1)\n");
 }
 
 /**
